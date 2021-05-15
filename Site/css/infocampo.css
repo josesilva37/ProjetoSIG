@@ -73,7 +73,27 @@ body {
 }
 
 .iconBasket{
-    color: black;
+    color: orangered;
+    margin-right: 10px;
+}
+
+.iconFutebol{
+  margin-right: 10px;
+}
+.iconVolley{
+  color: black;
+  margin-right: 10px;
+}
+.iconTenis{
+  font-size: 24px;
+  color: yellowgreen;
+  margin-right: 10px;
+}
+.iconPadel{
+  font-size: 24px;
+  color: lightseagreen;
+  margin-right: 10px;
+
 }
 
 .toggle-btn {
