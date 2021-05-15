@@ -2,8 +2,12 @@
   margin: 0px;
   padding: 0px;
 }
-body{
-    background-color: grey;
+html{
+    height: 100%;
+}
+body {
+  background-color: grey;
+  height: 100%;
 }
 
 #sidebar {
@@ -13,6 +17,7 @@ body{
   background: #fff;
   left: -300px;
   transition: 0.3s;
+  z-index: 10;
 }
 
 #sidebar ul li {
@@ -28,8 +33,45 @@ body{
   left: 320px;
 }
 
-.toggle-btn{
-    cursor: pointer;
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.icon {
+  color: #000;
+  border-bottom: 2px solid black;
+  min-width: 10px;
+  text-align: center;
+  margin-left: 25px;
+  margin-top: 20px;
+}
+.iconFilter {
+  min-width: 10px;
+  text-align: center;
+  margin-left: 25px;
+  margin-top: 20px;
+}
+.txtPesquisa {
+  width: 200px;
+  outline: 0;
+  font-size: 16px;
+  border-width: 0 0 2px;
+  padding-left: 30px;
+  border-color: black;
+  box-sizing: border-box;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.iconProfile {
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+}
+
+.toggle-btn {
+  cursor: pointer;
 }
 .toggle-btn span {
   width: 35px;
@@ -44,13 +86,14 @@ body{
 }
 
 .map {
-    height: 400px;
-    width: 100%;
-  }
+  margin-left: 75px;
+  height: 100%;
+  width: 100%;
+}
 
-#barraMenu{
-    position: absolute;
-    width: 75px;
-    height: 100%;
-    background-color: #fff;
+#barraMenu {
+  position: absolute;
+  width: 75px;
+  height: 100%;
+  background-color: #fff;
 }

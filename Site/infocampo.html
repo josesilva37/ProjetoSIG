@@ -10,6 +10,10 @@
       href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css"
       type="text/css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <title>Projeto SIG</title>
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
   </head>
@@ -22,12 +26,23 @@
           <span></span>
           <span></span>
         </div>
+        <div class="input-container">
+          <i class="fa fa-search icon"></i>
+          <input
+            type="text"
+            name="textoPesquisa"
+            class="txtPesquisa"
+            placeholder="Pesquise aqui"
+          />
+          <i class="fa fa-filter iconFilter"></i>
+        </div>
         <ul>
           <li>Home</li>
           <li>Teste</li>
           <li>About</li>
           <li>Contactos</li>
         </ul>
+        <i class="fa fa-user-circle fa-2x iconProfile"></i>
       </div>
     </div>
     <div id="map" class="map"></div>
