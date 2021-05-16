@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/perfil.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css"
+            type="text/css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <title>Projeto SIG</title>
+        <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+        <script src="https://kit.fontawesome.com/23fbd4e5e3.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="barraMenu">
+        <div id="sidebar">
+        <div class="toggle-btn" onclick="show()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="input-container">
+            <i class="fa fa-search icon"></i>
+            <input
+                type="text"
+                name="textoPesquisa"
+                class="txtPesquisa"
+                placeholder="Pesquise aqui"
+            />
+            <i class="fa fa-filter iconFilter"></i>
+            </div>
+            <ul>
+                <li>Home</li>
+                <li>Teste</li>
+                <li>About</li>
+                <li>Contactos</li>
+                <li class="row"> 
+                    <input type="button" class="botaoAbrirPopup" id="btnAbrePerfil" value="Perfil">
+                    <div class="popup" id="popup">
+                        <div class="popup-content">
+                            <span class="close">&times;</span>
+                            <img src="avataresjogadores/avatarsig3.png" alt="foto_perfil" id="foto">
+                            <h4>Ricardo</h4>
+                            <h5>Sou uma pessoa amigavel, em busca de companheiros para jogar</h5>
+                            <h5>Eventos inscritos: </h5>
+                            <div id="caixaInscritos">
+                                <p>26/06/2021 16:00 Campo Galitos - Padle</p>
+                            </div>
+                            <h5>Histórico de Eventos: </h5>
+                            <div id="caixaHistorico">
+                                <p>Jogo Campo dos Galitos - Basket</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <i class="fa fa-user-circle fa-2x iconProfile"></i>
+        </div>
+        </div>
+        <div id="map" class="map"></div>
+        <script src="js/perfil.js"></script>
+    </body>
+</html>
