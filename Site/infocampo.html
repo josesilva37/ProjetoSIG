@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="./css/infocampo.css" />
     <link
       rel="stylesheet"
@@ -47,15 +48,26 @@
           <li><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
           <li><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
         </ul>
-        <i class="fa fa-user-circle fa-2x iconProfile"></i>
+        <i class="fa fa-user-circle fa-2x iconProfile" id="logIn"></i>
       </div>
-      <i class="fa fa-user-circle fa-2x iconProfile"></i>
+      <i class="fa fa-user-circle fa-2x iconProfile" id="logIn2"></i>
     </div>
     <div id="map" class="map"></div>
     <div id="popup" class="ol-popup">
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>
     </div>
+    <div class="login_popup" id="login_popup">
+      <div class="popup-content">
+          <span class="close">&times;</span>
+          <div class="popup_content">
+          <input type="text" placeholder="Nome Utilizador" class="txtInput">
+          <input type="password" placeholder="Password" class="txtInput">
+          <div class="btnLogIn">Log In</div>
+          <div class="btnCriarConta">Criar Conta</div>
+        </div>
+      </div>
     <script src="js/infocampo.js"></script>
+    <script src="js/login.js"></script>
   </body>
 </html>
