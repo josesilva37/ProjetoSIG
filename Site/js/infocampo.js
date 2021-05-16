@@ -44,14 +44,17 @@ var map = new ol.Map({
     zoom: 13
   })
 });
-
-
-map.on('singleclick', function (evt) {
-  var coordinate = evt.coordinate;
-  var hdms = "teste";
-  content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
-  overlay.setPosition(coordinate);
+var entidadesStyle = new ol.style.Style({
+  image: new ol.style.Icon({
+    anchor: [0.5, 0.5],
+    //     size: [52, 52],
+    //     offset: [52, 0],
+    //     opacity: 1,
+    scale: 0.05,
+    src: "./icons/icone.png"
+  })
 });
+
 
 
 var entidadesSource = new ol.source.Vector({
@@ -60,9 +63,17 @@ var entidadesSource = new ol.source.Vector({
 });
 var entidades = new ol.layer.Vector({
   title: "Equipamentos desportivos de Aveiro",
-  source: entidadesSource
+  source: entidadesSource,
+  style: entidadesStyle
 });
 map.addLayer(entidades);
+
+
+map.on('click', function (evt) {
+  var source = entidades.getSource();
+  content.innerHTML = '<p>You clicked here:</p><code>testetesteteste</code>';
+  overlay.setPosition(evt.coordinate);
+});
 /*//////////////////////////*/
 
 
