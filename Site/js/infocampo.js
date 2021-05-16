@@ -1,3 +1,4 @@
+/*PARTE DO MAPA*/
 
 var map = new ol.Map({
   target: 'map',
@@ -20,6 +21,9 @@ var entidades = new ol.layer.Vector({
   source: entidadesSource
 });
 map.addLayer(entidades);
+/*//////////////////////////*/
+
+
 // Add Vector layer to map
 function show(){
   document.getElementById("sidebar").classList.toggle("active");
