@@ -71,7 +71,7 @@ map.addLayer(entidades);
 
 map.on('click', function (evt) {
   var source = entidades.getSource();
-  content.innerHTML = '<p>You clicked here:</p><code>testetesteteste</code>';
+  content.innerHTML = "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo'><p>Localização: " + evt.coordinate + "  </p><code>Campo de Aveiro</code>";
   overlay.setPosition(evt.coordinate);
 });
 /*//////////////////////////*/

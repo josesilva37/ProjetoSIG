@@ -169,3 +169,8 @@ body {
 .ol-popup-closer:after {
   content: "✖";
 }
+
+img{
+  width: 350px;
+  margin-top: 10px;
+}
