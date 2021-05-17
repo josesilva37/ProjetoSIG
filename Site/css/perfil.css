@@ -160,7 +160,7 @@ body {
     /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 40%;
+    width: 80%;
     /* Could be more or less, depending on screen size */
 }
 .close {
@@ -180,8 +180,9 @@ body {
 #foto{
     width: 100px;
     display: block;
-    margin-left: 30px;
     margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h4{
@@ -207,5 +208,3 @@ h5{
     height: 300px;
     color: #000;
 }
-
-
