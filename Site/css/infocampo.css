@@ -43,7 +43,7 @@ body {
 }
 .icon {
   color: #000;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid grey;
   min-width: 10px;
   text-align: center;
   margin-left: 25px;
@@ -61,7 +61,7 @@ body {
   font-size: 16px;
   border-width: 0 0 2px;
   padding-left: 30px;
-  border-color: black;
+  border-color: grey;
   box-sizing: border-box;
   margin-top: 20px;
   text-align: left;
@@ -129,6 +129,7 @@ body {
 }
 
 .ol-popup {
+  font-family: Arial, Helvetica, sans-serif;
   position: absolute;
   background-color: white;
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
@@ -137,7 +138,7 @@ body {
   border: 1px solid #cccccc;
   bottom: 12px;
   left: -50px;
-  min-width: 280px;
+  min-width: 350px;
 }
 .ol-popup:after, .ol-popup:before {
   top: 100%;
@@ -168,4 +169,35 @@ body {
 }
 .ol-popup-closer:after {
   content: "✖";
+}
+
+.imagensCampos{
+  width: 400px;
+  margin-top: 10px;
+}
+
+.btnEventos{
+  margin-top: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btnEventos:hover{
+  font-weight: bold;
+}
+
+
+.infoP{
+  margin-top: 10px;
+}
+.imagensAvatares{
+  margin-top: 10px;
+  width: 30px;
+  display: inline;
+  margin-left: 5px;
+}
+
+#divParticipantes >img:first-child{
+  margin-left: 0px;
 }

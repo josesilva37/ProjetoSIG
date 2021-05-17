@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./css/avaliarJogadores.css" />
+        <link rel="stylesheet" href="./css/perfil.css" />
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css"
@@ -42,20 +42,20 @@
                 <li>About</li>
                 <li>Contactos</li>
                 <li class="row"> 
-                    <input type="button" class="botaoAbrirPopup" id="btnAvaliarJogador" value="Avalie Jogadores">
+                    <input type="button" class="botaoAbrirPopup" id="btnAbrePerfil" value="Perfil">
                     <div class="popup" id="popup">
                         <div class="popup-content">
                             <span class="close">&times;</span>
-                            <h3 class="avalie">Avalie Jogadores</h3>
-                            <img src="avataresjogadores/avatarsig1.png" id="avatar1">
-                            <p class="avalie">Ricardo</p>
-                            <div class="rating">
-                                <span class="rating__result"></span> 
-                               <i class="rating__star far fa-star"></i>
-                               <i class="rating__star far fa-star"></i>
-                               <i class="rating__star far fa-star"></i>
-                               <i class="rating__star far fa-star"></i>
-                               <i class="rating__star far fa-star"></i>
+                            <img src="avataresjogadores/avatarsig3.png" alt="foto_perfil" id="foto">
+                            <h4>Ricardo</h4>
+                            <h5>Sou uma pessoa amigavel, em busca de companheiros para jogar</h5>
+                            <h5>Eventos inscritos: </h5>
+                            <div id="caixaInscritos">
+                                <p>26/06/2021 16:00 Campo Galitos - Padle</p>
+                            </div>
+                            <h5>Histórico de Eventos: </h5>
+                            <div id="caixaHistorico">
+                                <p>Jogo Campo dos Galitos - Basket</p>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,6 @@
         </div>
         </div>
         <div id="map" class="map"></div>
-        <div id="popup" title="Welcome to OpenLayers"></div>
-        <script src="js/avaliarJogadores.js"></script>
+        <script src="js/perfil.js"></script>
     </body>
 </html>
