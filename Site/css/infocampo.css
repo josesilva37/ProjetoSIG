@@ -129,18 +129,11 @@ body {
 }
 
 .ol-popup {
-  font-family: Arial, Helvetica, sans-serif;
-  position: absolute;
-  background-color: white;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px solid #cccccc;
-  bottom: 12px;
-  left: -50px;
-  min-width: 350px;
+  max-width:500px;
+  min-width:100px;
+  min-height:1em; 
 }
-.ol-popup:after, .ol-popup:before {
+/*.ol-popup:after, .ol-popup:before {
   top: 100%;
   border: solid transparent;
   content: " ";
@@ -169,7 +162,7 @@ body {
 }
 .ol-popup-closer:after {
   content: "✖";
-}
+}*/
 
 .imagensCampos{
   width: 400px;
@@ -190,6 +183,8 @@ body {
 
 .infoP{
   margin-top: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
 }
 .imagensAvatares{
   margin-top: 10px;

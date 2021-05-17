@@ -12,7 +12,7 @@ $conn = new PDO('pgsql:host=gis4cloud.com;dbname=ptas2021_grupo1','ptas2021_grup
 
 # Build SQL SELECT statement and return the geometry as a GeoJSON element
 $sql = 'SELECT *, public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson FROM fields';
-
+    
 /*
 * If bbox variable is set, only return records that are within the bounding box
 * bbox should be a string in the form of 'southwest_lng,southwest_lat,northeast_lng,northeast_lat'

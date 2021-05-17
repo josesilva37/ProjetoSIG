@@ -10,12 +10,13 @@ var container = document.getElementById("popup");
 var content = document.getElementById("popup-content");
 var closer = document.getElementById("popup-closer");
 
-var overlay = new ol.Overlay({
+var overlay = new ol.Overlay.Popup({
+  overlayClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
   element: container,
+  closeBox: true,
   autoPan: true,
   autoPanAnimation: {
-    duration: 250,
-  },
+    duration: 100}
 });
 
 closer.onclick = function () {
@@ -62,18 +63,36 @@ var entidades = new ol.layer.Vector({
 map.addLayer(entidades);
 
 var btnVerEventos = document.getElementById("btnVerEventos");
+
+var displayFeatureInfo = function(evt) {
+  var features = [];
+  map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+    features.push(feature);
+  });
+  if (features.length > 0) {
+    var info = [];
+    
+    for (var i = 0, ii = features.length; i < ii; ++i) {
+      info.push(features[i].get('name')); 
+    }
+    var lonlat  = ol.proj.toLonLat(evt.coordinate);
+    content.innerHTML =
+    "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p class='infoP'>Localização: "+
+    lonlat[1] + " , " + lonlat[0]+
+    "  </p><p class='infoP'>"+info[0]+"</p><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos' onclick='infoEvento("+evt.coordinate+");'>";
+    overlay.show(evt.coordinate,content);
+    console.log(info.join(', ') || '(unknown)');
+  } else {
+    console.log('&nbsp;');
+  }
+};
+
+
 map.on("click", function (evt) {
-  var source = entidades.getSource();
-  let coordenadas = evt.coordinate;
-  console.log(coordenadas)
-  content.innerHTML =
-    "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p>Localização: " +
-    evt.coordinate +
-    "  </p><p class='infoP'>Campo de Aveiro</p><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos' onclick='infoEvento("+evt.coordinate+");'>";
-  overlay.setPosition(evt.coordinate);
-});
+  var pixel = evt.pixel;
+  displayFeatureInfo(evt);
+  });
 function infoEvento(...coordenadas) {
-  console.log(coordenadas);
   let currentDate = new Date();
   content.innerHTML =
     "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
