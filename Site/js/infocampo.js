@@ -1,15 +1,14 @@
 /*PARTE DO MAPA*/
 
-function show(){
+function show() {
   document.getElementById("sidebar").classList.toggle("active");
 }
 
 /*Parte PopUp*/
 
-var container = document.getElementById('popup');
-var content = document.getElementById('popup-content');
-var closer = document.getElementById('popup-closer');
-
+var container = document.getElementById("popup");
+var content = document.getElementById("popup-content");
+var closer = document.getElementById("popup-closer");
 
 var overlay = new ol.Overlay({
   element: container,
@@ -27,22 +26,18 @@ closer.onclick = function () {
 
 /*//////////////////*/
 
-
-
-
-
 var map = new ol.Map({
-  target: 'map',
+  target: "map",
   layers: [
     new ol.layer.Tile({
-      source: new ol.source.OSM()
-    })
+      source: new ol.source.OSM(),
+    }),
   ],
   overlays: [overlay],
   view: new ol.View({
     center: ol.proj.fromLonLat([-8.65, 40.64]),
-    zoom: 13
-  })
+    zoom: 13,
+  }),
 });
 var entidadesStyle = new ol.style.Style({
   image: new ol.style.Icon({
@@ -51,31 +46,55 @@ var entidadesStyle = new ol.style.Style({
     //     offset: [52, 0],
     //     opacity: 1,
     scale: 0.05,
-    src: "./icons/icone.png"
-  })
+    src: "./icons/icone.png",
+  }),
 });
-
-
 
 var entidadesSource = new ol.source.Vector({
   url: "./php/infocampo.php",
-  format: new ol.format.GeoJSON()
+  format: new ol.format.GeoJSON(),
 });
 var entidades = new ol.layer.Vector({
   title: "Equipamentos desportivos de Aveiro",
   source: entidadesSource,
-  style: entidadesStyle
+  style: entidadesStyle,
 });
 map.addLayer(entidades);
 
-
-map.on('click', function (evt) {
+var btnVerEventos = document.getElementById("btnVerEventos");
+map.on("click", function (evt) {
   var source = entidades.getSource();
-  content.innerHTML = "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo'><p>Localização: " + evt.coordinate + "  </p><code>Campo de Aveiro</code>";
+  let coordenadas = evt.coordinate;
+  console.log(coordenadas)
+  content.innerHTML =
+    "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p>Localização: " +
+    evt.coordinate +
+    "  </p><p class='infoP'>Campo de Aveiro</p><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos' onclick='infoEvento("+evt.coordinate+");'>";
   overlay.setPosition(evt.coordinate);
 });
+function infoEvento(...coordenadas) {
+  console.log(coordenadas);
+  let currentDate = new Date();
+  content.innerHTML =
+    "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
+    coordenadas +
+    "</p>" + 
+    "<p class='infoP'>Data e Hora: " + currentDate.toLocaleString("pt", {weekday: "long"})+"</p>" +
+    "<p class='infoP'>Participantes: " + "</p>" +
+    "<div id='divParticipantes'><img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
+    +
+    "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
+    +
+    "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
+    +
+    "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>" 
+    +
+    "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>" 
+    +
+    "</div>" +
+    "<input type='submit' value='Entrar Evento' class='btnEventos' id='btnEntrarEvento'>"
+    ;
+}
 /*//////////////////////////*/
-
-
 
 // Add Vector layer to map
