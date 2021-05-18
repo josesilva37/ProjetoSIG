@@ -19,6 +19,7 @@
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <title>Projeto SIG</title>
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+
   </head>
 
   <body>
@@ -61,10 +62,19 @@
       <div class="popup-content">
           <span class="close">&times;</span>
           <div class="popup_content">
-          <input type="text" placeholder="Nome Utilizador" class="txtInput">
-          <input type="password" placeholder="Password" class="txtInput">
-          <div class="btnLogIn">Log In</div>
-          <div class="btnCriarConta">Criar Conta</div>
+            <form action="php/login.php" method="post">
+   
+              <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+                <br>
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                <br>
+                <button type="submit">Login</button>
+                
+              </div>
+            </form>
         </div>
       </div>
     </div>

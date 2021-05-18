@@ -1,4 +1,4 @@
-var btnLogIn = document.getElementById("logIn");
+var btnOpenLogIn = document.getElementById("logIn");
 var btnLogIn2 = document.getElementById("logIn");
 var popup = document.getElementById("login_popup");
 var span = document.getElementsByClassName("close")[0];
@@ -6,7 +6,9 @@ var btnCriarConta = document.getElementsByClassName("btnCriarConta")[0];
 var popup2 = document.getElementById("create_popup");
 var span2 = document.getElementById("close2");
 
-btnLogIn.addEventListener("click", login);
+var btnLogIn = document.getElementById("btnLogIn");
+
+btnOpenLogIn.addEventListener("click", login);
 btnLogIn2.addEventListener("click", login);
 
 
@@ -33,3 +35,4 @@ function login(){
     popup.style.display = "block";
     console.log("tst");
 }
+
