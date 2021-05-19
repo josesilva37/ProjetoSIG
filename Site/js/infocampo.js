@@ -71,6 +71,7 @@ map.addInteraction(select);
 
 select.getFeatures().on(['add'], function(evt){
   var feature = evt.element;
+  var texto = "testeteste";
     //var lonlat  = ol.proj.toLonLat(evt.coordinate);
     content.innerHTML =
     "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
