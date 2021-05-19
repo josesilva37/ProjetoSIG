@@ -129,7 +129,7 @@ body {
 }
 
 .ol-popup {
-  max-width:500px;
+  max-width:400px;
   min-width:100px;
   min-height:1em; 
 }
@@ -165,7 +165,7 @@ body {
 }*/
 
 .imagensCampos{
-  width: 400px;
+  width: 350px;
   margin-top: 10px;
 }
 
