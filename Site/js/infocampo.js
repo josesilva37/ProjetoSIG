@@ -11,7 +11,7 @@ var content = document.getElementById("popup-content");
 var closer = document.getElementById("popup-closer");
 
 var overlay = new ol.Overlay.Popup({
-  overlayClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
+  popupClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
   element: container,
   closeBox: true,
   positioning: "auto", 
