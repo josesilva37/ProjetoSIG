@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="./css/infocampo.css" />
+<!-- Openlayers -->
+    <link rel="stylesheet" href="https://openlayers.org/en/latest/css/ol.css" />
+    <script type="text/javascript" src="https://openlayers.org/en/latest/build/ol.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL,Object.assign"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- ol-ext -->
+    <link rel="stylesheet" href="./css/ol-ext.css" />
+    <script type="text/javascript" src="./js/ol-ext.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <title>Projeto SIG</title>
+
+  </head>
+
+  <body>
+    <div id="barraMenu">
+      <div id="sidebar">
+        <div class="toggle-btn" onclick="show()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="input-container">
+          <i class="fa fa-search icon"></i>
+          <input
+            type="text"
+            name="textoPesquisa"
+            class="txtPesquisa"
+            placeholder="Pesquise aqui"
+          />
+          <a href="#" onclick="mostrarFiltro()"> <i class="fa fa-filter iconFilter"> </i></a>
+        </div>
+        <div style="display: none;" name="filtroContent">
+          <h3 style="margin-bottom: 10px; margin-top: 45px;margin-left: 10px;">Filtros</h3>
+            <form style="margin-left:20px; margin-bottom: 10px;">
+              <label> Selecione o Campo:</label>  
+              <select style="margin-left:10px;">  
+                <option value="BMW"> Campo de Aveiro </option>  
+                <option value="Mercedes">Estádio do Kalebe</option>  
+                <option value="Audi"> Estádio do Gonçalinho</option>  
+                <option value="Skoda"> Estádio Maior</option>  
+              </select>  
+              <p></p>
+              <h3 style="margin-bottom: 10px ;margin-top: 15px;">Distância/Tempo:</h3>
+              <p style="margin-left:10px;"></p>
+              <div style="margin-left:10px;">
+                <input type="checkbox" id="filtrotempo" name="filtrotempo" checked="">
+                <label for="filtrotempo">Menos que 5 minutos à pé</label>
+                  <p></p><p style="margin-top: 15px;">
+                  <input type="checkbox" id="filtrotempo2" name="filtrotempo2" checked="">
+                <label for="filtrotempo2">Menos que 2 minutos de carro</label>
+              
+                  </p></div>
+            </form>
+       
+        </div>
+        <div name ="menuContent">
+        <h3 class="titulo">Eventos:</h3>
+        
+        <ul>
+          <li><i class="far fa-futbol iconFutebol"></i>Futebol</li>
+          <li><i class='fas fa-basketball-ball iconBasket'></i>Basquetebol</li>
+          <li><i class="fas fa-volleyball-ball iconVolley"></i>Voleibol</li>
+          <li><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
+          <li><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
+        </ul>
+      </div>
+        <i class="fa fa-user-circle fa-2x iconProfile" id="logIn"></i>
+      </div>
+      <i class="fa fa-user-circle fa-2x iconProfile" id="logIn2"></i>
+    </div>
+    <div id="map" class="map"></div>
+    <div id="popup-content"></div>
+    </div>
+    <div class="login_popup" id="login_popup">
+      <div class="popup-content">
+          <span class="close">&times;</span>
+          <div class="popup_content">
+            <form action="php/login.php" method="post">
+   
+              <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+                <br>
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                <br>
+                <button type="submit">Login</button>
+                
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    <div class="create_popup" id="create_popup">
+      <div class="popup-content">
+          <span class="close" id="close2">&times;</span>
+          <div class="popup_content">
+          <input type="text" placeholder="Nome Utilizador" class="txtInput">
+          <input type="email" placeholder="Email" class="txtInput">
+          <input type="password" placeholder="Password" class="txtInput">
+          <div class="btnCriarConta">Criar Conta</div>
+        </div>
+      </div>
+    </div>
+    <script src="js/infocampo.js"></script>
+    <script src="js/login.js"></script>
+    <script> 
+    var filtroAtivo = false;
+    function mostrarFiltro() {
+      var filtroContent = document.getElementsByName("filtroContent")[0];
+      var menuContent = document.getElementsByName("menuContent")[0];
+      if(filtroAtivo){
+        filtroContent.style.display = "none";
+        menuContent.style.display = "inline";
+        filtroAtivo = false;
+      }else{
+        filtroContent.style.display = "inline";
+        menuContent.style.display = "none";
+        filtroAtivo = true;
+      }
+
+}
+    </script>
+  </body>
+</html>
