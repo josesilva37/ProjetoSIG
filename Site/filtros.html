@@ -39,8 +39,33 @@
             class="txtPesquisa"
             placeholder="Pesquise aqui"
           />
-          <i class="fa fa-filter iconFilter"></i>
+          <a href="#" onclick="mostrarFiltro()"> <i class="fa fa-filter iconFilter"> </i></a>
         </div>
+        <div style="display: none;" name="filtroContent">
+          <h3 style="margin-bottom: 10px; margin-top: 45px;margin-left: 10px;">Filtros</h3>
+            <form style="margin-left:20px; margin-bottom: 10px;">
+              <label> Selecione o Campo:</label>  
+              <select style="margin-left:10px;">  
+                <option value="BMW"> Campo de Aveiro </option>  
+                <option value="Mercedes">Estádio do Kalebe</option>  
+                <option value="Audi"> Estádio do Gonçalinho</option>  
+                <option value="Skoda"> Estádio Maior</option>  
+              </select>  
+              <p></p>
+              <h3 style="margin-bottom: 10px ;margin-top: 15px;">Distância/Tempo:</h3>
+              <p style="margin-left:10px;"></p>
+              <div style="margin-left:10px;">
+                <input type="checkbox" id="filtrotempo" name="filtrotempo" checked="">
+                <label for="filtrotempo">Menos que 5 minutos à pé</label>
+                  <p></p><p style="margin-top: 15px;">
+                  <input type="checkbox" id="filtrotempo2" name="filtrotempo2" checked="">
+                <label for="filtrotempo2">Menos que 2 minutos de carro</label>
+              
+                  </p></div>
+            </form>
+       
+        </div>
+        <div name ="menuContent">
         <h3 class="titulo">Eventos:</h3>
         
         <ul>
@@ -50,6 +75,7 @@
           <li><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
           <li><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
         </ul>
+      </div>
         <i class="fa fa-user-circle fa-2x iconProfile" id="logIn"></i>
       </div>
       <i class="fa fa-user-circle fa-2x iconProfile" id="logIn2"></i>
@@ -70,9 +96,8 @@
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" required>
                 <br>
-                <button type="submit" id="login">Login</button>
-                <div class="btnCriarConta">Criar Conta</div>
-
+                <button type="submit">Login</button>
+                
               </div>
             </form>
         </div>
@@ -91,5 +116,22 @@
     </div>
     <script src="js/infocampo.js"></script>
     <script src="js/login.js"></script>
+    <script> 
+    var filtroAtivo = false;
+    function mostrarFiltro() {
+      var filtroContent = document.getElementsByName("filtroContent")[0];
+      var menuContent = document.getElementsByName("menuContent")[0];
+      if(filtroAtivo){
+        filtroContent.style.display = "none";
+        menuContent.style.display = "inline";
+        filtroAtivo = false;
+      }else{
+        filtroContent.style.display = "inline";
+        menuContent.style.display = "none";
+        filtroAtivo = true;
+      }
+
+}
+    </script>
   </body>
 </html>

@@ -11,19 +11,20 @@ var content = document.getElementById("popup-content");
 var closer = document.getElementById("popup-closer");
 
 var overlay = new ol.Overlay.Popup({
-  overlayClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
+  popupClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
   element: container,
   closeBox: true,
+  positioning: "auto", 
   autoPan: true,
   autoPanAnimation: {
     duration: 100}
 });
 
-closer.onclick = function () {
-  overlay.setPosition(undefined);
-  closer.blur();
-  return false;
-};
+// closer.onclick = function () {
+//   overlay.setPosition(undefined);
+//   closer.blur();
+//   return false;
+// };
 
 /*//////////////////*/
 
@@ -34,11 +35,11 @@ var map = new ol.Map({
       source: new ol.source.OSM(),
     }),
   ],
-  overlays: [overlay],
   view: new ol.View({
     center: ol.proj.fromLonLat([-8.65, 40.64]),
     zoom: 13,
   }),
+  overlays: [overlay],
 });
 var entidadesStyle = new ol.style.Style({
   image: new ol.style.Icon({
@@ -64,34 +65,32 @@ map.addLayer(entidades);
 
 var btnVerEventos = document.getElementById("btnVerEventos");
 
-var displayFeatureInfo = function(evt) {
-  var features = [];
-  map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
-    features.push(feature);
-  });
-  if (features.length > 0) {
-    var info = [];
-    
-    for (var i = 0, ii = features.length; i < ii; ++i) {
-      info.push(features[i].get('name')); 
-    }
-    var lonlat  = ol.proj.toLonLat(evt.coordinate);
+
+var select = new ol.interaction.Select({});
+map.addInteraction(select);
+
+select.getFeatures().on(['add'], function(evt){
+  var feature = evt.element;
+  var texto = "testeteste";
+    //var lonlat  = ol.proj.toLonLat(evt.coordinate);
     content.innerHTML =
-    "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p class='infoP'>Localização: "+
-    lonlat[1] + " , " + lonlat[0]+
-    "  </p><p class='infoP'>"+info[0]+"</p><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos' onclick='infoEvento("+evt.coordinate+");'>";
-    overlay.show(evt.coordinate,content);
-    console.log(info.join(', ') || '(unknown)');
-  } else {
-    console.log('&nbsp;');
-  }
-};
+    "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
+    + feature.getGeometry().getCoordinates() +
+    "  </p><p class='infoP'>"+feature.get("name")+"</p><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos' onclick='infoEvento("+evt.coordinate+");'>";
+    
+    overlay.show(feature.getGeometry().getCoordinates(), content);
+  })
 
-
+select.getFeatures().on(['remove'], function(evt){
+  overlay.hide()
+});
+/*
 map.on("click", function (evt) {
   var pixel = evt.pixel;
   displayFeatureInfo(evt);
-  });
+  });*/
+
+
 function infoEvento(...coordenadas) {
   let currentDate = new Date();
   content.innerHTML =
