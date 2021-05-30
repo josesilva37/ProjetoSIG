@@ -72,11 +72,11 @@ map.addInteraction(select);
 select.getFeatures().on(['add'], function(evt){
   var feature = evt.element;
   var texto = "testeteste";
-    //var lonlat  = ol.proj.toLonLat(evt.coordinate);
+  var lonlat  = ol.coordinate.toStringHDMS(ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
     content.innerHTML =
     "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
-    + feature.getGeometry().getCoordinates() +
-    "  </p><p class='infoP'>"+feature.get("name")+"</p><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos' onclick='infoEvento("+evt.coordinate+");'>";
+    + lonlat +
+    "  </p><p class='infoP'>"+feature.get("name") + " " + feature.get("id") +"</p><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos' onclick='infoEvento("+evt.coordinate+");'>";
     
     overlay.show(feature.getGeometry().getCoordinates(), content);
   })
