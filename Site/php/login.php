@@ -10,7 +10,7 @@ $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} pa
 $dbconn = pg_connect($connection_string);
 
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
-    $hashpassword = md5($_POST['pwd']);
+    $hashpassword = md5($_POST['psw']);
     $sql ="select *from public.utilizador where email = '".pg_escape_string($_POST['email'])."' and pass ='".$hashpassword."'";
     $data = pg_query($dbconn,$sql);
     $login_check = pg_num_rows($data);
