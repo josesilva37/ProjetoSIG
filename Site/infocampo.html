@@ -64,7 +64,7 @@
             <form action="php/login.php" method="post">
    
               <div class="container">
-                <input id="inputUsername" type="text" placeholder="Enter Username" name="uname" required>
+                <input id="inputUsername" type="text" placeholder="Enter Email" name="uname" required>
                 <br>
                 <input id="inputPassword" type="password" placeholder="Enter Password" name="psw" required>
                 <br>
@@ -81,6 +81,9 @@
           <span class="close" id="close2">&times;</span>
           <div class="popup_content">
             <form action="./php/login.php" method="POST">
+              <div class="form-group">
+                <input type="text" name="email" placeholder="Enter Email" id="criarContaEmail">
+            </div>  
               <div class="form-group">
                   <input type="text" name="username" placeholder="Enter Username" id="criarContaUsername">
               </div>    
