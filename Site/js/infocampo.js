@@ -76,7 +76,7 @@ select.getFeatures().on(['add'], function(evt){
     content.innerHTML =
     "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
     + lonlat +
-    "  </p><p class='infoP'>"+feature.get("name") + " " + feature.get("id") +"</p><br><input type='submit' value='+' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos' onclick='infoEvento("+evt.coordinate+");'>";
+    "  </p><p class='infoP'>"+feature.get("name") + " " + feature.get("id") +"</p><br><input type='submit' value='+' class='btnAddEventos' id='btnAddEventos' onclick='addEvento()'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos' onclick='infoEvento("+evt.coordinate+");'>";
     
     overlay.show(feature.getGeometry().getCoordinates(), content);
   })
@@ -89,7 +89,6 @@ map.on("click", function (evt) {
   var pixel = evt.pixel;
   displayFeatureInfo(evt);
   });*/
-
 
 function infoEvento(...coordenadas) {
   let currentDate = new Date();
