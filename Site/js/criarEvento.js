@@ -28,6 +28,6 @@ function closePOP() {
 
 window.onclick = function(event) {
   if (event.target == popup) {
-      popupAddEvento.innerHTML = "";
+      popup.style.display = "none";
   }
 }
