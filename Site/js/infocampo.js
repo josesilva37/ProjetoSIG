@@ -11,13 +11,6 @@ var content = document.getElementById("popup-content");
 var closer = document.getElementById("popup-closer");
 
 
-var icons = [
-    "./icons/football.svg",
-    "./icons/basketball.svg",
-    "./icons/volleyball.svg",
-    "./icons/tennis.svg",
-    "./icons/paddle.svg"
-];
 var overlay = new ol.Overlay.Popup({
   popupClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
   element: container,
@@ -50,17 +43,92 @@ var map = new ol.Map({
   overlays: [overlay],
 });
 
-rnd = Math.random();
+var campo_futebol_Style = [
+  new ol.style.Style({
+    image: new ol.style.Icon({
+      anchor: [0.5, 0.5],
+      //     size: [52, 52],
+      //     offset: [52, 0],
+      //     opacity: 1,
+      scale: 0.04,
+      src: "./icons/football.svg"
+    })
+  })
+];
+var campo_basket_Style = [
+  new ol.style.Style({
+    image: new ol.style.Icon({
+      anchor: [0.5, 0.5],
+      //     size: [52, 52],
+      //     offset: [52, 0],
+      //     opacity: 1,
+      scale: 0.05,
+      src: "./icons/basketball.svg"
+    })
+  })
+];
+var campo_volei_Style = [
+  new ol.style.Style({
+    image: new ol.style.Icon({
+      anchor: [0.5, 0.5],
+      //     size: [52, 52],
+      //     offset: [52, 0],
+      //     opacity: 1,
+      scale: 0.05,
+      src: "./icons/volleyball.svg"
+    })
+  })
+];
+var campo_tenis_Style = [
+  new ol.style.Style({
+    image: new ol.style.Icon({
+      anchor: [0.5, 0.5],
+      //     size: [52, 52],
+      //     offset: [52, 0],
+      //     opacity: 1,
+      scale: 0.09,
+      src: "./icons/tennis.ico"
+    })
+  })
+];
+var campo_padel_Style = [
+  new ol.style.Style({
+    image: new ol.style.Icon({
+      anchor: [0.5, 0.5],
+      //     size: [52, 52],
+      //     offset: [52, 0],
+      //     opacity: 1,
+      scale: 0.05,
+      src: "./icons/paddle.svg"
+    })
+  })
+];
 var entidadesStyle = new ol.style.Style({
   image: new ol.style.Icon({
     anchor: [0.5, 0.5],
     //size: [52, 52],
     //     offset: [52, 0],
     //     opacity: 1,
-    scale: 0.04,
-    src: icons[2],
+    scale: 0.05,
+    src: "./icons/icone.png",
   }),
 });
+
+function funcao_style(feature){
+  if(feature.get("sport") === "soccer"){
+    return campo_futebol_Style;
+  }else if(feature.get("sport") === "basketball"){
+    return campo_basket_Style;
+  }else if(feature.get("sport") === "volleyball"){
+    return campo_volei_Style;
+  }else if(feature.get("sport") === "padel"){
+    return campo_padel_Style;
+  }else if(feature.get("sport") === "tennis"){
+    return campo_tenis_Style;
+  }else{
+    return entidadesStyle;
+  }
+}
 
 var entidadesSource = new ol.source.Vector({
   url: "./php/infocampo.php",
@@ -69,7 +137,7 @@ var entidadesSource = new ol.source.Vector({
 var entidades = new ol.layer.Vector({
   title: "Equipamentos desportivos de Aveiro",
   source: entidadesSource,
-  style: entidadesStyle,
+  style: funcao_style,
 });
 map.addLayer(entidades);
 
@@ -79,15 +147,31 @@ var btnVerEventos = document.getElementById("btnVerEventos");
 var select = new ol.interaction.Select({});
 map.addInteraction(select);
 
+function imagemCampo(feature){
+  if(feature.get("sport") === "soccer"){
+    return "./camposFotos/campos-futebol-aveiro3.jpg";
+  }else if(feature.get("sport") === "basketball"){
+    return "./camposFotos/campoBasket.jpg";
+  }else if(feature.get("sport") === "volleyball"){
+    return "./camposFotos/campoVolei.jpg";
+  }else if(feature.get("sport") === "padel"){
+    return "./camposFotos/campoPadel.jpg";
+  }else if(feature.get("sport") === "tennis"){
+    return "./camposFotos/campoTenis.jpg";
+  }else{
+    return "./camposFotos/campoMultiDesporto.jpg";
+  }
+}
+
 select.getFeatures().on(['add'], function(evt){
   var feature = evt.element;
   var texto = "testeteste";
   var lonlat  = ol.coordinate.toStringHDMS(ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
     content.innerHTML =
-    "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
+    "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
     + lonlat +
     "  </p><p id='nomeCampo' class='infoP'>"+feature.get("name") +"</p><br><input type='submit' value='+' class='btnAddEventos' id='btnAddEventos' onclick='addEvento()'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos' onclick='infoEvento("+evt.coordinate+");'>";
-    
+    document.getElementById("imgsCampos").src = imagemCampo(feature);
     overlay.show(feature.getGeometry().getCoordinates(), content);
   })
 
@@ -99,6 +183,8 @@ map.on("click", function (evt) {
   var pixel = evt.pixel;
   displayFeatureInfo(evt);
   });*/
+
+
 
 function infoEvento(...coordenadas) {
   let currentDate = new Date();
