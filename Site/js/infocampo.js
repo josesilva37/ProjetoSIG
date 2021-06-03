@@ -10,6 +10,14 @@ var container = document.getElementById("popup");
 var content = document.getElementById("popup-content");
 var closer = document.getElementById("popup-closer");
 
+const selectCampos = document.getElementById("filtrosOpcoesCampos");
+
+
+
+
+//selectCampos.onchange = opcaoCampo();
+
+
 
 var overlay = new ol.Overlay.Popup({
   popupClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
@@ -50,7 +58,7 @@ var campo_futebol_Style = [
       //     size: [52, 52],
       //     offset: [52, 0],
       //     opacity: 1,
-      scale: 0.04,
+      scale: 0.035,
       src: "./icons/football.svg"
     })
   })
