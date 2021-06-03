@@ -10,6 +10,14 @@ var container = document.getElementById("popup");
 var content = document.getElementById("popup-content");
 var closer = document.getElementById("popup-closer");
 
+
+var icons = [
+    "./icons/football.svg",
+    "./icons/basketball.svg",
+    "./icons/volleyball.svg",
+    "./icons/tennis.svg",
+    "./icons/paddle.svg"
+];
 var overlay = new ol.Overlay.Popup({
   popupClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
   element: container,
@@ -41,14 +49,16 @@ var map = new ol.Map({
   }),
   overlays: [overlay],
 });
+
+rnd = Math.random();
 var entidadesStyle = new ol.style.Style({
   image: new ol.style.Icon({
     anchor: [0.5, 0.5],
-    //     size: [52, 52],
+    //size: [52, 52],
     //     offset: [52, 0],
     //     opacity: 1,
-    scale: 0.05,
-    src: "./icons/icone.png",
+    scale: 0.04,
+    src: icons[2],
   }),
 });
 
