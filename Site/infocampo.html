@@ -20,6 +20,7 @@
     <script type="text/javascript" src="./js/ol-ext.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <title>Projeto SIG</title>
 
   </head>
@@ -46,14 +47,14 @@
           <h3 style="margin-bottom: 10px; margin-top: 45px;margin-left: 10px;">Filtros</h3>
             <form style="margin-left:20px; margin-bottom: 10px;">
               <label> Campos:</label>  
-              <select style="margin-left:10px;" id="selecCampos">  
-                <option value="todos">Todos os campos</option>
+              <select style="margin-left:10px;" id="selectCampos">  
+                <option value="todos" selected="selected">Todos os campos</option>
                 <option value="soccer">Futebol</option>  
                 <option value="basketball">Basquetebol</option>  
-                <option value="voleibol">Voleibol</option>  
-                <option value="tenis">Ténis</option>
+                <option value="beachvolleyball">Voleibol</option>  
+                <option value="tennis">Ténis</option>
                 <option value="padel">Pádel</option>  
-                <option value="multidesport">Multidesportivos</option>
+                <option value="multi">Multidesportivos</option>
               </select>  
               <p></p>
               <h3 style="margin-bottom: 10px ;margin-top: 15px;">Distância/Tempo:</h3>

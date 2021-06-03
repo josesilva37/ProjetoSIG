@@ -10,13 +10,21 @@ var container = document.getElementById("popup");
 var content = document.getElementById("popup-content");
 var closer = document.getElementById("popup-closer");
 
-const selectCampos = document.getElementById("filtrosOpcoesCampos");
+var selectCampos = document.getElementById("selectCampos");
 
 
 
-
-//selectCampos.onchange = opcaoCampo();
-
+selectCampos.onchange = function(){
+  var data = {
+    tipoCampo: selectCampos.value
+  }
+  $.ajax({
+    type: 'POST',
+    url: './php/infocampo.php',
+    data: {json: JSON.stringify(data)},
+    dataType: 'json'
+})
+};
 
 
 var overlay = new ol.Overlay.Popup({
