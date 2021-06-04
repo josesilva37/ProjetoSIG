@@ -11,11 +11,13 @@ $dbconn = pg_connect($connection_string);
 
 
 $hashpassword = md5($_POST['psw']);
-$sql = "select *from public.utilizador where email = '" . pg_escape_string($_POST['email']) . "' and pass ='" . $hashpassword . "'";
+$sql = "select *from public.utilizador where username = '" . pg_escape_string($_POST['username']) . "' and pass ='" . $hashpassword . "'";
 $data = pg_query($dbconn, $sql);
 $login_check = pg_num_rows($data);
 if ($login_check > 0) {
-    header("Location: ../infocampo.html");
+    session_start();
+    $_SESSION["username"] = $_POST['username'];
+    header("Location: ../infocampoLogIn.html");
     exit();
 } else {
 }
