@@ -125,8 +125,8 @@ var entidadesStyle = new ol.style.Style({
     //size: [52, 52],
     //     offset: [52, 0],
     //     opacity: 1,
-    scale: 0.05,
-    src: "./icons/icone.png",
+    scale: 0.25,
+    src: "./icons/multisport.png",
   }),
 });
 
