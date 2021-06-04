@@ -166,6 +166,7 @@ body {
 
 .imagensCampos{
   width: 350px;
+  height: 200px;
   margin-top: 10px;
 }
 
@@ -219,6 +220,3 @@ body {
   font-weight: bold;
 }
 
-
-
-/* ///////////////// */

@@ -6,12 +6,21 @@
  * Contact: bryanmcbride.com
  * GitHub:  https://github.com/bmcbride/PHP-Database-GeoJSON
  */
+header('Content-Type: application/json');
 
 # Connect to PostgreSQL database
 $conn = new PDO('pgsql:host=gis4cloud.com;dbname=ptas2021_grupo1','ptas2021_grupo1','ptas2021_grupo1');
+$data = json_decode($_POST['json']);
 
+$tipoCampo = $data->tipoCampo;
+if($tipoCampo == 'todos' || $tipoCampo == ""){
+    $sql = 'SELECT *, public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson FROM fields';
+}else{
+    $sql = "SELECT *, public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson FROM fields WHERE
+    sport ='".$tipoCampo."'";
+}
 # Build SQL SELECT statement and return the geometry as a GeoJSON element
-$sql = 'SELECT *, public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson FROM fields';
+//$sql = 'SELECT *, public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson FROM fields';
     
 /*
 * If bbox variable is set, only return records that are within the bounding box
