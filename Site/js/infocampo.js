@@ -136,6 +136,7 @@ function funcao_style(feature){
   }
 }
 var entidadesSource = new ol.source.Vector({
+  url: './php/infocampo.php',
   format: new ol.format.GeoJSON()
 });
 var entidades = new ol.layer.Vector({
@@ -143,7 +144,9 @@ var entidades = new ol.layer.Vector({
   source: entidadesSource,
   style: funcao_style,
 });
+
 map.addLayer(entidades);
+
 selectCampos.onchange = function(){
   var data = {
     tipoCampo: selectCampos.value
