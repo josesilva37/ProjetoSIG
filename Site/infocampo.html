@@ -2,9 +2,10 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/login.css"/>
     <link rel="stylesheet" href="./css/infocampo.css" />
     <link rel="stylesheet" href="css/criarEvento.css" />
+    <link href="css/styles.css" rel="stylesheet" />
 <!-- Openlayers -->
     <link rel="stylesheet" href="https://openlayers.org/en/latest/css/ol.css" />
     <script type="text/javascript" src="https://openlayers.org/en/latest/build/ol.js"></script>
@@ -47,7 +48,7 @@
           <h3 style="margin-bottom: 10px; margin-top: 45px;margin-left: 10px;">Filtros</h3>
             <form style="margin-left:20px; margin-bottom: 10px;">
               <label> Campos:</label>  
-              <select style="margin-left:10px;" id="selectCampos">  
+              <select class="form-control" style="width: 250px;" id="selectCampos">  
                 <option value="todos" selected="selected">Todos os campos</option>
                 <option value="soccer">Futebol</option>  
                 <option value="basketball">Basquetebol</option>  
@@ -57,7 +58,7 @@
                 <option value="multi">Multidesportivos</option>
               </select>  
               <p></p>
-              <h3 style="margin-bottom: 10px ;margin-top: 15px;">Distância/Tempo:</h3>
+              <label style="margin-bottom: 10px ;margin-top: 15px;">Distância/Tempo:</label>
               <p style="margin-left:10px;"></p>
               <div style="margin-left:10px;">
                 <input type="checkbox" id="filtrotempo" name="filtrotempo" checked="">
@@ -147,6 +148,7 @@
     </div>
     <script src="js/infocampo.js"></script>
     <script src="js/criarEvento.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/login.js"></script>
     <script> 
       var filtroAtivo = false;

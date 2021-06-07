@@ -14,17 +14,7 @@ var selectCampos = document.getElementById("selectCampos");
 
 
 
-selectCampos.onchange = function(){
-  var data = {
-    tipoCampo: selectCampos.value
-  }
-  $.ajax({
-    type: 'POST',
-    url: './php/infocampo.php',
-    data: {json: JSON.stringify(data)},
-    dataType: 'json'
-})
-};
+
 
 
 var overlay = new ol.Overlay.Popup({
@@ -125,7 +115,7 @@ var entidadesStyle = new ol.style.Style({
     //size: [52, 52],
     //     offset: [52, 0],
     //     opacity: 1,
-    scale: 0.25,
+    scale: 0.20,
     src: "./icons/multisport.png",
   }),
 });
@@ -145,17 +135,40 @@ function funcao_style(feature){
     return entidadesStyle;
   }
 }
-
 var entidadesSource = new ol.source.Vector({
-  url: "./php/infocampo.php",
-  format: new ol.format.GeoJSON(),
+  url: './php/infocampo.php',
+  format: new ol.format.GeoJSON()
 });
 var entidades = new ol.layer.Vector({
   title: "Equipamentos desportivos de Aveiro",
   source: entidadesSource,
   style: funcao_style,
 });
+
 map.addLayer(entidades);
+
+selectCampos.onchange = function(){
+  var data = {
+    tipoCampo: selectCampos.value
+  }
+  $.ajax({
+    type: 'POST',
+    url: './php/infocampo.php',
+    data: {json: JSON.stringify(data)},
+    dataType: 'JSON',
+    success: function(data){
+      console.log(data);
+      let features = new ol.format.GeoJSON().readFeatures(data, {
+        featureProjection: "EPSG:4326",
+      });
+      entidadesSource.clear();
+      entidadesSource.addFeatures(features);
+      entidades.setVisible(true);
+    }
+    
+})
+};
+
 
 var btnVerEventos = document.getElementById("btnVerEventos");
 
