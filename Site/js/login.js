@@ -5,6 +5,7 @@ var span = document.getElementsByClassName("close")[1];
 var btnCriarConta = document.getElementById("btnCriarConta");
 var popup2 = document.getElementById("create_popup");
 var span2 = document.getElementById("close2");
+var popupADD = document.getElementById("popupAdd");
 
 var btnLogIn = document.getElementById("btnLogIn");
 
@@ -29,6 +30,9 @@ window.onclick = function(event) {
     }
     if(event.target == popup2){
         popup2.style.display="none";
+    }
+    if(event.target == popupADD){
+        popupADD.style.display="none";
     }
 }
 

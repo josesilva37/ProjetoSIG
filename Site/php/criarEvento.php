@@ -1,6 +1,6 @@
 <?php
 header('Content-type: application/json');
-$conn = new PDO('pgsql:host=gis4cloud.com;dbname=ptas2021_grupo1','ptas2021_grupo1','ptas2021_grupo1');
+$pdo = new PDO('pgsql:host=gis4cloud.com;dbname=ptas2021_grupo1','ptas2021_grupo1','ptas2021_grupo1');
 
 
 $data = json_decode($_POST['json']);
