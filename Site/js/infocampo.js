@@ -136,17 +136,14 @@ function funcao_style(feature){
   }
 }
 var entidadesSource = new ol.source.Vector({
-  url: "./php/infocampo.php",
-  format: new ol.format.GeoJSON(),
+  format: new ol.format.GeoJSON()
 });
-
 var entidades = new ol.layer.Vector({
   title: "Equipamentos desportivos de Aveiro",
   source: entidadesSource,
   style: funcao_style,
 });
 map.addLayer(entidades);
-
 selectCampos.onchange = function(){
   var data = {
     tipoCampo: selectCampos.value
@@ -155,15 +152,17 @@ selectCampos.onchange = function(){
     type: 'POST',
     url: './php/infocampo.php',
     data: {json: JSON.stringify(data)},
-    dataType: 'json',
+    dataType: 'JSON',
     success: function(data){
-      var features = new ol.format.GeoJSON().readFeatures(data, {
-        featureProjection: "EPSG: 4326",
+      console.log(data);
+      let features = new ol.format.GeoJSON().readFeatures(data, {
+        featureProjection: "EPSG:4326",
       });
       entidadesSource.clear();
       entidadesSource.addFeatures(features);
-
+      entidades.setVisible(true);
     }
+    
 })
 };
 
