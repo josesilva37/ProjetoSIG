@@ -1,5 +1,4 @@
 <?php
-session_start();
 ini_set('display_errors', 1);
 //$conn = new PDO('pgsql:host=gis4cloud.com;dbname=ptas2021_grupo1','ptas2021_grupo1','ptas2021_grupo1');
 $host = "gis4cloud.com";
@@ -16,7 +15,8 @@ $sql = "select *from public.utilizador where username = '" . pg_escape_string($_
 $data = pg_query($dbconn, $sql);
 $login_check = pg_num_rows($data);
 if ($login_check > 0) {
-    $_SESSION["username"] = pg_escape_string($_POST['username']);
+    session_start();
+    $_SESSION["username"] = ($_POST['username']);
     header("Location: ../infocampoLogIn.php");
     exit();
 } else {

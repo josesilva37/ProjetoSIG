@@ -52,7 +52,7 @@ if (!isset($_SESSION["username"])) {
       <i class="fa fa-user-circle fa-2x iconProfile"></i>
       <?php
       echo
-      "<title>" + $_SESSION["username"]+"</title>";
+      "<p id='logged' >Logged as: ".$_SESSION["username"]."</p>";
       ?>
     </div>
   </div>
