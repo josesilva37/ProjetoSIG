@@ -1,4 +1,5 @@
 <?php
+session_start();
 ini_set('display_errors', 1);
 //$conn = new PDO('pgsql:host=gis4cloud.com;dbname=ptas2021_grupo1','ptas2021_grupo1','ptas2021_grupo1');
 $host = "gis4cloud.com";
