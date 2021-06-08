@@ -88,7 +88,22 @@
     </div>
     <div id="map" class="map"></div>
     <div id="popup-content"></div>
-    <div id="popup-addEvento"></div>
+    <div id="popup-addEvento">
+      <div class="popup" id="popupAdd">
+        <div class="popup-content">
+          <span class="close" id="closeAdd" onclick="closePOP()">&times;</span>
+            <img src="" alt="campo" id="foto">
+            <h4 id="localizacao"></h4>
+            <form method="POST">
+              <input type="date" id="data">
+              <input type="time" id="hora">
+              <input type="number" id="duracao" placeholder="Duração">
+              <input type="number" id="numeroJogadores" placeholder="Número de Jogadores">
+              <input type="submit" class="button" id="criarEvento" value="Criar Evento">
+          </form>
+        </div>
+      </div>
+    </div>
     </div>
     <div class="login_popup" id="login_popup">
       <div class="popup-content">

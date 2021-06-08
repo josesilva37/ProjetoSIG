@@ -32,7 +32,7 @@
 }
 
 .popup {
-    display: block;
+    display: none;
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
