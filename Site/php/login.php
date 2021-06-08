@@ -16,8 +16,8 @@ $sql = "select *from public.utilizador where username = '" . pg_escape_string($_
 $data = pg_query($dbconn, $sql);
 $login_check = pg_num_rows($data);
 if ($login_check > 0) {
-    $_SESSION["username"] = $_POST['username'];
-    header("Location: ../infocampoLogIn.html");
+    $_SESSION["username"] = pg_escape_string($_POST['username']);
+    header("Location: ../infocampoLogIn.php");
     exit();
 } else {
 }
