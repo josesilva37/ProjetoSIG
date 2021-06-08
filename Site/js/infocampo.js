@@ -177,6 +177,7 @@ selectCampos.onchange = function(){
           style: styleFeature
           
       });
+      console.log(features);
       entidadesSource.clear();
       entidadesSource.addFeatures(features);
       entidades.setVisible(true);
@@ -214,7 +215,7 @@ select.getFeatures().on(['add'], function(evt){
   var lonlat  = ol.coordinate.toStringHDMS(ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
     content.innerHTML =
     "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
-    + lonlat +
+    + lonlat + feature.get("id") + 
     "  </p><p id='nomeCampo' class='infoP'>"+feature.get("name") +"</p><br><input type='submit' value='+' class='btnAddEventos' id='btnAddEventos' onclick='addEvento()'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos' onclick='infoEvento("+evt.coordinate+");'>";
     document.getElementById("imgsCampos").src = imagemCampo(feature);
     overlay.show(feature.getGeometry().getCoordinates(), content);
