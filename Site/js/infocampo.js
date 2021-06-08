@@ -158,33 +158,28 @@ selectCampos.onchange = function(){
     dataType: 'JSON',
     success: function(data){
       console.log(data);
-      let array = [];
-      var style;
-      data.features.forEach((element)=>{
-        console.log(element.geometry.coordinates);
-          array.push(ol.proj.fromLonLat(element.geometry.coordinates));
-          if(element.properties.sport === "soccer"){
-            style =  campo_futebol_Style;
-          }else if(element.properties.sport === "basketball"){
-            style = campo_basket_Style;
-          }else if(element.properties.sport === "volleyball"){
-            style = campo_volei_Style;
-          }else if(element.properties.sport === "padel"){
-            style = campo_padel_Style;
-          }else if(element.properties.sport === "tennis"){
-            style = campo_tenis_Style;
-          }else{
-            style = entidadesStyle;
-          }
+      var styleFeature;
+        if(data.features[0].properties.sport === "soccer"){
+          styleFeature =  campo_futebol_Style;
+        }else if(data.features[0].properties.sport  === "basketball"){
+          styleFeature = campo_basket_Style;
+        }else if(data.features[0].properties.sport  === "volleyball"){
+          styleFeature = campo_volei_Style;
+        }else if(data.features[0].properties.sport  === "padel"){
+          styleFeature = campo_padel_Style;
+        }else if(data.features[0].properties.sport  === "tennis"){
+          styleFeature = campo_tenis_Style;
+        }else{
+          styleFeature = entidadesStyle;
+        }
+      var features = new ol.format.GeoJSON().readFeatures(data, {
+          featureProjection: "EPSG:3857",
+          style: styleFeature
+          
       });
       entidadesSource.clear();
-      let features = new ol.Feature({
-        geometry: new ol.geom.MultiPoint(array),
-
-      });
-      
-      features.setStyle(style);
-      entidadesSource.addFeature(features);
+      entidadesSource.addFeatures(features);
+      entidades.setVisible(true);
     }
     
 })
