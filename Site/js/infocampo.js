@@ -21,10 +21,11 @@ var overlay = new ol.Overlay.Popup({
   popupClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
   element: container,
   closeBox: true,
-  positioning: "auto", 
+  positioning: "auto",
   autoPan: true,
   autoPanAnimation: {
-    duration: 100}
+    duration: 100
+  }
 });
 
 // closer.onclick = function () {
@@ -34,6 +35,13 @@ var overlay = new ol.Overlay.Popup({
 // };
 
 /*//////////////////*/
+$('#location-button').click(function () {
+  navigator.geolocation.getCurrentPosition(function(position){
+    console.log(position);
+    var place = [position.coords.latitude, position.coords.longitude];
+  })
+
+})
 
 var map = new ol.Map({
   target: "map",
@@ -120,18 +128,18 @@ var entidadesStyle = new ol.style.Style({
   }),
 });
 
-function funcao_style(feature){
-  if(feature.get("sport") === "soccer"){
+function funcao_style(feature) {
+  if (feature.get("sport") === "soccer") {
     return campo_futebol_Style;
-  }else if(feature.get("sport") === "basketball"){
+  } else if (feature.get("sport") === "basketball") {
     return campo_basket_Style;
-  }else if(feature.get("sport") === "volleyball"){
+  } else if (feature.get("sport") === "volleyball") {
     return campo_volei_Style;
-  }else if(feature.get("sport") === "padel"){
+  } else if (feature.get("sport") === "padel") {
     return campo_padel_Style;
-  }else if(feature.get("sport") === "tennis"){
+  } else if (feature.get("sport") === "tennis") {
     return campo_tenis_Style;
-  }else{
+  } else {
     return entidadesStyle;
   }
 }
@@ -147,43 +155,43 @@ var entidades = new ol.layer.Vector({
 
 map.addLayer(entidades);
 
-selectCampos.onchange = function(){
+selectCampos.onchange = function () {
   var data = {
     tipoCampo: selectCampos.value
   }
   $.ajax({
     type: 'POST',
     url: './php/infocampo.php',
-    data: {json: JSON.stringify(data)},
+    data: { json: JSON.stringify(data) },
     dataType: 'JSON',
-    success: function(data){
+    success: function (data) {
       console.log(data);
       var styleFeature;
-        if(data.features[0].properties.sport === "soccer"){
-          styleFeature =  campo_futebol_Style;
-        }else if(data.features[0].properties.sport  === "basketball"){
-          styleFeature = campo_basket_Style;
-        }else if(data.features[0].properties.sport  === "volleyball"){
-          styleFeature = campo_volei_Style;
-        }else if(data.features[0].properties.sport  === "padel"){
-          styleFeature = campo_padel_Style;
-        }else if(data.features[0].properties.sport  === "tennis"){
-          styleFeature = campo_tenis_Style;
-        }else{
-          styleFeature = entidadesStyle;
-        }
+      if (data.features[0].properties.sport === "soccer") {
+        styleFeature = campo_futebol_Style;
+      } else if (data.features[0].properties.sport === "basketball") {
+        styleFeature = campo_basket_Style;
+      } else if (data.features[0].properties.sport === "volleyball") {
+        styleFeature = campo_volei_Style;
+      } else if (data.features[0].properties.sport === "padel") {
+        styleFeature = campo_padel_Style;
+      } else if (data.features[0].properties.sport === "tennis") {
+        styleFeature = campo_tenis_Style;
+      } else {
+        styleFeature = entidadesStyle;
+      }
       var features = new ol.format.GeoJSON().readFeatures(data, {
-          featureProjection: "EPSG:3857",
-          style: styleFeature
-          
+        featureProjection: "EPSG:3857",
+        style: styleFeature
+
       });
       console.log(features);
       entidadesSource.clear();
       entidadesSource.addFeatures(features);
       entidades.setVisible(true);
     }
-    
-})
+
+  })
 };
 
 
@@ -193,35 +201,35 @@ var btnVerEventos = document.getElementById("btnVerEventos");
 var select = new ol.interaction.Select({});
 map.addInteraction(select);
 
-function imagemCampo(feature){
-  if(feature.get("sport") === "soccer"){
+function imagemCampo(feature) {
+  if (feature.get("sport") === "soccer") {
     return "./camposFotos/campos-futebol-aveiro3.jpg";
-  }else if(feature.get("sport") === "basketball"){
+  } else if (feature.get("sport") === "basketball") {
     return "./camposFotos/campoBasket.jpg";
-  }else if(feature.get("sport") === "volleyball"){
+  } else if (feature.get("sport") === "volleyball") {
     return "./camposFotos/campoVolei.jpg";
-  }else if(feature.get("sport") === "padel"){
+  } else if (feature.get("sport") === "padel") {
     return "./camposFotos/campoPadel.jpg";
-  }else if(feature.get("sport") === "tennis"){
+  } else if (feature.get("sport") === "tennis") {
     return "./camposFotos/campoTenis.jpg";
-  }else{
+  } else {
     return "./camposFotos/campoMultiDesporto.jpg";
   }
 }
 
-select.getFeatures().on(['add'], function(evt){
+select.getFeatures().on(['add'], function (evt) {
   var feature = evt.element;
   var texto = "testeteste";
-  var lonlat  = ol.coordinate.toStringHDMS(ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
-    content.innerHTML =
+  var lonlat = ol.coordinate.toStringHDMS(ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
+  content.innerHTML =
     "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
-    + lonlat + feature.get("id") + 
-    "  </p><p id='nomeCampo' class='infoP'>"+feature.get("name") +"</p><br><input type='submit' value='+' class='btnAddEventos' id='btnAddEventos' onclick='addEvento()'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos' onclick='infoEvento("+evt.coordinate+");'>";
-    document.getElementById("imgsCampos").src = imagemCampo(feature);
-    overlay.show(feature.getGeometry().getCoordinates(), content);
-  })
+    + lonlat + feature.get("id") +
+    "  </p><p id='nomeCampo' class='infoP'>" + feature.get("name") + "</p><br><input type='submit' value='+' class='btnAddEventos' id='btnAddEventos' onclick='addEvento()'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos' onclick='infoEvento(" + evt.coordinate + ");'>";
+  document.getElementById("imgsCampos").src = imagemCampo(feature);
+  overlay.show(feature.getGeometry().getCoordinates(), content);
+})
 
-select.getFeatures().on(['remove'], function(evt){
+select.getFeatures().on(['remove'], function (evt) {
   overlay.hide()
 });
 /*
@@ -237,8 +245,8 @@ function infoEvento(...coordenadas) {
   content.innerHTML =
     "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
     coordenadas +
-    "</p>" + 
-    "<p class='infoP'>Data e Hora: " + currentDate.toLocaleString("pt", {weekday: "long"})+"</p>" +
+    "</p>" +
+    "<p class='infoP'>Data e Hora: " + currentDate.toLocaleString("pt", { weekday: "long" }) + "</p>" +
     "<p class='infoP'>Participantes: " + "</p>" +
     "<div id='divParticipantes'><img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
     +
@@ -246,14 +254,18 @@ function infoEvento(...coordenadas) {
     +
     "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
     +
-    "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>" 
+    "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
     +
-    "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>" 
+    "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
     +
     "</div>" +
     "<input type='submit' value='Entrar Evento' class='btnEventos' id='btnEntrarEvento'>"
     ;
 }
+
+
+
+
 /*//////////////////////////*/
 
 // Add Vector layer to map

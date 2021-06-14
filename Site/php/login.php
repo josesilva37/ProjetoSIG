@@ -20,5 +20,6 @@ if ($login_check > 0) {
     header("Location: ../infocampoLogIn.php");
     exit();
 } else {
+    
 }
 ?>
