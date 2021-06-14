@@ -14,6 +14,7 @@ const hora = document.getElementById("hora");
 const participantes = document.getElementById("numeroJogadores");
 var local = document.getElementById("localizacao");
 btnCriar.addEventListener("click", gravar);
+const duracao = document.getElementById("duracao");
 
 function addEvento(){
   popupADD.style.display = "block";
@@ -26,18 +27,20 @@ function closePOP() {
   popupADD.style.display = "none";
 }
 
-/*window.onclick = function(event) {
+window.onclick = function(event) {
   if (event.target == popupADD) {
       popupADD.style.display = "none";
   }
-} */
+}
 
 
 function gravar(){
   var data = {
-      local : "campoTeste",
+      local : nome[1].innerText,
       data_hora : data2.value + " " + hora.value,
-      participantes : participantes.value
+      participantes : participantes.value,
+      tipo_desporto : "futebol",
+      duracao: duracao.value
   }
   console.log(data);
   url = "./php/criarEvento.php";

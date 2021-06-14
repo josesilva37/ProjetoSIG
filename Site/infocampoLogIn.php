@@ -23,6 +23,7 @@ if (!isset($_SESSION["username"])) {
   <script type="text/javascript" src="./js/ol-ext.js"></script>
   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
   <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <title>Projeto SIG</title>
 
 </head>
@@ -38,9 +39,37 @@ if (!isset($_SESSION["username"])) {
       <div class="input-container">
         <i class="fa fa-search icon"></i>
         <input type="text" name="textoPesquisa" class="txtPesquisa" placeholder="Pesquise aqui" />
-        <i class="fa fa-filter iconFilter"></i>
+        <a href="#" onclick="mostrarFiltro()"><i class="fa fa-filter iconFilter"></i></a>
       </div>
-      <h3 class="titulo">Eventos:</h3>
+      <div style="display: none;" name="filtroContent">
+          <h3 style="margin-bottom: 10px; margin-top: 45px;margin-left: 10px;">Filtros</h3>
+            <form style="margin-left:20px; margin-bottom: 10px;">
+              <label> Campos:</label>  
+              <select class="form-control" style="width: 250px;" id="selectCampos">  
+                <option value="todos" selected="selected">Todos os campos</option>
+                <option value="soccer">Futebol</option>  
+                <option value="basketball">Basquetebol</option>  
+                <option value="beachvolleyball">Voleibol</option>  
+                <option value="tennis">Ténis</option>
+                <option value="padel">Pádel</option>  
+                <option value="multi">Multidesportivos</option>
+              </select>  
+              <p></p>
+              <label style="margin-bottom: 10px ;margin-top: 15px;">Distância/Tempo:</label>
+              <p style="margin-left:10px;"></p>
+              <div style="margin-left:10px;">
+                <input type="checkbox" id="filtrotempo" name="filtrotempo" checked="">
+                <label for="filtrotempo">Menos que 5 minutos à pé</label>
+                  <p></p><p style="margin-top: 15px;">
+                  <input type="checkbox" id="filtrotempo2" name="filtrotempo2" checked="">
+                <label for="filtrotempo2">Menos que 2 minutos de carro</label>
+              
+                  </p></div>
+            </form>
+       
+        </div>
+        <div name ="menuContent">
+        <h3 class="titulo">Eventos:</h3>
 
       <ul>
         <li><i class="far fa-futbol iconFutebol"></i>Futebol</li>
@@ -49,6 +78,7 @@ if (!isset($_SESSION["username"])) {
         <li><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
         <li><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
       </ul>
+      </div>
       <i class="fa fa-user-circle fa-2x iconProfile"></i>
       <?php
       echo
@@ -58,12 +88,48 @@ if (!isset($_SESSION["username"])) {
   </div>
   <div id="map" class="map"></div>
   <div id="popup-content"></div>
-  <div id="popup-addEvento"></div>
-  </div>
+  <div id="popup-addEvento">
+  <div class="popup" id="popupAdd">
+        <div class="popup-content">
+          <span class="close" id="closeAdd" onclick="closePOP()">&times;</span>
+            <img src="" alt="campo" id="foto">
+            <h4 id="localizacao"></h4>
+            <form method="POST">
+              <input type="date" id="data">
+              <input type="time" id="hora">
+              <select name="duracao" id="duracao">
+                <option value="" disabled selected class="form-select">Selecione a duração</option>
+                <option value="1">1h</option>
+                <option value="2">2h</option>
+                <option value="3">3h</option>
+              </select>
+              <input type="number" id="numeroJogadores" placeholder="Número de Jogadores">
+              <input type="submit" class="button" id="criarEvento" value="Criar Evento">
+          </form>
+        </div>
+      </div>
+    </div>
   <script src="js/logged.js"></script>
   <script src="js/infocampo.js"></script>
   <script src="js/criarEvento.js"></script>
   <script src="js/login.js"></script>
+  <script> 
+      var filtroAtivo = false;
+      function mostrarFiltro() {
+        var filtroContent = document.getElementsByName("filtroContent")[0];
+        var menuContent = document.getElementsByName("menuContent")[0];
+        if(filtroAtivo){
+          filtroContent.style.display = "none";
+          menuContent.style.display = "inline";
+          filtroAtivo = false;
+        }else{
+          filtroContent.style.display = "inline";
+          menuContent.style.display = "none";
+          filtroAtivo = true;
+        }
+  
+  }
+      </script>
 </body>
 
 </html>
