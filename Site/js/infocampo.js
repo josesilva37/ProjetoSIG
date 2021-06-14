@@ -15,6 +15,7 @@ var selectCampos = document.getElementById("selectCampos");
 var selectedRaio = document.getElementById("raio");
 var isFiltroRaio = document.getElementById("filtroRaio");
 var userLoc;
+var selectedRaioTipo = document.getElementById("selectCamposRaio");
 
 var overlay = new ol.Overlay.Popup({
   popupClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
@@ -227,18 +228,18 @@ select.getFeatures().on(['add'], function (evt) {
     + lonlat + feature.get("id") +
     "  </p><p id='nomeCampo' class='infoP'>" + feature.get("name") + "</p><br><input type='submit' value='+' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
   document.getElementById("imgsCampos").src = imagemCampo(feature);
-  document.getElementById("btnAddEventos").addEventListener("click", function(){
+  document.getElementById("btnAddEventos").addEventListener("click", function () {
     addEvento(feature);
   });
-  document.getElementById("btnVerEventos").addEventListener("click",function(){
+  document.getElementById("btnVerEventos").addEventListener("click", function () {
     infoEvento(feature);
-}, false);
+  }, false);
   overlay.show(feature.getGeometry().getCoordinates(), content);
 })
 
 select.getFeatures().on(['remove'], function (evt) {
   overlay.hide()
-}); 
+});
 /*
 map.on("click", function (evt) {
   var pixel = evt.pixel;
@@ -247,56 +248,73 @@ map.on("click", function (evt) {
 
 
 
-  function infoEvento(feature) {
-    var count = 0;
-    var info = {
-      nome: feature.get("name"),
-    }
-    content.innerHTML = "<div class='siema' id='caixaSiema'>";
-    $.ajax({
-      type: 'POST',
-      url: './php/verEventos.php',
-      data: { json: JSON.stringify(info) },
-      success: function(data){
-        caixaSiema = document.getElementById("caixaSiema");
-        if(data.eventos.length <= 0){
-          caixaSiema.innerText = "Não existem eventos!";
-        }else{
-        data.eventos.forEach(function (evento){
+function infoEvento(feature) {
+  var count = 0;
+  var info = {
+    nome: feature.get("name"),
+  }
+  content.innerHTML = "<div class='siema' id='caixaSiema'>";
+  $.ajax({
+    type: 'POST',
+    url: './php/verEventos.php',
+    data: { json: JSON.stringify(info) },
+    success: function (data) {
+      caixaSiema = document.getElementById("caixaSiema");
+      if (data.eventos.length <= 0) {
+        caixaSiema.innerText = "Não existem eventos!";
+      } else {
+        data.eventos.forEach(function (evento) {
           console.log(evento.data_hora);
-          caixaSiema.innerHTML +=  "<div>"+
-          "<img src='' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
-          evento.nome_local +
-          "</p>" +
-          "<p class='infoP'>Data e Hora: " + evento.data_hora + "</p>" +
-          "<p class='infoP'>Participantes: " + evento.participantes + "</p>" +
-          "<div class='divParticipantes' id="+count+">";
+          caixaSiema.innerHTML += "<div>" +
+            "<img src='' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
+            evento.nome_local +
+            "</p>" +
+            "<p class='infoP'>Data e Hora: " + evento.data_hora + "</p>" +
+            "<p class='infoP'>Participantes: " + evento.participantes + "</p>" +
+            "<div class='divParticipantes' id=" + count + ">";
           divPart = document.getElementById(count);
-          for(let i = 0;i<parseInt(evento.participantes);i++){
-            divPart.innerHTML +="<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
+          for (let i = 0; i < parseInt(evento.participantes); i++) {
+            divPart.innerHTML += "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
           }
           caixaSiema.innerHTML += "</div></div>";
           count++;
         })
         caixaSiema.innerHTML += "</div>";
-        content.innerHTML += 
-        "<button class='prev btnSetas'><i class='fas fa-arrow-left setas'></i></button>"+
-        "<button class='next btnSetas'><i class='fas fa-arrow-right setas'></i></button>"+
-        "<input type='submit' value='Entrar Evento' class='btnEventos' id='btnEntrarEvento'>"
+        content.innerHTML +=
+          "<button class='prev btnSetas'><i class='fas fa-arrow-left setas'></i></button>" +
+          "<button class='next btnSetas'><i class='fas fa-arrow-right setas'></i></button>" +
+          "<input type='submit' value='Entrar Evento' class='btnEventos' id='btnEntrarEvento'>"
         const mySiema = new Siema();
         $(".imagensCampos").attr("src", imagemCampo(feature));
         document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
         document.querySelector('.next').addEventListener('click', () => mySiema.next());
       }
     }
-    });
-   
-}
+  });
 
-if(isFiltroRaio.checked){
-  if(userLoc == null){
+}
+isFiltroRaio.onclick = function () {
+  if (userLoc == null) {
     alert("Selecione a localização de partida com duplo clique no mapa");
+  } else {
+    var raioData = {
+      raio: selectedRaio.value,
+      lat : userLoc[0],
+      long : userLoc[1],
+      tipo : selectedRaioTipo.value
+
+    }
+    $.ajax({
+      type: 'POST',
+      url: './php/filtrarRaio.php',
+      data: { json: JSON.stringify(raioData) },
+      dataType: 'JSON',
+      success: function (dataR) {
+        console.log(dataR);
+      }
+      });
   }
+
 }
 
 map.on('dblclick', function (evt) {
@@ -307,26 +325,26 @@ map.on('dblclick', function (evt) {
   var locationFeature = new ol.Feature({
     geometry: new ol.geom.Point(place),
     name: 'User Location',
-});
- 
-  
+  });
 
-var locationSource = new ol.source.Vector({
-  feature:  locationFeature,
-});
 
-var locationLayer = new ol.layer.Vector({
-  source: locationSource,
-  style: new ol.style.Style({
-    image: new ol.style.Icon({
-      anchor: [0.5, 0.5],
 
-      scale: 0.1,
-      src: "../icons/icone.png"
+  var locationSource = new ol.source.Vector({
+    feature: locationFeature,
+  });
+
+  var locationLayer = new ol.layer.Vector({
+    source: locationSource,
+    style: new ol.style.Style({
+      image: new ol.style.Icon({
+        anchor: [0.5, 0.5],
+
+        scale: 0.1,
+        src: "../icons/icone.png"
+      })
     })
-  })
-});
+  });
 
-map.addLayer(locationLayer);
+  map.addLayer(locationLayer);
 
 });

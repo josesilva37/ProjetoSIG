@@ -58,14 +58,25 @@ session_start();
           <!-- <button id="location-button" class="">Get user Location</button> -->
           <p style="margin-left:10px;"></p>
           <div style="margin-left:10px;">
-          <input type="checkbox" id="filtroRaio" name="filtroRaio" check>
-            <label for="raio">Campos a distancia de</label>
+          <button type="button" id="filtroRaio">-></button>
+          <label for="selectCamposRaio">Campos de</label>
+            <select  id="selectCamposRaio" name="selectCamposRaio">
+            <option value="todos" selected="selected">Todos os campos</option>
+            <option value="soccer">Futebol</option>
+            <option value="basketball">Basquetebol</option>
+            <option value="beachvolleyball">Voleibol</option>
+            <option value="tennis">Ténis</option>
+            <option value="padel">Pádel</option>
+            <option value="multi">Multidesportivos</option>
+          </select>
+          <label for="raio">a distancia de</label>
             <select name="raio" id="raio">
-              <option value="1">1km</option>
-              <option value="2">2km</option>
-              <option value="3">3km</option>
-              <option value="4">4km</option>
+              <option value="1000">1km</option>
+              <option value="2000">2km</option>
+              <option value="3000">3km</option>
+              <option value="4000">4km</option>
             </select>
+            <br>
             <br>
             <input type="checkbox" id="filtrotempo" name="filtrotempo" checked="">
             <label for="filtrotempo">Menos que 5 minutos à pé</label>
