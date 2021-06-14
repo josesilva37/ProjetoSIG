@@ -88,7 +88,7 @@ if (!isset($_SESSION["username"])) {
   </div>
   <div id="map" class="map"></div>
   <div id="popup-content"></div>
-  <div id="popup-addEvento"></div>
+  <div id="popup-addEvento">
   <div class="popup" id="popupAdd">
         <div class="popup-content">
           <span class="close" id="closeAdd" onclick="closePOP()">&times;</span>
@@ -97,13 +97,18 @@ if (!isset($_SESSION["username"])) {
             <form method="POST">
               <input type="date" id="data">
               <input type="time" id="hora">
-              <input type="number" id="duracao" placeholder="Duração">
+              <select name="duracao" id="duracao">
+                <option value="" disabled selected class="form-select">Selecione a duração</option>
+                <option value="1">1h</option>
+                <option value="2">2h</option>
+                <option value="3">3h</option>
+              </select>
               <input type="number" id="numeroJogadores" placeholder="Número de Jogadores">
               <input type="submit" class="button" id="criarEvento" value="Criar Evento">
           </form>
         </div>
       </div>
-  </div>
+    </div>
   <script src="js/logged.js"></script>
   <script src="js/infocampo.js"></script>
   <script src="js/criarEvento.js"></script>
