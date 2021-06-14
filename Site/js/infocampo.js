@@ -271,6 +271,7 @@ document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
 document.querySelector('.next').addEventListener('click', () => mySiema.next());
 }
 */
+
 map.on('dblclick', function (evt) {
   console.log(evt.coordinate)
   var point = new ol.geom.Point(evt.coordinate[0],evt.coordinate[1]);

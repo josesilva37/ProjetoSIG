@@ -1,6 +1,7 @@
-<!DOCTYPE html>
 <html lang="en">
-
+<?php
+session_start();
+?>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" href="css/login.css" />
@@ -10,8 +11,7 @@
   <!-- Openlayers -->
   <link rel="stylesheet" href="https://openlayers.org/en/latest/css/ol.css" />
   <script type="text/javascript" src="https://openlayers.org/en/latest/build/ol.js"></script>
-  <script
-    src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL,Object.assign"></script>
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL,Object.assign"></script>
   <script src="https://unpkg.com/elm-pep"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
@@ -116,7 +116,6 @@
             <br>
             <button type="submit" id="loginBtn" name="submit" value="Submit">Login</button>
             <div id="btnCriarConta">Criar Conta</div>
-
           </div>
         </form>
       </div>
@@ -146,11 +145,11 @@
   </div>
   <script src="js/infocampo.js"></script>
   <script src="js/criarEvento.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="js/login.js"></script>
   <script>
     var filtroAtivo = false;
+
     function mostrarFiltro() {
       var filtroContent = document.getElementsByName("filtroContent")[0];
       var menuContent = document.getElementsByName("menuContent")[0];
