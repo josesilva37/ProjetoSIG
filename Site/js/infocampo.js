@@ -286,6 +286,7 @@ map.on("click", function (evt) {
 /*
 
 */
+
 map.on('dblclick', function (evt) {
   console.log(evt.coordinate)
   var point = new ol.geom.Point(evt.coordinate[0],evt.coordinate[1]);
