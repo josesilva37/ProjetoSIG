@@ -14,9 +14,6 @@ var selectCampos = document.getElementById("selectCampos");
 
 
 
-
-
-
 var overlay = new ol.Overlay.Popup({
   popupClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
   element: container,
@@ -262,9 +259,31 @@ function infoEvento(...coordenadas) {
     "<input type='submit' value='Entrar Evento' class='btnEventos' id='btnEntrarEvento'>"
     ;
 }
+/*
+map.on('dblclick', function (evt) {
+  console.log(evt.coordinate)
+  var point = new ol.geom.Point(evt.coordinate[0],evt.coordinate[1]);
+  var locationFeature = new ol.Feature({
+    geometry: point,
+    name: "location"
+});
 
+var vectorSource = new ol.source.Vector({
+  feature:  locationFeature
+});
+var vectorLayer = new ol.layer.Vector({
+  source: vectorSource,
+  style: new ol.style.Style({
+    image: new ol.style.Circle({
+      radius: 2,
+      fill: new ol.style.Fill({color: 'red'})
+    })
+  })
 
-
+});
+map.addLayer(vectorLayer);
+});
+*/
 
 /*//////////////////////////*/
 
