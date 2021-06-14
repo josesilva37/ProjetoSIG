@@ -248,6 +248,7 @@ map.on("click", function (evt) {
 
 
   function infoEvento(feature) {
+
     var info = {
       nome: feature.get("name"),
     }
@@ -258,10 +259,13 @@ map.on("click", function (evt) {
       data: { json: JSON.stringify(info) },
       success: function(data){
         caixaSiema = document.getElementById("caixaSiema");
+        if(data.eventos.length <= 0){
+          caixaSiema.innerText = "Não existem eventos!";
+        }else{
         data.eventos.forEach(function (evento){
           console.log(evento.data_hora);
           caixaSiema.innerHTML +=  "<div>"+
-          "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
+          "<img src='' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
           evento.nome_local +
           "</p>" +
           "<p class='infoP'>Data e Hora: " + evento.data_hora + "</p>" +
@@ -284,9 +288,11 @@ map.on("click", function (evt) {
         "<button class='next btnSetas'><i class='fas fa-arrow-right setas'></i></button>"+
         "<input type='submit' value='Entrar Evento' class='btnEventos' id='btnEntrarEvento'>"
         const mySiema = new Siema();
+        $(".imagensCampos").attr("src", imagemCampo(feature));
         document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
         document.querySelector('.next').addEventListener('click', () => mySiema.next());
       }
+    }
     });
    
 }
