@@ -32,6 +32,7 @@ var overlay = new ol.Overlay.Popup({
 // };
 
 /*//////////////////*/
+/*
 $('#location-button').click(function () {
   navigator.geolocation.getCurrentPosition(function(position){
     console.log(position);
@@ -39,6 +40,7 @@ $('#location-button').click(function () {
   })
 
 })
+*/
 
 var map = new ol.Map({
   target: "map",
@@ -272,31 +274,41 @@ document.querySelector('.next').addEventListener('click', () => mySiema.next());
 }
 */
 
+
 map.on('dblclick', function (evt) {
   console.log(evt.coordinate)
-  var point = new ol.geom.Point(evt.coordinate[0],evt.coordinate[1]);
+  var place = [evt.coordinate[0], evt.coordinate[1]];
+
   var locationFeature = new ol.Feature({
-    geometry: point,
-    name: "location"
+    geometry: new ol.geom.Point(place),
+    name: 'User Location',
 });
  
   
 
-var vectorSource = new ol.source.Vector({
-  feature:  locationFeature
+var locationSource = new ol.source.Vector({
+  feature:  locationFeature,
 });
-var vectorLayer = new ol.layer.Vector({
-  source: vectorSource,
+
+var locationLayer = new ol.layer.Vector({
+  source: locationSource,
   style: new ol.style.Style({
-    image: new ol.style.Circle({
-      radius: 2,
-      fill: new ol.style.Fill({color: 'red'})
+    image: new ol.style.Icon({
+      anchor: [0.5, 0.5],
+      //     size: [52, 52],
+      //     offset: [52, 0],
+      //     opacity: 1,
+      scale: 0.1,
+      src: "../icons/icone.png"
     })
   })
+});
+
+map.addLayer(locationLayer);
 
 });
-map.addLayer(vectorLayer);
-});
+
+
 
 
 /*//////////////////////////*/

@@ -82,6 +82,12 @@ session_start();
         </ul>
       </div>
       <i class="fa fa-user-circle fa-2x iconProfile" id="logIn"></i>
+      <?php
+                    if(isset($_SESSION["error"])){
+                        $error = $_SESSION["error"];
+                        echo "<span>$error</span>";
+                    }
+                ?> 
     </div>
   </div>
   <div id="map" class="map"></div>
