@@ -38,6 +38,7 @@ window.onclick = function(event) {
     }
 }
 
+
 //rating star
 
 const ratingStars = [...document.getElementsByClassName("rating__star")];
