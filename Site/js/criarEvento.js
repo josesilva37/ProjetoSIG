@@ -15,11 +15,14 @@ const participantes = document.getElementById("numeroJogadores");
 var local = document.getElementById("localizacao");
 btnCriar.addEventListener("click", gravar);
 const duracao = document.getElementById("duracao");
+var tipo_desporto = "";
 
-function addEvento(){
+function addEvento(feature){
   popupADD.style.display = "block";
   fotoPOP.src = foto[0].src;
   local.innerText = "Localização: "+nome[1].innerText;
+  tipo_desporto = feature.get("sport");
+  console.log(tipo_desporto);
 }
 
 
@@ -39,7 +42,7 @@ function gravar(){
       local : nome[1].innerText,
       data_hora : data2.value + " " + hora.value,
       participantes : participantes.value,
-      tipo_desporto : "futebol",
+      tipo_desporto : tipo_desporto,
       duracao: duracao.value
   }
   console.log(data);

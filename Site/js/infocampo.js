@@ -221,8 +221,11 @@ select.getFeatures().on(['add'], function (evt) {
   content.innerHTML =
     "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
     + lonlat + feature.get("id") +
-    "  </p><p id='nomeCampo' class='infoP'>" + feature.get("name") + "</p><br><input type='submit' value='+' class='btnAddEventos' id='btnAddEventos' onclick='addEvento()'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
+    "  </p><p id='nomeCampo' class='infoP'>" + feature.get("name") + "</p><br><input type='submit' value='+' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
   document.getElementById("imgsCampos").src = imagemCampo(feature);
+  document.getElementById("btnAddEventos").addEventListener("click", function(){
+    addEvento(feature);
+  });
   document.getElementById("btnVerEventos").addEventListener("click",function(){
     infoEvento(feature);
 }, false);
