@@ -113,6 +113,7 @@ if (!isset($_SESSION["username"])) {
   <script src="js/infocampo.js"></script>
   <script src="js/criarEvento.js"></script>
   <script src="js/login.js"></script>
+  <script src="js/siema.min.js"></script>
   <script> 
       var filtroAtivo = false;
       function mostrarFiltro() {

@@ -220,3 +220,11 @@ body {
   font-weight: bold;
 }
 
+.setas{
+  color: orangered;
+  margin-right: 20px;
+}
+.btnSetas{
+  background: none;
+  border: none;
+}
