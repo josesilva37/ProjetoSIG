@@ -266,6 +266,11 @@ map.on("click", function (evt) {
     ;
 }
 /*
+const mySiema = new Siema();
+document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
+document.querySelector('.next').addEventListener('click', () => mySiema.next());
+}
+*/
 map.on('dblclick', function (evt) {
   console.log(evt.coordinate)
   var point = new ol.geom.Point(evt.coordinate[0],evt.coordinate[1]);
@@ -273,10 +278,7 @@ map.on('dblclick', function (evt) {
     geometry: point,
     name: "location"
 });
-    const mySiema = new Siema();
-      document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
-      document.querySelector('.next').addEventListener('click', () => mySiema.next());
-  }
+ 
   
 
 var vectorSource = new ol.source.Vector({
@@ -294,7 +296,7 @@ var vectorLayer = new ol.layer.Vector({
 });
 map.addLayer(vectorLayer);
 });
-*/
+
 
 /*//////////////////////////*/
 
