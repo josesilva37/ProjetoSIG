@@ -240,9 +240,11 @@ map.on("click", function (evt) {
 
 
 
-function infoEvento(...coordenadas) {
-  let currentDate = new Date();
-  content.innerHTML =
+  function infoEvento(...coordenadas) {
+    let currentDate = new Date();
+    content.innerHTML =
+    "<div class='siema'>"+
+    "<div>"+
     "<img src='./camposFotos/campos-futebol-aveiro3.jpg' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
     coordenadas +
     "</p>" +
@@ -258,10 +260,18 @@ function infoEvento(...coordenadas) {
     +
     "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
     +
-    "</div>" +
+    "</div></div>"+
+    "<div>boas</div>"+
+    "</div><br>"+ 
+    "<button class='prev btnSetas'><i class='fas fa-arrow-left setas'></i></button>"+
+    "<button class='next btnSetas'><i class='fas fa-arrow-right setas'></i></button>"+
     "<input type='submit' value='Entrar Evento' class='btnEventos' id='btnEntrarEvento'>"
     ;
-}
+    const mySiema = new Siema();
+      document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
+      document.querySelector('.next').addEventListener('click', () => mySiema.next());
+  }
+  
 
 
 
