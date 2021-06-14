@@ -248,7 +248,7 @@ map.on("click", function (evt) {
 
 
   function infoEvento(feature) {
-
+    var count = 0;
     var info = {
       nome: feature.get("name"),
     }
@@ -270,17 +270,13 @@ map.on("click", function (evt) {
           "</p>" +
           "<p class='infoP'>Data e Hora: " + evento.data_hora + "</p>" +
           "<p class='infoP'>Participantes: " + evento.participantes + "</p>" +
-          "<div id='divParticipantes'><img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
-          +
-          "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
-          +
-          "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
-          +
-          "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
-          +
-          "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
-          + "</div></div>";
-          ;
+          "<div class='divParticipantes' id="+count+">";
+          divPart = document.getElementById(count);
+          for(let i = 0;i<parseInt(evento.participantes);i++){
+            divPart.innerHTML +="<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
+          }
+          caixaSiema.innerHTML += "</div></div>";
+          count++;
         })
         caixaSiema.innerHTML += "</div>";
         content.innerHTML += 

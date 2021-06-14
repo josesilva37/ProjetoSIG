@@ -200,7 +200,7 @@ body {
   margin-left: 5px;
 }
 
-#divParticipantes >img:first-child{
+.divParticipantes >img:first-child{
   margin-left: 0px;
 }
 
