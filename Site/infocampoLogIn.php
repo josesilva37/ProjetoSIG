@@ -11,6 +11,7 @@ if (!isset($_SESSION["username"])) {
   <link rel="stylesheet" href="css/login.css">
   <link rel="stylesheet" href="./css/infocampo.css" />
   <link rel="stylesheet" href="css/criarEvento.css" />
+  <link rel="stylesheet" href="css/listarEventos.css" />
   <!-- Openlayers -->
   <link rel="stylesheet" href="https://openlayers.org/en/latest/css/ol.css" />
   <script type="text/javascript" src="https://openlayers.org/en/latest/build/ol.js"></script>
@@ -72,7 +73,7 @@ if (!isset($_SESSION["username"])) {
         <h3 class="titulo">Eventos:</h3>
 
       <ul>
-        <li><i class="far fa-futbol iconFutebol"></i>Futebol</li>
+        <li id="futEventos"><i class="far fa-futbol iconFutebol"></i>Futebol</li>
         <li><i class='fas fa-basketball-ball iconBasket'></i>Basquetebol</li>
         <li><i class="fas fa-volleyball-ball iconVolley"></i>Voleibol</li>
         <li><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
@@ -88,7 +89,6 @@ if (!isset($_SESSION["username"])) {
   </div>
   <div id="map" class="map"></div>
   <div id="popup-content"></div>
-  <div id="popup-addEvento">
   <div class="popup" id="popupAdd">
         <div class="popup-content">
           <span class="close" id="closeAdd" onclick="closePOP()">&times;</span>
@@ -107,12 +107,36 @@ if (!isset($_SESSION["username"])) {
               <input type="submit" class="button" id="criarEvento" value="Criar Evento">
           </form>
         </div>
-      </div>
+    </div>
+    <div class="popup" id="popupListar">
+        <div class="popup-content">
+          <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
+            <h2 id="localizacao">Eventos de Futebol</h2>
+            <div class="eventoRow">
+              <h5>Local: Campus 7</h5>
+              <h5>Data e Hora: 2021-06-17 14:51:00</h5>
+              <h5>Participantes: 5</h5>
+              <h5>Duração: 3h</h5>
+            </div>
+            <div class="eventoRow">
+              <h5>Local: Campus 7</h5>
+              <h5>Data e Hora: 2021-06-17 14:51:00</h5>
+              <h5>Participantes: 5</h5>
+              <h5>Duração: 3h</h5>
+            </div>
+            <div class="eventoRow">
+              <h5>Local: Campus 7</h5>
+              <h5>Data e Hora: 2021-06-17 14:51:00</h5>
+              <h5>Participantes: 5</h5>
+              <h5>Duração: 3h</h5>
+            </div>
+        </div>
     </div>
   <script src="js/logged.js"></script>
   <script src="js/infocampo.js"></script>
   <script src="js/criarEvento.js"></script>
   <script src="js/login.js"></script>
+  <script src="js/listarEventos.js"></script>
   <script src="js/siema.min.js"></script>
   <script> 
       var filtroAtivo = false;
