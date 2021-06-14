@@ -12,7 +12,9 @@ var closer = document.getElementById("popup-closer");
 
 var selectCampos = document.getElementById("selectCampos");
 
-
+var selectedRaio = document.getElementById("raio");
+var isFiltroRaio = document.getElementById("filtroRaio");
+var userLoc;
 
 var overlay = new ol.Overlay.Popup({
   popupClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
@@ -288,12 +290,15 @@ map.on("click", function (evt) {
     });
    
 }
-/*
 
-*/
-
+if(isFiltroRaio.checked){
+  if(userLoc == null){
+    alert("Selecione a localização de partida com duplo clique no mapa");
+  }
+}
 
 map.on('dblclick', function (evt) {
+  userLoc = evt.coordinate;
   console.log(evt.coordinate)
   var place = [evt.coordinate[0], evt.coordinate[1]];
 
@@ -313,9 +318,7 @@ var locationLayer = new ol.layer.Vector({
   style: new ol.style.Style({
     image: new ol.style.Icon({
       anchor: [0.5, 0.5],
-      //     size: [52, 52],
-      //     offset: [52, 0],
-      //     opacity: 1,
+
       scale: 0.1,
       src: "../icons/icone.png"
     })
@@ -325,10 +328,3 @@ var locationLayer = new ol.layer.Vector({
 map.addLayer(locationLayer);
 
 });
-
-
-
-
-/*//////////////////////////*/
-
-// Add Vector layer to map

@@ -2,6 +2,7 @@
 <?php
 session_start();
 ?>
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" href="css/login.css" />
@@ -54,11 +55,21 @@ session_start();
           <p></p>
           <label style="margin-bottom: 10px ;margin-top: 15px;">Distância/Tempo:</label>
           <br>
-          <button id="location-button" class="">Get user Location</button>
+          <!-- <button id="location-button" class="">Get user Location</button> -->
           <p style="margin-left:10px;"></p>
           <div style="margin-left:10px;">
+          <input type="checkbox" id="filtroRaio" name="filtroRaio" check>
+            <label for="raio">Campos a distancia de</label>
+            <select name="raio" id="raio">
+              <option value="1">1km</option>
+              <option value="2">2km</option>
+              <option value="3">3km</option>
+              <option value="4">4km</option>
+            </select>
+            <br>
             <input type="checkbox" id="filtrotempo" name="filtrotempo" checked="">
             <label for="filtrotempo">Menos que 5 minutos à pé</label>
+
             <p></p>
             <p style="margin-top: 15px;">
               <input type="checkbox" id="filtrotempo2" name="filtrotempo2" checked="">
@@ -83,11 +94,11 @@ session_start();
       </div>
       <i class="fa fa-user-circle fa-2x iconProfile" id="logIn"></i>
       <?php
-                    if(isset($_SESSION["error"])){
-                        $error = $_SESSION["error"];
-                        echo "<span>$error</span>";
-                    }
-                ?> 
+      if (isset($_SESSION["error"])) {
+        $error = $_SESSION["error"];
+        echo "<span>$error</span>";
+      }
+      ?>
     </div>
   </div>
   <div id="map" class="map"></div>

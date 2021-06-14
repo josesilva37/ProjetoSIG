@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -5,15 +6,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./css/avaliarJogadores.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css"
             type="text/css"
         />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
         <title>Projeto SIG</title>
         <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
         <script src="https://kit.fontawesome.com/23fbd4e5e3.js" crossorigin="anonymous"></script>
@@ -59,6 +60,9 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+
+                    </div>
                 </li>
             </ul>
             <i class="fa fa-user-circle fa-2x iconProfile"></i>
@@ -67,5 +71,122 @@
         <div id="map" class="map"></div>
         <div id="popup" title="Welcome to OpenLayers"></div>
         <script src="js/avaliarJogadores.js"></script>
+    </body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/avaliarJogadores.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css"
+            type="text/css"
+        />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <title>Projeto SIG</title>
+        <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+        <script src="https://kit.fontawesome.com/23fbd4e5e3.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="barraMenu">
+            <div id="sidebar">
+                <div class="toggle-btn" onclick="show()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                    <div class="input-container">
+                        <i class="fa fa-search icon"></i>
+                        <input
+                            type="text"
+                            name="textoPesquisa"
+                            class="txtPesquisa"
+                            placeholder="Pesquise aqui"
+                        />
+                        <i class="fa fa-filter iconFilter"></i>
+                    </div>
+            <ul>
+                <li>Home</li>
+                <li>Teste</li>
+                <li>About</li>
+                <li>Contactos</li>
+                <li class="row"> 
+                    <input type="button" class="botaoAbrirPopup" id="btnAvaliarJogador" value="Avalie Jogadores">
+                    <div class="popup" id="popup">
+                        <div class="popup-content">
+                            <span class="close">&times;</span>
+                                <div class="container">
+                                    <h2>Avalie Jogadores</h2>  
+                                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                            <!-- Indicators -->
+                                            <ol class="carousel-indicators">
+                                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                                <li data-target="#myCarousel" data-slide-to="1"></li>
+                                                <li data-target="#myCarousel" data-slide-to="2"></li>
+                                            </ol>
+                                            <!--Wrapper for slides -->
+                                            <div class="carousel-inner">
+                                                <div class="item active">
+                                                    <img src="avataresjogadores/avatarsig3.png" alt="Ricardo" id="img1" style="width:50%;">
+                                                    <div class="rating">
+                                                        <span class="rating__result"></span> 
+                                                       <i class="rating__star far fa-star"></i>
+                                                       <i class="rating__star far fa-star"></i>
+                                                       <i class="rating__star far fa-star"></i>
+                                                       <i class="rating__star far fa-star"></i>
+                                                       <i class="rating__star far fa-star"></i>
+                                                    </div>
+                                                </div>
+                                                    <div class="item">
+                                                        <img src="avataresjogadores/avatarsig1.png" alt="Pedro" id="img2" style="width:50%;">
+                                                        <div class="rating">
+                                                            <span class="rating__result"></span> 
+                                                           <i class="rating__star far fa-star"></i>
+                                                           <i class="rating__star far fa-star"></i>
+                                                           <i class="rating__star far fa-star"></i>
+                                                           <i class="rating__star far fa-star"></i>
+                                                           <i class="rating__star far fa-star"></i>
+                                                        </div>
+                                                    </div>
+                                                        <div class="item">
+                                                            <img src="avataresjogadores/avatarsig2.png" alt="Rita" id="img3" style="width:50%;">
+                                                            <div class="rating">
+                                                                <span class="rating__result"></span> 
+                                                               <i class="rating__star far fa-star"></i>
+                                                               <i class="rating__star far fa-star"></i>
+                                                               <i class="rating__star far fa-star"></i>
+                                                               <i class="rating__star far fa-star"></i>
+                                                               <i class="rating__star far fa-star"></i>
+                                                            </div>
+                                                        </div>
+                                            </div>
+                                            <!-- Left and right controls -->
+                                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                        </div>
+                                </div>
+                        </div>
+                </li>
+            </ul>
+            <i class="fa fa-user-circle fa-2x iconProfile"></i>
+                    </div>
+        </div>
+            <div id="map" class="map"></div>
+            <div id="popup" title="Welcome to OpenLayers"></div>
+            <script src="js/avaliarJogadores.js"></script>
     </body>
 </html>

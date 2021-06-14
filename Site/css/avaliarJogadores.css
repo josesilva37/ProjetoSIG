@@ -103,8 +103,9 @@
 .botaoAbrirPopup{
     border: none;
     background-color: white;
-	text-decoration: none;
-	font-size: 18px;
+	  text-decoration: none;
+	  font-size: 20px;
+    margin-left: 15px;
 }
 
 .botaoAbrirPopup:hover {
@@ -174,6 +175,8 @@
     cursor: pointer;
 }
 
+
+
 .avalie{
     text-align: center;
     font-size: 30px;
@@ -189,6 +192,12 @@ img{
     margin-right: auto;
     margin-top: 10px;
 }
+
+.container h2{
+  text-align: center;
+}
+
+
 
 /* rating star */
 
