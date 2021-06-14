@@ -20,7 +20,7 @@ if ($login_check > 0) {
     header("Location: ../infocampoLogIn.php");
     exit();
 } else {
-    $_SESSION['errors'] = array("Your username or password was incorrect.");
+    $_SESSION['error'] = array("Your username or password was incorrect.");
     header("location: ../index.php");
 }
 ?>
