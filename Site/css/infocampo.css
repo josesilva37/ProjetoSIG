@@ -222,7 +222,7 @@ body {
 
 .setas{
   color: orangered;
-  margin-right: 20px;
+  margin: 20px 20px 0px 0px;
 }
 .btnSetas{
   background: none;
