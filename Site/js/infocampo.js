@@ -134,7 +134,7 @@ function funcao_style(feature) {
     return campo_futebol_Style;
   } else if (feature.get("sport") === "basketball") {
     return campo_basket_Style;
-  } else if (feature.get("sport") === "volleyball") {
+  } else if (feature.get("sport") === "beachvolleyball") {
     return campo_volei_Style;
   } else if (feature.get("sport") === "padel") {
     return campo_padel_Style;
@@ -172,7 +172,7 @@ selectCampos.onchange = function () {
         styleFeature = campo_futebol_Style;
       } else if (data.features[0].properties.sport === "basketball") {
         styleFeature = campo_basket_Style;
-      } else if (data.features[0].properties.sport === "volleyball") {
+      } else if (data.features[0].properties.sport === "beachvolleyball") {
         styleFeature = campo_volei_Style;
       } else if (data.features[0].properties.sport === "padel") {
         styleFeature = campo_padel_Style;
@@ -207,7 +207,7 @@ function imagemCampo(feature) {
     return "./camposFotos/campos-futebol-aveiro3.jpg";
   } else if (feature.get("sport") === "basketball") {
     return "./camposFotos/campoBasket.jpg";
-  } else if (feature.get("sport") === "volleyball") {
+  } else if (feature.get("sport") === "beachvolleyball") {
     return "./camposFotos/campoVolei.jpg";
   } else if (feature.get("sport") === "padel") {
     return "./camposFotos/campoPadel.jpg";
