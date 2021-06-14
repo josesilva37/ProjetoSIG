@@ -264,7 +264,6 @@ map.on("click", function (evt) {
     "<button class='next btnSetas'><i class='fas fa-arrow-right setas'></i></button>"+
     "<input type='submit' value='Entrar Evento' class='btnEventos' id='btnEntrarEvento'>"
     ;
-<<<<<<< HEAD
 }
 /*
 map.on('dblclick', function (evt) {
@@ -274,13 +273,11 @@ map.on('dblclick', function (evt) {
     geometry: point,
     name: "location"
 });
-=======
     const mySiema = new Siema();
       document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
       document.querySelector('.next').addEventListener('click', () => mySiema.next());
   }
   
->>>>>>> 17d9da31085e0b00d5bec65d2f4d0f8727f839b3
 
 var vectorSource = new ol.source.Vector({
   feature:  locationFeature
