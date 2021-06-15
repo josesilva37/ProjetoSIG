@@ -1,9 +1,9 @@
 var futEventos = document.getElementById("futEventos");
 var popupListar = document.getElementById("popupListar");
-futEventos.addEventListener("click", addEvento);
+futEventos.addEventListener("click", addEventoListar);
 
 
-function addEvento(){
+function addEventoListar(){
     popupListar.style.display = "block";
 }
 
