@@ -1,5 +1,6 @@
 var futEventos = document.getElementById("futEventos");
 var popupListar = document.getElementById("popupListar");
+var popupADD = document.getElementById("popupAdd");
 futEventos.addEventListener("click", addEventoListar);
 
 
@@ -14,6 +15,9 @@ function closePOPLista() {
 window.onclick = function(event) {
     if (event.target == popupListar) {
         popupListar.style.display = "none";
+    }
+    if (event.target == popupADD) {
+        popupADD.style.display = "none";
     }
 }
   
