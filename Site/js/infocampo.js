@@ -153,6 +153,21 @@ var entidades = new ol.layer.Vector({
   source: entidadesSource,
   style: funcao_style,
 });
+var equipa = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: './php/hintQuery.php'
+});
+$('#multiple-datasets .typeahead').typeahead({
+  highlight: true
+}, {
+  name: 'equips-points',
+  display: 'nome',
+  source: equipa.ttAdapter(),
+  templates: {
+      header: '<h3 class="league-name">Equipamentos:</h3>'
+  }
+});
 
 map.addLayer(entidades);
 

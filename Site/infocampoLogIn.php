@@ -12,6 +12,8 @@ if (!isset($_SESSION["username"])) {
   <link rel="stylesheet" href="./css/infocampo.css" />
   <link rel="stylesheet" href="css/criarEvento.css" />
   <link rel="stylesheet" href="css/listarEventos.css" />
+
+  <link href="css/typeahed.css" rel="stylesheet"/>
   <!-- Openlayers -->
   <link rel="stylesheet" href="https://openlayers.org/en/latest/css/ol.css" />
   <script type="text/javascript" src="https://openlayers.org/en/latest/build/ol.js"></script>
@@ -138,6 +140,7 @@ if (!isset($_SESSION["username"])) {
           <h2>Eventos de Pádel</h2>
         </div>
     </div>
+    <script src="js/typeahead.bundle.js"></script>
   <script src="js/logged.js"></script>
   <script src="js/infocampo.js"></script>
   <script src="js/criarEvento.js"></script>
