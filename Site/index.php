@@ -9,6 +9,9 @@ session_start();
   <link rel="stylesheet" href="./css/infocampo.css" />
   <link rel="stylesheet" href="css/criarEvento.css" />
   <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/typeahed.css" rel="stylesheet"/>
+
+
   <!-- Openlayers -->
   <link rel="stylesheet" href="https://openlayers.org/en/latest/css/ol.css" />
   <script type="text/javascript" src="https://openlayers.org/en/latest/build/ol.js"></script>
@@ -35,8 +38,9 @@ session_start();
         <span></span>
       </div>
       <div class="input-container">
-        <i class="fa fa-search icon"></i>
-        <input type="text" name="textoPesquisa" class="txtPesquisa" placeholder="Pesquise aqui" />
+        <div id="multiple-datasets">
+          <input type="text" name="textoPesquisa" autocomplete="on" class="txtPesquisa typeahead" placeholder="Pesquise aqui" />
+        </div>
         <a href="#" onclick="mostrarFiltro()"><i class="fa fa-filter iconFilter"></i></a>
       </div>
       <div style="display: none;" name="filtroContent">
@@ -161,6 +165,8 @@ session_start();
       </div>
     </div>
   </div>
+  <script src="js/typeahead.bundle.js"></script>
+
   <script src="js/infocampo.js"></script>
   <script src="js/criarEvento.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
