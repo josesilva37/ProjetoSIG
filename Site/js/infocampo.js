@@ -316,21 +316,8 @@ isFiltroRaio.onclick = function () {
   }
 
 }
+var locationSource = new ol.source.Vector();
 
-map.on('dblclick', function (evt) {
-  userLoc = evt.coordinate;
-  
-  console.log(evt.coordinate);
-
-  var locationFeature = new ol.Feature({
-   geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
-    name: 'User Location',
-  });
-
-
-
-  var locationSource = new ol.source.Vector();
-  console.log(locationSource);
   var locationLayer = new ol.layer.Vector({
     source: locationSource,
     style: new ol.style.Style({
@@ -342,6 +329,19 @@ map.on('dblclick', function (evt) {
       })
     })
   });
+map.on('dblclick', function (evt) {
+  
+  locationSource.clear();
+  console.log(locationSource.getFeatures());
+  userLoc = evt.coordinate;
+  
+  console.log(evt.coordinate);
+
+  var locationFeature = new ol.Feature({
+   geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
+    name: 'User Location',
+  });
+ 
   locationSource.addFeature(locationFeature);
 
   map.addLayer(locationLayer);
