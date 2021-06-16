@@ -309,8 +309,18 @@ isFiltroRaio.onclick = function () {
       url: './php/filtrarRaio.php',
       data: { json: JSON.stringify(raioData) },
       dataType: 'JSON',
-      success: function (dataR) {
-        console.log(dataR);
+      success: function (data) {
+        console.log(data )
+    
+      var features = new ol.format.GeoJSON().readFeatures(data, {
+        featureProjection: "EPSG:3857",
+        style: campo_futebol_Style
+
+      });
+      console.log(features);
+      entidadesSource.clear();
+      entidadesSource.addFeatures(features);
+      entidades.setVisible(true);
       }
       });
   }

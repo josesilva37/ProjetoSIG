@@ -1,70 +1,41 @@
 
 <?php
-/*
- * Title:   PostGIS to GeoJSON
- * Notes:   Query a PostGIS table or view and return the results in GeoJSON format, suitable for use in OpenLayers, Leaflet, etc.
- * Author:  Bryan R. McBride, GISP
- * Contact: bryanmcbride.com
- * GitHub:  https://github.com/bmcbride/PHP-Database-GeoJSON
- */
-header('Content-Type: application/json');
 
-# Connect to PostgreSQL database
+//$dbconn = pg_connect("host=gis4cloud.com  port=5432 dbname=ptas2021_grupo1 user=ptas2021_grupo1 password=ptas2021_grupo1")
+  //    or die('Could not connect: ' . pg_last_error());
 $conn = new PDO('pgsql:host=gis4cloud.com;dbname=ptas2021_grupo1','ptas2021_grupo1','ptas2021_grupo1');
+
 $data = json_decode($_POST['json']);
+
 $lon = $data->lon;
 $lat = $data->lat;
 $raio = $data->raio;
 $tipo = $data->tipo;
-
-if($tipoCampo == 'todos' || $tipoCampo == ""){
-    $sql = "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson from fields p WHERE ST_DWithin(st_transform(p.geom,3857), ST_SetSRID(ST_Point('".$lat."', '".$lon."'),3857), '".$raio."')";
-}else{
-    $sql = "SELECT *, public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson FROM fields WHERE
-    sport ='".$tipoCampo."'";
-}
-# Build SQL SELECT statement and return the geometry as a GeoJSON element
-//$sql = 'SELECT *, public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson FROM fields';
-    
+$sql = " SELECT jsonb_build_object(
+    'type', 'FeatureCollection',
+    'features', jsonb_agg(feature)
+    )
+    FROM (
+    SELECT jsonb_build_object(
+    'type', 'Feature',
+    'id', id,
+    'geometry', ST_AsGeoJSON(geom)::jsonb,
+    'properties', to_jsonb(row) - 'id' - 'geom'
+    ) AS feature
+    FROM (SELECT *,public.ST_AsGeoJSON(public.ST_Transform((geom),3857),6) AS geojson from fields p WHERE ST_DWithin(st_transform(p.geom,3857), ST_SetSRID(ST_Point(-969565,4964559),3857), 4000)
+    ) row) features; ";
 /*
-* If bbox variable is set, only return records that are within the bounding box
-* bbox should be a string in the form of 'southwest_lng,southwest_lat,northeast_lng,northeast_lat'
-* Leaflet: map.getBounds().toBBoxString()
-*/
-if (isset($_GET['bbox'])) {
-    $bbox = explode(',', $_GET['bbox']);
-    $sql = $sql . ' WHERE public.ST_Transform(the_geom, 4326) && public.ST_SetSRID(public.ST_MakeBox2D(public.ST_Point('.$bbox[0].', '.$bbox[1].'), public.ST_Point('.$bbox[2].', '.$bbox[3].')),4326);';
-}
+if($tipo == "todos"){
+}else{
+    $sql_eh = "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((geom),3857),6) AS geojson from fields p WHERE sport = ".$tipo." ST_DWithin(st_transform(p.geom,3857), ST_SetSRID(ST_Point(".$lat.", ".$lon."),3857), ".$raio.")";
 
-# Try query or error
+}
+*/
+
 $rs = $conn->query($sql);
 if (!$rs) {
     echo 'An SQL error occured.\n';
     exit;
 }
-
-# Build GeoJSON feature collection array
-$geojson = array(
-   'type'      => 'FeatureCollection',
-   'features'  => array()
-);
-
-# Loop through rows to build feature arrays
-while ($row = $rs->fetch(PDO::FETCH_ASSOC)) {
-    $properties = $row;
-    # Remove geojson and geometry fields from properties
-    unset($properties['geojson']);
-    unset($properties['the_geom']);
-    $feature = array(
-         'type' => 'Feature',
-         'geometry' => json_decode($row['geojson'], true),
-         'properties' => $properties
-    );
-    # Add feature arrays to feature collection array
-    array_push($geojson['features'], $feature);
-}
-
-header('Content-type: application/json');
-echo json_encode($geojson, JSON_NUMERIC_CHECK);
-$conn = NULL;
-?>
+$row = $rs->fetch(PDO::FETCH_ASSOC);
+echo json_encode($row);

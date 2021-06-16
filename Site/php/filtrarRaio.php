@@ -1,53 +1,49 @@
 <?php
+header('Content-Type: application/json');
 
-$dbconn = pg_connect("host=gis4cloud.com  port=5432 dbname=ptas2021_grupo1 user=ptas2021_grupo1 password=ptas2021_grupo1")
-      or die('Could not connect: ' . pg_last_error());
-    //$conn = new PDO('pgsql:host=gis4cloud.com;dbname=ptas2021_grupo1','ptas2021_grupo1','ptas2021_grupo1');
+# Connect to PostgreSQL database
+$pdo = new PDO('pgsql:host=gis4cloud.com;dbname=ptas2021_grupo1','ptas2021_grupo1','ptas2021_grupo1');
 
 $data = json_decode($_POST['json']);
-
-$lon = $data->lon;
+$lon = $data->long;
 $lat = $data->lat;
 $raio = $data->raio;
 $tipo = $data->tipo;
-if($tipo == "todos"){
-    $sql_eh = 'SELECT *,public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson from fields p WHERE ST_DWithin(st_transform(p.geom,3857), ST_SetSRID(ST_Point('.$lat.', '.$lon.'),3857), '.$raio.')';
+
+
+if($tipoCampo == 'todos' || $tipoCampo == ""){
+    $stmt = $pdo->prepare( "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((geom),3857),6) AS geojson from fields p WHERE ST_DWithin(st_transform(p.geom,3857), ST_SetSRID(ST_Point(:lat,:lon),3857), :raio)");
+    $stmt->execute(['lat' => $lat, 'lon'=>$lon,'raio'=>$raio]);   
 }else{
-    $sql_eh = "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson from fields p WHERE sport = ".$tipo." ST_DWithin(st_transform(p.geom,3857), ST_SetSRID(ST_Point(".$lat.", ".$lon."),3857), ".$raio.")";
-
+    $stmt = $pdo->prepare ("SELECT *,public.ST_AsGeoJSON(public.ST_Transform((geom),3857),6) AS geojson from fields p WHERE ST_DWithin(st_transform(p.geom,3857), ST_SetSRID(ST_Point(-969565,4964559),3857), 4000) and sport =".$tipo." ");
+    $stmt->execute();   
 }
 
 
-$results = pg_query($sql_eh);
 
+# Build GeoJSON feature collection array
+$geojson = array(
+   'type'      => 'FeatureCollection',
+   'features'  => array()
+);
 
-
-# Build GeoJSON
-$output    = '';
-$rowOutput = '';
-
-while ($row = pg_fetch_assoc($results)) {
-    $rowOutput = (strlen($rowOutput) > 0 ? ',' : '') . '{"type": "Feature", "geometry": ' . $row['geojson'] . ', "properties": {';
-    $props = '';
-    $id    = '';
-    foreach ($row as $key => $val) {
-        if ($key != "geojson") {
-            $props .= (strlen($props) > 0 ? ',' : '') . '"' . $key . '":"' . $val . '"';
-        }
-        if ($key == "id") {
-            $id .= ',"id":"' . escapeJsonString($val) . '"';
-        }
-    }
-    
-    $rowOutput .= $props . '}';
-    $rowOutput .= $id;
-    $rowOutput .= '}';
-    $output .= $rowOutput;
+# Loop through rows to build feature arrays
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $properties = $row;
+    # Remove geojson and geometry fields from properties
+    unset($properties['geojson']);
+    unset($properties['the_geom']);
+    $feature = array(
+         'type' => 'Feature',
+         'geometry' => json_decode($row['geojson'], true),
+         'properties' => $properties
+    );
+    # Add feature arrays to feature collection array
+    array_push($geojson['features'], $feature);
 }
 
-$output = '{ "type": "FeatureCollection", "features": [ ' . $output . ' ]}';
-echo $output;
+header('Content-type: application/json');
+echo json_encode($geojson, JSON_NUMERIC_CHECK);
+$conn = NULL;
 
-
-
-pg_free_result($results);
+?>
