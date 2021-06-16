@@ -11,7 +11,7 @@ $lat = $data->lat;
 $raio = $data->raio;
 $tipo = $data->tipo;
 
-$sql_eh = "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson from fields WHERE  sport ='.$tipo.' AND ST_DWithin(st_transform(p.geom,3857), ST_SetSRID(ST_Point($lat, $lon),3857), $raio)";
+$sql_eh = "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson from fields WHERE  sport ='.$tipo.' AND ST_DWithin(st_transform(p.geom,3857), ST_SetSRID(ST_Point('$lat', '$lon'),3857), '$raio')";
 
 $rs = $conn->query($sql);
 if (!$rs) {
