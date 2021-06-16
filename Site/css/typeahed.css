@@ -4,6 +4,7 @@
     border-bottom: 1px solid #ccc;
     background-color: white;
     color: black;
+    z-index: 9999999999;
   }
 
 .typeahead {
@@ -13,6 +14,7 @@
   font-size: 14px;
   background-color: white;
   color: black;
+  z-index: 9999999999;
 }
 
 .tt-query {
@@ -27,12 +29,12 @@
 
 .tt-menu {    /* used to be tt-dropdown-menu in older versions */
   width: 278px;
-  height: 350px;
+  max-height: 350px;
   overflow-y: scroll;
   text-align: left;
   margin-top: 4px;
-  margin-left: -40px;
   padding: 4px;
+  z-index: 9999999999;
   background-color: #fff;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);

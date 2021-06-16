@@ -140,7 +140,7 @@ if (!isset($_SESSION["username"])) {
           <h2>Eventos de Pádel</h2>
         </div>
     </div>
-    <script src="js/typeahead.bundle.js"></script>
+  <script src="js/typeahead.bundle.js"></script>
   <script src="js/logged.js"></script>
   <script src="js/infocampo.js"></script>
   <script src="js/criarEvento.js"></script>

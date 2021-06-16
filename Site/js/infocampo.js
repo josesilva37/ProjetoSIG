@@ -153,20 +153,92 @@ var entidades = new ol.layer.Vector({
   source: entidadesSource,
   style: funcao_style,
 });
-var equipa = new Bloodhound({
+
+
+var futebol = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
-  prefetch: './php/hintQuery.php'
+  prefetch: './php/pesquisaMenu.php?name=soccer'
 });
+var basketball = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: './php/pesquisaMenu.php?name=basketball'
+});
+var tennis = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: './php/pesquisaMenu.php?name=tennis'
+});
+var padel = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: './php/pesquisaMenu.php?name=padel'
+});
+var multi = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: './php/pesquisaMenu.php?name=multi'
+});
+var volei = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: './php/pesquisaMenu.php?name=beachvolleyball'
+});
+
 $('#multiple-datasets .typeahead').typeahead({
   highlight: true
 }, {
-  name: 'equips-points',
-  display: 'nome',
-  source: equipa.ttAdapter(),
+  name: 'fut-points',
+  display: 'name',
+  source: futebol.ttAdapter(),
   templates: {
-      header: '<h3 class="league-name">Equipamentos:</h3>'
-  }
+    header: '<h3 class="type-name">Futebol:</h3>'
+  },
+},
+  {
+    name: 'basket-points',
+    display: 'name',
+    source: basketball.ttAdapter(),
+    templates: {
+      header: '<h3 class="type-name">Basketball:</h3>'
+    },
+
+  },
+  {
+    name: 'tennis-points',
+    display: 'name',
+    source: tennis.ttAdapter(),
+    templates: {
+      header: '<h3 class="type-name">Ténis:</h3>'
+    },
+  },
+  {
+    name: 'multi-points',
+    display: 'name',
+    source: multi.ttAdapter(),
+    templates: {
+      header: '<h3 class="type-name">MultiDesportivo:</h3>'
+    },
+  },
+  {
+    name: 'padel-points',
+    display: 'name',
+    source: padel.ttAdapter(),
+    templates: {
+      header: '<h3 class="type-name">Pádel:</h3>'
+    },
+  },
+    {
+    name: 'volei-points',
+    display: 'name',
+    source: volei.ttAdapter(),
+    templates: {
+      header: '<h3 class="type-name">Voleyball:</h3>'
+    },
+  
+      
+        
 });
 
 map.addLayer(entidades);
@@ -285,17 +357,17 @@ function infoEvento(feature) {
             "<img src='' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
             evento.nome_local +
             "</p>" +
-            "<p class='infoP'>Data e Hora: " + evento.data_hora + "</p><input type='submit' value='Entrar' id="+ evento.data_hora.replace(" ", "_") + " class='btnEventos' onclick='entrarEvento(this)'>" +
+            "<p class='infoP'>Data e Hora: " + evento.data_hora + "</p><input type='submit' value='Entrar' id=" + evento.data_hora.replace(" ", "_") + " class='btnEventos' onclick='entrarEvento(this)'>" +
             "<p class='infoP'>Participantes: " + evento.participantes + "</p>" +
             "<div class='divParticipantes' id=" + count + ">";
           divPart = document.getElementById(count);
           for (let i = 0; i < parseInt(evento.participantes); i++) {
             divPart.innerHTML += "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
           }
-     
+
           caixaSiema.innerHTML += "</div></div>";
           count++;
-          
+
         });
         caixaSiema.innerHTML += "</div>";
         content.innerHTML +=
@@ -306,15 +378,15 @@ function infoEvento(feature) {
         document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
         document.querySelector('.next').addEventListener('click', () => mySiema.next());
 
-       
-        
+
+
       }
     }
   });
 
 }
 
-function entrarEvento(element){
+function entrarEvento(element) {
 
   let horaEv = element.getAttribute("id");
   var entrarEvento = {
@@ -323,14 +395,14 @@ function entrarEvento(element){
   $.ajax({
     type: 'POST',
     url: './php/entrarEvento.php',
-    data: {json: JSON.stringify(entrarEvento)},
+    data: { json: JSON.stringify(entrarEvento) },
     dataType: 'text',
     success: function (data) {
-      if(data == "sucesso"){
+      if (data == "sucesso") {
         alert("Entrou no evento com sucesso");
         location.reload()
       }
-      }
+    }
   })
 };
 
@@ -340,9 +412,9 @@ isFiltroRaio.onclick = function () {
   } else {
     var raioData = {
       raio: selectedRaio.value,
-      lat : userLoc[0],
-      long : userLoc[1],
-      tipo : selectCampos.value
+      lat: userLoc[0],
+      long: userLoc[1],
+      tipo: selectCampos.value
 
     }
     $.ajax({
@@ -353,36 +425,36 @@ isFiltroRaio.onclick = function () {
       success: function (dataR) {
         console.log(dataR);
       }
-      });
+    });
   }
 
 }
 var locationSource = new ol.source.Vector();
 
-  var locationLayer = new ol.layer.Vector({
-    source: locationSource,
-    style: new ol.style.Style({
-      image: new ol.style.Icon({
-        anchor: [0.5, 0.5],
+var locationLayer = new ol.layer.Vector({
+  source: locationSource,
+  style: new ol.style.Style({
+    image: new ol.style.Icon({
+      anchor: [0.5, 0.5],
 
-        scale: 0.1,
-        src: "./icons/icone.png"
-      })
+      scale: 0.1,
+      src: "./icons/icone.png"
     })
-  });
+  })
+});
 map.on('dblclick', function (evt) {
-  
+
   locationSource.clear();
   console.log(locationSource.getFeatures());
   userLoc = evt.coordinate;
-  
+
   console.log(evt.coordinate);
 
   var locationFeature = new ol.Feature({
-   geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
+    geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
     name: 'User Location',
   });
- 
+
   locationSource.addFeature(locationFeature);
 
   map.addLayer(locationLayer);
