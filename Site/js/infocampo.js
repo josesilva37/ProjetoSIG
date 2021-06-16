@@ -15,7 +15,6 @@ var selectCampos = document.getElementById("selectCampos");
 var selectedRaio = document.getElementById("raio");
 var isFiltroRaio = document.getElementById("filtroRaio");
 var userLoc;
-var selectedRaioTipo = document.getElementById("selectCamposRaio");
 
 var overlay = new ol.Overlay.Popup({
   popupClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
@@ -258,6 +257,7 @@ function infoEvento(feature) {
     type: 'POST',
     url: './php/verEventos.php',
     data: { json: JSON.stringify(info) },
+    dataType: 'JSON',
     success: function (data) {
       caixaSiema = document.getElementById("caixaSiema");
       if (data.eventos.length <= 0) {
@@ -301,7 +301,7 @@ isFiltroRaio.onclick = function () {
       raio: selectedRaio.value,
       lat : userLoc[0],
       long : userLoc[1],
-      tipo : selectedRaioTipo.value
+      tipo : selectCampos.value
 
     }
     $.ajax({
@@ -316,22 +316,7 @@ isFiltroRaio.onclick = function () {
   }
 
 }
-
-map.on('dblclick', function (evt) {
-  userLoc = evt.coordinate;
-  console.log(evt.coordinate)
-  var place = [evt.coordinate[0], evt.coordinate[1]];
-
-  var locationFeature = new ol.Feature({
-    geometry: new ol.geom.Point(place),
-    name: 'User Location',
-  });
-
-
-
-  var locationSource = new ol.source.Vector({
-    feature: locationFeature,
-  });
+var locationSource = new ol.source.Vector();
 
   var locationLayer = new ol.layer.Vector({
     source: locationSource,
@@ -340,10 +325,24 @@ map.on('dblclick', function (evt) {
         anchor: [0.5, 0.5],
 
         scale: 0.1,
-        src: "../icons/icone.png"
+        src: "./icons/icone.png"
       })
     })
   });
+map.on('dblclick', function (evt) {
+  
+  locationSource.clear();
+  console.log(locationSource.getFeatures());
+  userLoc = evt.coordinate;
+  
+  console.log(evt.coordinate);
+
+  var locationFeature = new ol.Feature({
+   geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
+    name: 'User Location',
+  });
+ 
+  locationSource.addFeature(locationFeature);
 
   map.addLayer(locationLayer);
 

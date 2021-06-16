@@ -58,18 +58,8 @@ session_start();
           <!-- <button id="location-button" class="">Get user Location</button> -->
           <p style="margin-left:10px;"></p>
           <div style="margin-left:10px;">
-          <button type="button" id="filtroRaio">-></button>
-          <label for="selectCamposRaio">Campos de</label>
-            <select  id="selectCamposRaio" name="selectCamposRaio">
-            <option value="todos" selected="selected">Todos os campos</option>
-            <option value="soccer">Futebol</option>
-            <option value="basketball">Basquetebol</option>
-            <option value="beachvolleyball">Voleibol</option>
-            <option value="tennis">Ténis</option>
-            <option value="padel">Pádel</option>
-            <option value="multi">Multidesportivos</option>
-          </select>
-          <label for="raio">a distancia de</label>
+          <button type="button" id="filtroRaio"></button>
+          <label for="raio">Campos a distancia de</label>
             <select name="raio" id="raio">
               <option value="1000">1km</option>
               <option value="2000">2km</option>
@@ -133,7 +123,7 @@ session_start();
   </div>
   <div class="login_popup" id="login_popup">
     <div class="popup-content">
-      <span class="close">&times;</span>
+      <span class="close" id="close">&times;</span>
       <div class="popup_content">
         <form action="php/login.php" method="post">
 
