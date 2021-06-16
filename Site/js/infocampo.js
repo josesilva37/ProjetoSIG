@@ -264,35 +264,61 @@ function infoEvento(feature) {
         caixaSiema.innerText = "Não existem eventos!";
       } else {
         data.eventos.forEach(function (evento) {
-          console.log(evento.data_hora);
+          var dhora = evento.data_hora;
+          console.log(dhora);
           caixaSiema.innerHTML += "<div>" +
             "<img src='' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
             evento.nome_local +
             "</p>" +
-            "<p class='infoP'>Data e Hora: " + evento.data_hora + "</p>" +
+            "<p class='infoP'>Data e Hora: " + evento.data_hora + "</p><input type='submit' value='Entrar' id="+ evento.data_hora.replace(" ", "_") + " class='btnEventos' onclick='entrarEvento(this)'>" +
             "<p class='infoP'>Participantes: " + evento.participantes + "</p>" +
             "<div class='divParticipantes' id=" + count + ">";
           divPart = document.getElementById(count);
           for (let i = 0; i < parseInt(evento.participantes); i++) {
             divPart.innerHTML += "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
           }
+     
           caixaSiema.innerHTML += "</div></div>";
           count++;
-        })
+          
+        });
         caixaSiema.innerHTML += "</div>";
         content.innerHTML +=
           "<button class='prev btnSetas'><i class='fas fa-arrow-left setas'></i></button>" +
-          "<button class='next btnSetas'><i class='fas fa-arrow-right setas'></i></button>" +
-          "<input type='submit' value='Entrar Evento' class='btnEventos' id='btnEntrarEvento'>"
+          "<button class='next btnSetas'><i class='fas fa-arrow-right setas'></i></button>"
         const mySiema = new Siema();
         $(".imagensCampos").attr("src", imagemCampo(feature));
         document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
         document.querySelector('.next').addEventListener('click', () => mySiema.next());
+
+       
+        
       }
     }
   });
 
 }
+
+function entrarEvento(element){
+
+  let horaEv = element.getAttribute("id");
+  var entrarEvento = {
+    dataHora: horaEv,
+  }
+  $.ajax({
+    type: 'POST',
+    url: './php/entrarEvento.php',
+    data: {json: JSON.stringify(entrarEvento)},
+    dataType: 'text',
+    success: function (data) {
+      if(data == "sucesso"){
+        alert("Entrou no evento com sucesso");
+        location.reload()
+      }
+      }
+  })
+};
+
 isFiltroRaio.onclick = function () {
   if (userLoc == null) {
     alert("Selecione a localização de partida com duplo clique no mapa");
