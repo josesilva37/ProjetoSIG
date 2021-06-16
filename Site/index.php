@@ -123,7 +123,7 @@ session_start();
   </div>
   <div class="login_popup" id="login_popup">
     <div class="popup-content">
-      <span class="close">&times;</span>
+      <span class="close" id="close">&times;</span>
       <div class="popup_content">
         <form action="php/login.php" method="post">
 
