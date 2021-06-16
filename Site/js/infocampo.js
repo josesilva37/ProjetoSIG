@@ -15,7 +15,6 @@ var selectCampos = document.getElementById("selectCampos");
 var selectedRaio = document.getElementById("raio");
 var isFiltroRaio = document.getElementById("filtroRaio");
 var userLoc;
-var selectedRaioTipo = document.getElementById("selectCamposRaio");
 
 var overlay = new ol.Overlay.Popup({
   popupClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
@@ -258,6 +257,7 @@ function infoEvento(feature) {
     type: 'POST',
     url: './php/verEventos.php',
     data: { json: JSON.stringify(info) },
+    dataType: 'JSON',
     success: function (data) {
       caixaSiema = document.getElementById("caixaSiema");
       if (data.eventos.length <= 0) {
@@ -301,7 +301,7 @@ isFiltroRaio.onclick = function () {
       raio: selectedRaio.value,
       lat : userLoc[0],
       long : userLoc[1],
-      tipo : selectedRaioTipo.value
+      tipo : selectCampos.value
 
     }
     $.ajax({
