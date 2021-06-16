@@ -74,10 +74,10 @@ if (!isset($_SESSION["username"])) {
 
       <ul>
         <li id="futEventos"><i class="far fa-futbol iconFutebol"></i>Futebol</li>
-        <li><i class='fas fa-basketball-ball iconBasket'></i>Basquetebol</li>
-        <li><i class="fas fa-volleyball-ball iconVolley"></i>Voleibol</li>
-        <li><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
-        <li><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
+        <li id="basqueteEventos"><i class='fas fa-basketball-ball iconBasket'></i>Basquetebol</li>
+        <li id="voleiEventos"><i class="fas fa-volleyball-ball iconVolley"></i>Voleibol</li>
+        <li id="tenisEventos"><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
+        <li id="padelEventos"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
       </ul>
       </div>
       <i class="fa fa-user-circle fa-2x iconProfile"></i>
@@ -108,28 +108,34 @@ if (!isset($_SESSION["username"])) {
           </form>
         </div>
     </div>
-    <div class="popup" id="popupListar">
-        <div class="popup-content">
+    <div class="popup" id="popupListarFutebol">
+        <div class="popup-content" id="popListarFutebolContent">
           <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
-            <h2 id="localizacao">Eventos de Futebol</h2>
-            <div class="eventoRow">
-              <h5>Local: Campus 7</h5>
-              <h5>Data e Hora: 2021-06-17 14:51:00</h5>
-              <h5>Participantes: 5</h5>
-              <h5>Duração: 3h</h5>
-            </div>
-            <div class="eventoRow">
-              <h5>Local: Campus 7</h5>
-              <h5>Data e Hora: 2021-06-17 14:51:00</h5>
-              <h5>Participantes: 5</h5>
-              <h5>Duração: 3h</h5>
-            </div>
-            <div class="eventoRow">
-              <h5>Local: Campus 7</h5>
-              <h5>Data e Hora: 2021-06-17 14:51:00</h5>
-              <h5>Participantes: 5</h5>
-              <h5>Duração: 3h</h5>
-            </div>
+          <h2>Eventos de Futebol</h2>
+        </div>
+    </div>
+    <div class="popup" id="popupListarBasquetebol">
+        <div class="popup-content" id="popListarBasquetebolContent">
+          <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
+          <h2>Eventos de Basquetebol</h2>
+        </div>
+    </div>
+    <div class="popup" id="popupListarVolei">
+        <div class="popup-content" id="popListarVoleiContent">
+          <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
+          <h2>Eventos de Voleibol</h2>
+        </div>
+    </div>
+    <div class="popup" id="popupListarTenis">
+        <div class="popup-content" id="popListarTenisContent">
+          <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
+          <h2>Eventos de Ténis</h2>
+        </div>
+    </div>
+    <div class="popup" id="popupListarPadel">
+        <div class="popup-content" id="popListarPadelContent">
+          <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
+          <h2>Eventos de Pádel</h2>
         </div>
     </div>
   <script src="js/logged.js"></script>
