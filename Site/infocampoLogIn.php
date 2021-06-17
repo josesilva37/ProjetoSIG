@@ -60,10 +60,7 @@ if (!isset($_SESSION["username"])) {
             <option value="padel">Pádel</option>
             <option value="multi">Multidesportivos</option>
           </select>
-          <p></p>
           <label style="margin-bottom: 10px ;margin-top: 15px;">Distância/Tempo:</label>
-          <p style="margin-left:10px;"></p>
-          <div style="margin-left:10px;">
             <input type="checkbox" id="filtroRaio">
             <label for="raio">Campos a distancia de</label>
             <select name="raio" id="raio">
