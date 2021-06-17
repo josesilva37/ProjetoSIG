@@ -98,6 +98,7 @@ session_start();
         </ul>
       </div>
       <i class="fa fa-user-circle fa-2x iconProfile" id="logIn"></i>
+      <p id="logged"></p>
       <?php
       if (isset($_SESSION["error"])) {
         $error = $_SESSION["error"];

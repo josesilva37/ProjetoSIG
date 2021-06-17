@@ -341,15 +341,19 @@ select.getFeatures().on(['add'], function (evt) {
   var lonlat = ol.coordinate.toStringHDMS(ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
   content.innerHTML =
     "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
-    + lonlat + feature.get("id") +
-    "  </p><p id='nomeCampo' class='infoP'>" + feature.get("name") + "</p><br><input type='submit' value='+' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
+    + lonlat + feature.get("id") + "</p><p id='nomeCampo' class='infoP'>" + feature.get("name") + "</p><br>";
+    if(document.getElementById('logged').innerText != ""){
+      content.innerHTML += "<input type='submit' value='+' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
+      document.getElementById("btnAddEventos").addEventListener("click", function () {
+        addEvento(feature);
+      });
+      document.getElementById("btnVerEventos").addEventListener("click", function () {
+        infoEvento(feature);
+      }, false);
+    }
+   
   document.getElementById("imgsCampos").src = imagemCampo(feature);
-  document.getElementById("btnAddEventos").addEventListener("click", function () {
-    addEvento(feature);
-  });
-  document.getElementById("btnVerEventos").addEventListener("click", function () {
-    infoEvento(feature);
-  }, false);
+
   overlay.show(feature.getGeometry().getCoordinates(), content);
 })
 
