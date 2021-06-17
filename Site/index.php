@@ -82,9 +82,9 @@ session_start();
 
             </p>
           </div>
-          <label> Conselhos:</label>
+          <label> Freguesias:</label>
           <select class="form-control" style="width: 250px;" id="conselhos">
-            <option value="todosConselhos" selected="selected">Todos os conselhos</option>
+            <option value="todasFreguesias" selected="selected">Todos as Freguesias</option>
             <option value="aradas">Aradas</option>
             <option value="cacia">Cacia</option>
             <option value="esgueira">Esgueira</option>
@@ -98,6 +98,7 @@ session_start();
             <option value="santaJoana">Santa Joana</option>
             <option value="saoBernardo">São Bernardo</option>
             <option value="saoJacinto">São Jacinto</option>
+            <option value="veraCruz">Vera Cruz</option>
           </select>
           <p></p>
         </form>
