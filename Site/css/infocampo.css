@@ -229,6 +229,10 @@ body {
   background: none;
   border: none;
 }
+
+#setaDireita{
+  float:right;
+}
 #filtroRaio{
   border: 1px outset lightblue;
    background-color: white;
@@ -239,4 +243,11 @@ body {
 #filtroRaio:hover {
   background-color: lightblue;
   color:white;
+}
+.voltarAtras{
+  border: none;
+  color: rgba(0, 60, 136, 0.7);
+  font-size: 17px;
+  opacity: 80%;
+
 }

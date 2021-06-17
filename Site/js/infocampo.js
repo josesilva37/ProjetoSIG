@@ -335,31 +335,31 @@ function imagemCampo(feature) {
   }
 }
 
-select.getFeatures().on(['add'], function (evt) {
-  var feature = evt.element;
-  var texto = "testeteste";
-  var lonlat = ol.coordinate.toStringHDMS(ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
-  content.innerHTML =
-    "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
-    + lonlat + feature.get("id") + "</p><p id='nomeCampo' class='infoP'>" + feature.get("name") + "</p><br>";
-    if(document.getElementById('logged').innerText != ""){
-      content.innerHTML += "<input type='submit' value='+' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
-      document.getElementById("btnAddEventos").addEventListener("click", function () {
-        addEvento(feature);
-      });
-      document.getElementById("btnVerEventos").addEventListener("click", function () {
-        infoEvento(feature);
-      }, false);
-    }
-   
-  document.getElementById("imgsCampos").src = imagemCampo(feature);
+  select.getFeatures().on(['add'], function (evt) {
+    var feature = evt.element;
+    var texto = "testeteste";
+    var lonlat = ol.coordinate.toStringHDMS(ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
+    content.innerHTML =
+      "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
+      + lonlat + feature.get("id") + "</p><p id='nomeCampo' class='infoP'>" + feature.get("name") + "</p><br>";
+      if(document.getElementById('logged').innerText != ""){
+        content.innerHTML += "<input type='submit' value='+' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
+        document.getElementById("btnAddEventos").addEventListener("click", function () {
+          addEvento(feature);
+        });
+        document.getElementById("btnVerEventos").addEventListener("click", function () {
+          infoEvento(evt, feature);
+        }, false);
+      }
+    
+    document.getElementById("imgsCampos").src = imagemCampo(feature);
 
-  overlay.show(feature.getGeometry().getCoordinates(), content);
-})
+    overlay.show(feature.getGeometry().getCoordinates(), content);
+  }) 
 
-select.getFeatures().on(['remove'], function (evt) {
-  overlay.hide()
-});
+  select.getFeatures().on(['remove'], function (evt) {
+    overlay.hide()
+  });
 /*
 map.on("click", function (evt) {
   var pixel = evt.pixel;
@@ -368,7 +368,29 @@ map.on("click", function (evt) {
 
 
 
-function infoEvento(feature) {
+  function voltarAtras(evt){
+    var feature = evt.element;
+    var texto = "testeteste";
+    var lonlat = ol.coordinate.toStringHDMS(ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
+    content.innerHTML =
+      "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
+      + lonlat + feature.get("id") + "</p><p id='nomeCampo' class='infoP'>" + feature.get("name") + "</p><br>";
+      if(document.getElementById('logged').innerText != ""){
+        content.innerHTML += "<input type='submit' value='+' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
+        document.getElementById("btnAddEventos").addEventListener("click", function () {
+          addEvento(feature);
+        });
+        document.getElementById("btnVerEventos").addEventListener("click", function () {
+          infoEvento(evt, feature);
+        }, false);
+      }
+    
+    document.getElementById("imgsCampos").src = imagemCampo(feature);
+
+    overlay.show(feature.getGeometry().getCoordinates(), content);
+  }
+
+function infoEvento(evt, feature) {
   var count = 0;
   var info = {
     nome: feature.get("name"),
@@ -387,17 +409,17 @@ function infoEvento(feature) {
         data.eventos.forEach(function (evento) {
           var dhora = evento.data_hora;
           console.log(dhora);
-          caixaSiema.innerHTML += "<div>" +
+          caixaSiema.innerHTML += "<div><button id='btnVoltarAtras' class='voltarAtras'><i class='fas fa-arrow-circle-left'></i></button>" +
             "<img src='' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
             evento.nome_local +
             "</p>" +
             "<p class='infoP'>Data e Hora: " + evento.data_hora + "</p><input type='submit' value='Entrar' id=" + evento.data_hora.replace(" ", "_") + " class='btnEventos' onclick='entrarEvento(this)'>" +
             "<p class='infoP'>Participantes: " + evento.participantes + "</p>" +
             "<div class='divParticipantes' id=" + count + ">";
-          divPart = document.getElementById(count);
-          for (let i = 0; i < parseInt(evento.participantes); i++) {
-            divPart.innerHTML += "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
-          }
+          // divPart = document.getElementById(count);
+          // for (let i = 0; i < parseInt(evento.participantes); i++) {
+          //   divPart.innerHTML += "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
+          // }
 
           caixaSiema.innerHTML += "</div></div>";
           count++;
@@ -406,9 +428,12 @@ function infoEvento(feature) {
         caixaSiema.innerHTML += "</div>";
         content.innerHTML +=
           "<button class='prev btnSetas'><i class='fas fa-arrow-left setas'></i></button>" +
-          "<button class='next btnSetas'><i class='fas fa-arrow-right setas'></i></button>"
+          "<button class='next btnSetas' id='setaDireita'><i class='fas fa-arrow-right setas'></i></button>"
         const mySiema = new Siema();
         $(".imagensCampos").attr("src", imagemCampo(feature));
+        document.getElementById('btnVoltarAtras').addEventListener("click", function(){
+          voltarAtras(evt);
+        });
         document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
         document.querySelector('.next').addEventListener('click', () => mySiema.next());
 
