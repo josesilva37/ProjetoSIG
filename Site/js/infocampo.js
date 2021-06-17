@@ -241,6 +241,33 @@ $('#multiple-datasets .typeahead').typeahead({
         
 });
 
+$('#multiple-datasets .typeahead').on('typeahead:selected', function(e, datum) {
+  select.getFeatures().clear()
+  var nome = datum.nome;
+  entidades.getSource().forEachFeature(function(feature) {
+      var att = feature.get('name');
+      if (att == nome) {
+          var features = select.getFeatures();
+          features.push(feature);
+      }
+  });
+
+
+  select.getFeatures().forEach(function(feature) {
+      var ext = feature.getGeometry().getExtent();
+      var center = ol.extent.getCenter(ext);
+      map.setView(new ol.View({
+          projection: 'EPSG:3857', //or any projection you are using
+          center: [center[0], center[1]], //zoom to the center of your feature
+          zoom: 11 //here you define the levelof zoom
+      }));
+  });
+
+  $('#multiple-datasets .typeahead').typeahead('val', '');
+});
+
+
+
 map.addLayer(entidades);
 
 var RaioSource = new ol.source.Vector({
