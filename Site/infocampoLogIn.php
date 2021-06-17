@@ -13,9 +13,9 @@ if (!isset($_SESSION["username"])) {
   <link rel="stylesheet" href="./css/infocampo.css" />
   <link rel="stylesheet" href="css/criarEvento.css" />
   <link rel="stylesheet" href="css/listarEventos.css" />
-  
 
-  <link href="css/typeahed.css" rel="stylesheet"/>
+
+  <link href="css/typeahed.css" rel="stylesheet" />
   <!-- Openlayers -->
   <link rel="stylesheet" href="https://openlayers.org/en/latest/css/ol.css" />
   <script type="text/javascript" src="https://openlayers.org/en/latest/build/ol.js"></script>
@@ -48,101 +48,102 @@ if (!isset($_SESSION["username"])) {
         <a href="#" onclick="mostrarFiltro()"><i class="fa fa-filter iconFilter"></i></a>
       </div>
       <div style="display: none;" name="filtroContent">
-          <h3 style="margin-bottom: 10px; margin-top: 45px;margin-left: 10px;">Filtros</h3>
-            <form style="margin-left:20px; margin-bottom: 10px;">
-              <label> Campos:</label>  
-              <select class="form-control" style="width: 250px;" id="selectCampos">  
-                <option value="todos" selected="selected">Todos os campos</option>
-                <option value="soccer">Futebol</option>  
-                <option value="basketball">Basquetebol</option>  
-                <option value="beachvolleyball">Voleibol</option>  
-                <option value="tennis">Ténis</option>
-                <option value="padel">Pádel</option>  
-                <option value="multi">Multidesportivos</option>
-              </select>  
-              <p></p>
-              <label style="margin-bottom: 10px ;margin-top: 15px;">Distância/Tempo:</label>
-              <p style="margin-left:10px;"></p>
-              <div style="margin-left:10px;">
-                <input type="checkbox" id="filtrotempo" name="filtrotempo" checked="">
-                <label for="filtrotempo">Menos que 5 minutos à pé</label>
-                  <p></p><p style="margin-top: 15px;">
-                  <input type="checkbox" id="filtrotempo2" name="filtrotempo2" checked="">
-                <label for="filtrotempo2">Menos que 2 minutos de carro</label>
-              
-                  </p></div>
-            </form>
-       
-        </div>
-        <div name ="menuContent">
+        <h3 style="margin-bottom: 10px; margin-top: 45px;margin-left: 10px;">Filtros</h3>
+        <form style="margin-left:20px; margin-bottom: 10px;">
+          <label> Campos:</label>
+          <select class="form-control" style="width: 250px;" id="selectCampos">
+            <option value="todos" selected="selected">Todos os campos</option>
+            <option value="soccer">Futebol</option>
+            <option value="basketball">Basquetebol</option>
+            <option value="beachvolleyball">Voleibol</option>
+            <option value="tennis">Ténis</option>
+            <option value="padel">Pádel</option>
+            <option value="multi">Multidesportivos</option>
+          </select>
+          <p></p>
+          <label style="margin-bottom: 10px ;margin-top: 15px;">Distância/Tempo:</label>
+          <p style="margin-left:10px;"></p>
+          <div style="margin-left:10px;">
+            <input type="checkbox" id="filtroRaio">
+            <label for="raio">Campos a distancia de</label>
+            <select name="raio" id="raio">
+              <option value="1000">1km</option>
+              <option value="2000">2km</option>
+              <option value="3000">3km</option>
+              <option value="4000">4km</option>
+            </select>
+        </form>
+
+      </div>
+      <div name="menuContent">
         <h3 class="titulo">Eventos:</h3>
 
-      <ul>
-        <li id="futEventos" class="eventosListar"><i class="far fa-futbol iconFutebol"></i>Futebol</li>
-        <li id="basqueteEventos" class="eventosListar"><i class='fas fa-basketball-ball iconBasket'></i>Basquetebol</li>
-        <li id="voleiEventos" class="eventosListar"><i class="fas fa-volleyball-ball iconVolley"></i>Voleibol</li>
-        <li id="tenisEventos" class="eventosListar"><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
-        <li id="padelEventos" class="eventosListar"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
-      </ul>
+        <ul>
+          <li id="futEventos" class="eventosListar"><i class="far fa-futbol iconFutebol"></i>Futebol</li>
+          <li id="basqueteEventos" class="eventosListar"><i class='fas fa-basketball-ball iconBasket'></i>Basquetebol</li>
+          <li id="voleiEventos" class="eventosListar"><i class="fas fa-volleyball-ball iconVolley"></i>Voleibol</li>
+          <li id="tenisEventos" class="eventosListar"><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
+          <li id="padelEventos" class="eventosListar"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
+        </ul>
       </div>
       <i class="fa fa-user-circle fa-2x iconProfile"></i>
       <?php
       echo
-      "<p id='logged' >Logged as: ".$_SESSION["username"]."</p>";
+      "<p id='logged' >Logged as: " . $_SESSION["username"] . "</p>";
       ?>
     </div>
   </div>
   <div id="map" class="map"></div>
   <div id="popup-content"></div>
   <div class="popup" id="popupAdd">
-        <div class="popup-content">
-          <span class="close" id="closeAdd" onclick="closePOP()">&times;</span>
-            <img src="" alt="campo" id="foto">
-            <h4 id="localizacao"></h4>
-            <form method="POST">
-              <input type="date" id="data">
-              <input type="time" id="hora">
-              <select name="duracao" id="duracao">
-                <option value="" disabled selected class="form-select">Selecione a duração</option>
-                <option value="1">1h</option>
-                <option value="2">2h</option>
-                <option value="3">3h</option>
-              </select>
-              <input type="number" id="numeroJogadores" placeholder="Número de Jogadores">
-              <input type="submit" class="button" id="criarEvento" value="Criar Evento">
-          </form>
-        </div>
+    <div class="popup-content">
+      <span class="close" id="closeAdd" onclick="closePOP()">&times;</span>
+      <img src="" alt="campo" id="foto">
+      <h4 id="localizacao"></h4>
+      <form method="POST">
+        <input type="date" id="data">
+        <input type="time" id="hora">
+        <select name="duracao" id="duracao">
+          <option value="" disabled selected class="form-select">Selecione a duração</option>
+          <option value="1">1h</option>
+          <option value="2">2h</option>
+          <option value="3">3h</option>
+        </select>
+        <input type="number" id="numeroJogadores" placeholder="Número de Jogadores">
+        <input type="submit" class="button" id="criarEvento" value="Criar Evento">
+      </form>
     </div>
-    <div class="popup" id="popupListarFutebol">
-        <div class="popup-content" id="popListarFutebolContent">
-          <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
-          <h2>Eventos de Futebol</h2>
-        </div>
+  </div>
+  <div class="popup" id="popupListarFutebol">
+    <div class="popup-content" id="popListarFutebolContent">
+      <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
+      <h2>Eventos de Futebol</h2>
     </div>
-    <div class="popup" id="popupListarBasquetebol">
-        <div class="popup-content" id="popListarBasquetebolContent">
-          <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
-          <h2>Eventos de Basquetebol</h2>
-        </div>
+  </div>
+  <div class="popup" id="popupListarBasquetebol">
+    <div class="popup-content" id="popListarBasquetebolContent">
+      <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
+      <h2>Eventos de Basquetebol</h2>
     </div>
-    <div class="popup" id="popupListarVolei">
-        <div class="popup-content" id="popListarVoleiContent">
-          <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
-          <h2>Eventos de Voleibol</h2>
-        </div>
+  </div>
+  <div class="popup" id="popupListarVolei">
+    <div class="popup-content" id="popListarVoleiContent">
+      <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
+      <h2>Eventos de Voleibol</h2>
     </div>
-    <div class="popup" id="popupListarTenis">
-        <div class="popup-content" id="popListarTenisContent">
-          <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
-          <h2>Eventos de Ténis</h2>
-        </div>
+  </div>
+  <div class="popup" id="popupListarTenis">
+    <div class="popup-content" id="popListarTenisContent">
+      <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
+      <h2>Eventos de Ténis</h2>
     </div>
-    <div class="popup" id="popupListarPadel">
-        <div class="popup-content" id="popListarPadelContent">
-          <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
-          <h2>Eventos de Pádel</h2>
-        </div>
+  </div>
+  <div class="popup" id="popupListarPadel">
+    <div class="popup-content" id="popListarPadelContent">
+      <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
+      <h2>Eventos de Pádel</h2>
     </div>
+  </div>
   <script src="js/typeahead.bundle.js"></script>
   <script src="js/logged.js"></script>
   <script src="js/infocampo.js"></script>
@@ -151,23 +152,24 @@ if (!isset($_SESSION["username"])) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="js/listarEventos.js"></script>
   <script src="js/siema.min.js"></script>
-  <script> 
-      var filtroAtivo = false;
-      function mostrarFiltro() {
-        var filtroContent = document.getElementsByName("filtroContent")[0];
-        var menuContent = document.getElementsByName("menuContent")[0];
-        if(filtroAtivo){
-          filtroContent.style.display = "none";
-          menuContent.style.display = "inline";
-          filtroAtivo = false;
-        }else{
-          filtroContent.style.display = "inline";
-          menuContent.style.display = "none";
-          filtroAtivo = true;
-        }
-  
-  }
-      </script>
+  <script>
+    var filtroAtivo = false;
+
+    function mostrarFiltro() {
+      var filtroContent = document.getElementsByName("filtroContent")[0];
+      var menuContent = document.getElementsByName("menuContent")[0];
+      if (filtroAtivo) {
+        filtroContent.style.display = "none";
+        menuContent.style.display = "inline";
+        filtroAtivo = false;
+      } else {
+        filtroContent.style.display = "inline";
+        menuContent.style.display = "none";
+        filtroAtivo = true;
+      }
+
+    }
+  </script>
 </body>
 
 </html>

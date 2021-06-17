@@ -70,17 +70,7 @@ session_start();
               <option value="3000">3km</option>
               <option value="4000">4km</option>
             </select>
-            <br>
-            <br>
-            <input type="checkbox" id="filtrotempo" name="filtrotempo" checked="">
-            <label for="filtrotempo">Menos que 5 minutos à pé</label>
-
-            <p></p>
-            <p style="margin-top: 15px;">
-              <input type="checkbox" id="filtrotempo2" name="filtrotempo2" checked="">
-              <label for="filtrotempo2">Menos que 2 minutos de carro</label>
-
-            </p>
+ 
           </div>
           <label> Freguesias:</label>
           <select class="form-control" style="width: 250px;" id="conselhos">
