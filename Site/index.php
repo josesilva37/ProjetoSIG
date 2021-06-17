@@ -82,12 +82,28 @@ session_start();
 
             </p>
           </div>
+          <label> Conselhos:</label>
+          <select class="form-control" style="width: 250px;" id="conselhos">
+            <option value="todosConselhos" selected="selected">Todos os conselhos</option>
+            <option value="aradas">Aradas</option>
+            <option value="cacia">Cacia</option>
+            <option value="esgueira">Esgueira</option>
+            <option value="eixo">Eixo</option>
+            <option value="eirol">Eirol</option>
+            <option value="gloria">Glória</option>
+            <option value="nariz">Nariz</option>
+            <option value="fatima">Nossa Senhora de Fátima</option>
+            <option value="oliveirinha">Oliveirinha</option>
+            <option value="requeixo">Requeixo</option>
+            <option value="santaJoana">Santa Joana</option>
+            <option value="saoBernardo">São Bernardo</option>
+            <option value="saoJacinto">São Jacinto</option>
+          </select>
+          <p></p>
         </form>
-
       </div>
       <div name="menuContent">
         <h3 class="titulo">Eventos:</h3>
-
         <ul>
           <li><i class="far fa-futbol iconFutebol"></i>Futebol</li>
           <li><i class='fas fa-basketball-ball iconBasket'></i>Basquetebol</li>
