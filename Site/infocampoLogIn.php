@@ -1,10 +1,11 @@
+<html lang="en">
 <?php
 session_start();
 if (!isset($_SESSION["username"])) {
   header("Location: ./index.html");
 }
 ?>
-<html lang="en">
+
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,13 +13,14 @@ if (!isset($_SESSION["username"])) {
   <link rel="stylesheet" href="./css/infocampo.css" />
   <link rel="stylesheet" href="css/criarEvento.css" />
   <link rel="stylesheet" href="css/listarEventos.css" />
+  
 
   <link href="css/typeahed.css" rel="stylesheet"/>
   <!-- Openlayers -->
   <link rel="stylesheet" href="https://openlayers.org/en/latest/css/ol.css" />
   <script type="text/javascript" src="https://openlayers.org/en/latest/build/ol.js"></script>
   <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL,Object.assign"></script>
-
+  <script src="https://unpkg.com/elm-pep"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
   <!-- ol-ext -->
@@ -40,8 +42,9 @@ if (!isset($_SESSION["username"])) {
         <span></span>
       </div>
       <div class="input-container">
-        <i class="fa fa-search icon"></i>
-        <input type="text" name="textoPesquisa" class="txtPesquisa" placeholder="Pesquise aqui" />
+        <div id="multiple-datasets">
+          <input type="text" name="textoPesquisa" autocomplete="on" class="txtPesquisa typeahead" placeholder="Pesquise por nome..." />
+        </div>
         <a href="#" onclick="mostrarFiltro()"><i class="fa fa-filter iconFilter"></i></a>
       </div>
       <div style="display: none;" name="filtroContent">
@@ -145,6 +148,7 @@ if (!isset($_SESSION["username"])) {
   <script src="js/infocampo.js"></script>
   <script src="js/criarEvento.js"></script>
   <script src="js/login.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="js/listarEventos.js"></script>
   <script src="js/siema.min.js"></script>
   <script> 

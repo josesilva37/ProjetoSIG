@@ -39,7 +39,7 @@ session_start();
       </div>
       <div class="input-container">
         <div id="multiple-datasets">
-          <input type="text" name="textoPesquisa" autocomplete="on" class="txtPesquisa typeahead" placeholder="Pesquise aqui" />
+          <input type="text" name="textoPesquisa" autocomplete="on" class="txtPesquisa typeahead" placeholder="Pesquise por nome..." />
         </div>
         <a href="#" onclick="mostrarFiltro()"><i class="fa fa-filter iconFilter"></i></a>
       </div>
@@ -171,6 +171,7 @@ session_start();
   <script src="js/criarEvento.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="js/login.js"></script>
+  <script src="js/siema.min.js"></script>
   <script>
     var filtroAtivo = false;
 
