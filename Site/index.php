@@ -62,7 +62,7 @@ session_start();
           <!-- <button id="location-button" class="">Get user Location</button> -->
           <p style="margin-left:10px;"></p>
           <div style="margin-left:10px;">
-          <button type="button" id="filtroRaio"></button>
+          <input type="checkbox" id="filtroRaio">
           <label for="raio">Campos a distancia de</label>
             <select name="raio" id="raio">
               <option value="1000">1km</option>

@@ -473,50 +473,56 @@ map.on('dblclick', function (evt) {
   map.addLayer(locationLayer);
 
 });
-isFiltroRaio.onclick = function () {
+isFiltroRaio.addEventListener('change', function() {
   if (userLoc == null) {
     alert("Selecione a localização de partida com duplo clique no mapa");
-  } else {
-    var raioData = {
-      raio: selectedRaio.value,
-      lat: userLoc[0],
-      long: userLoc[1],
-      tipo: selectCampos.value
-
-    }
-    $.ajax({
-      type: 'POST',
-      url: './php/filtrarRaio.php',
-      data: { json: JSON.stringify(raioData) },
-      dataType: 'JSON',
-      success: function (data) {
-        console.log(data)
-        var styleFeature;
-        if (data.features[0].properties.sport === "soccer") {
-          styleFeature = campo_futebol_Style;
-        } else if (data.features[0].properties.sport === "basketball") {
-          styleFeature = campo_basket_Style;
-        } else if (data.features[0].properties.sport === "beachvolleyball") {
-          styleFeature = campo_volei_Style;
-        } else if (data.features[0].properties.sport === "padel") {
-          styleFeature = campo_padel_Style;
-        } else if (data.features[0].properties.sport === "tennis") {
-          styleFeature = campo_tenis_Style;
-        } else {
-          styleFeature = entidadesStyle;
-        }
-      var features = new ol.format.GeoJSON().readFeatures(data, {
-        featureProjection: "EPSG:4326",
-        style: styleFeature
-
-      });
-      console.log(features);
-      entidadesSource.clear();
-      entidadesSource.addFeatures(features);
-      entidades.setVisible(true);
-
+    isFiltroRaio.checked = false;
+  }else{
+    if (this.checked) {
+      var raioData = {
+        raio: selectedRaio.value,
+        lat: userLoc[0],
+        long: userLoc[1],
+        tipo: selectCampos.value
+  
       }
-    });
+      $.ajax({
+        type: 'POST',
+        url: './php/filtrarRaio.php',
+        data: { json: JSON.stringify(raioData) },
+        dataType: 'JSON',
+        success: function (data) {
+          console.log(data)
+          var styleFeature;
+          if (data.features[0].properties.sport === "soccer") {
+            styleFeature = campo_futebol_Style;
+          } else if (data.features[0].properties.sport === "basketball") {
+            styleFeature = campo_basket_Style;
+          } else if (data.features[0].properties.sport === "beachvolleyball") {
+            styleFeature = campo_volei_Style;
+          } else if (data.features[0].properties.sport === "padel") {
+            styleFeature = campo_padel_Style;
+          } else if (data.features[0].properties.sport === "tennis") {
+            styleFeature = campo_tenis_Style;
+          } else {
+            styleFeature = entidadesStyle;
+          }
+        var features = new ol.format.GeoJSON().readFeatures(data, {
+          featureProjection: "EPSG:4326",
+          style: styleFeature
+  
+        });
+        console.log(features);
+        entidadesSource.clear();
+        entidadesSource.addFeatures(features);
+        entidades.setVisible(true);
+  
+        }
+      });
+    } else {
+      console.log("not checked");
+    }
   }
-
-}
+  
+  
+});
