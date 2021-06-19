@@ -169,6 +169,6 @@ div#btnCriarConta:hover {
 
   #logged{
     position: absolute;
-    bottom:15px;
+    bottom:0px;
     left:65px;
 }

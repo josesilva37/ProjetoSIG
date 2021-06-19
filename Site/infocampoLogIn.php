@@ -95,7 +95,7 @@ if (!isset($_SESSION["username"])) {
       <i class="fa fa-user-circle fa-2x iconProfile" id="logOut"></i>
       <div class="popuplg" id="popupLogOut">
     <div class="popup-contentlg">
-      <p>teste</p>
+      <div id="logoutClick">Sair</div>
     </div>
   </div>
       <?php
