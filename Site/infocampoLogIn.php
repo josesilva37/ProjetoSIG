@@ -70,13 +70,13 @@ if (!isset($_SESSION["username"])) {
             <option value="3000">3km</option>
             <option value="4000">4km</option>
           </select>
-            <input type="checkbox" id="filtroRaio">
-            <label for="raio">Campos a distancia de</label>
-            <select name="raio" id="raio" class='form-control'>
-              <option value="1000">1km</option>
-              <option value="2000">2km</option>
-              <option value="3000">3km</option>
-              <option value="4000">4km</option>
+            <input type="checkbox" id="filtroTempo">
+            <label for="Tempo">Campos a</label>
+            <select name="tempo" id="tempo" class='form-control'>
+              <option value="5">5min</option>
+              <option value="10">10min</option>
+              <option value="15">15min</option>
+              <option value="30">30min</option>
             </select>
         </form>
 
