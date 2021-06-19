@@ -404,7 +404,14 @@ function infoEvento(evt, feature) {
     success: function (data) {
       caixaSiema = document.getElementById("caixaSiema");
       if (data.eventos.length <= 0) {
-        caixaSiema.innerText = "Não existem eventos!";
+        caixaSiema.innerHTML = "<div id='divVoltar'><button id='btnVoltarAtras' class='voltarAtras'><i class='fas fa-arrow-circle-left'></i></button>Não existem eventos!</div></div>";
+        let botoesVolAtrasSemEvt = document.getElementsByClassName('voltarAtras');
+        for(let i = 0; i<botoesVolAtrasSemEvt.length; i++){
+          botoesVolAtrasSemEvt[i].addEventListener("click", function(){
+            voltarAtras(evt);
+          })
+        }
+        const mySiema = new Siema();
       } else {
         data.eventos.forEach(function (evento) {
           var dhora = evento.data_hora;
@@ -431,9 +438,12 @@ function infoEvento(evt, feature) {
           "<button class='next btnSetas' id='setaDireita'><i class='fas fa-arrow-right setas'></i></button>"
         const mySiema = new Siema();
         $(".imagensCampos").attr("src", imagemCampo(feature));
-        document.getElementById('btnVoltarAtras').addEventListener("click", function(){
-          voltarAtras(evt);
-        });
+        var botoesVolAtras = document.getElementsByClassName('voltarAtras');
+        for(let i = 0; i<botoesVolAtras.length; i++){
+          botoesVolAtras[i].addEventListener("click", function(){
+            voltarAtras(evt);
+          })
+        }
         document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
         document.querySelector('.next').addEventListener('click', () => mySiema.next());
 

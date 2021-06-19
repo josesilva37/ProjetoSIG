@@ -12,6 +12,7 @@ if (!isset($_SESSION["username"])) {
   <link rel="stylesheet" href="css/login.css">
   <link rel="stylesheet" href="./css/infocampo.css" />
   <link rel="stylesheet" href="css/criarEvento.css" />
+  <link href="css/styles.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/listarEventos.css" />
   <link rel="stylesheet" href="css/logged.css">
 
@@ -69,6 +70,14 @@ if (!isset($_SESSION["username"])) {
             <option value="3000">3km</option>
             <option value="4000">4km</option>
           </select>
+            <input type="checkbox" id="filtroRaio">
+            <label for="raio">Campos a distancia de</label>
+            <select name="raio" id="raio" class='form-control'>
+              <option value="1000">1km</option>
+              <option value="2000">2km</option>
+              <option value="3000">3km</option>
+              <option value="4000">4km</option>
+            </select>
         </form>
 
       </div>
@@ -146,6 +155,7 @@ if (!isset($_SESSION["username"])) {
       <h2>Eventos de Pádel</h2>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="js/typeahead.bundle.js"></script>
   <script src="js/logged.js"></script>
   <script src="js/infocampo.js"></script>
