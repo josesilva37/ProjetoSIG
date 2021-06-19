@@ -244,10 +244,15 @@ body {
   background-color: lightblue;
   color:white;
 }
+#raio{
+  max-width: 100px;
+  display: inline;
+}
 .voltarAtras{
   border: none;
   color: rgba(0, 60, 136, 0.7);
   font-size: 17px;
   opacity: 80%;
+  cursor: pointer;
 
 }
