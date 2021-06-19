@@ -70,7 +70,15 @@ session_start();
               <option value="3000">3km</option>
               <option value="4000">4km</option>
             </select>
- 
+            <br>
+            <input type="checkbox" id="filtroTempo">
+          <label for="tempo">Campos a</label>
+            <select name="tempo" id="tempo">
+              <option value="5">5min</option>
+              <option value="10">10min</option>
+              <option value="15">15min</option>
+              <option value="30">30min</option>
+            </select>
           </div>
           <label> Freguesias:</label>
           <select class="form-control" style="width: 250px;" id="conselhos">

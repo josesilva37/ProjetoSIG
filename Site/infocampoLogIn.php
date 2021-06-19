@@ -13,7 +13,7 @@ if (!isset($_SESSION["username"])) {
   <link rel="stylesheet" href="./css/infocampo.css" />
   <link rel="stylesheet" href="css/criarEvento.css" />
   <link rel="stylesheet" href="css/listarEventos.css" />
-
+  <link rel="stylesheet" href="css/logged.css">
 
   <link href="css/typeahed.css" rel="stylesheet" />
   <!-- Openlayers -->
@@ -61,14 +61,14 @@ if (!isset($_SESSION["username"])) {
             <option value="multi">Multidesportivos</option>
           </select>
           <label style="margin-bottom: 10px ;margin-top: 15px;">Distância/Tempo:</label>
-            <input type="checkbox" id="filtroRaio">
-            <label for="raio">Campos a distancia de</label>
-            <select name="raio" id="raio">
-              <option value="1000">1km</option>
-              <option value="2000">2km</option>
-              <option value="3000">3km</option>
-              <option value="4000">4km</option>
-            </select>
+          <input type="checkbox" id="filtroRaio">
+          <label for="raio">Campos a distancia de</label>
+          <select name="raio" id="raio">
+            <option value="1000">1km</option>
+            <option value="2000">2km</option>
+            <option value="3000">3km</option>
+            <option value="4000">4km</option>
+          </select>
         </form>
 
       </div>
@@ -83,7 +83,12 @@ if (!isset($_SESSION["username"])) {
           <li id="padelEventos" class="eventosListar"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
         </ul>
       </div>
-      <i class="fa fa-user-circle fa-2x iconProfile"></i>
+      <i class="fa fa-user-circle fa-2x iconProfile" id="logOut"></i>
+      <div class="popuplg" id="popupLogOut">
+    <div class="popup-contentlg">
+      <p>teste</p>
+    </div>
+  </div>
       <?php
       echo
       "<p id='logged' >Logged as: " . $_SESSION["username"] . "</p>";
@@ -145,7 +150,6 @@ if (!isset($_SESSION["username"])) {
   <script src="js/logged.js"></script>
   <script src="js/infocampo.js"></script>
   <script src="js/criarEvento.js"></script>
-  <script src="js/login.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="js/listarEventos.js"></script>
   <script src="js/siema.min.js"></script>
