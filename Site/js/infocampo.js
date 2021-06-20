@@ -15,6 +15,7 @@ var selectCampos = document.getElementById("selectCampos");
 var selectedRaio = document.getElementById("raio");
 var isFiltroRaio = document.getElementById("filtroRaio");
 var userLoc;
+var filtroTempo = document.getElementById("filtroTempo");
 
 var overlay = new ol.Overlay.Popup({
   popupClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
@@ -595,4 +596,41 @@ isFiltroRaio.addEventListener('change', function() {
   }
   
   
+});
+filtroTempo.addEventListener('change', function() {
+  var dataTempo = {
+    x: userLoc[0],
+    y: userLoc[1],
+    d: 4000,
+  }
+  $.ajax({
+    type: "POST",
+    url: "./php/filtrarTempo.php",
+    data : { json: JSON.stringify(dataTempo) },
+    complete : function(data){
+      var styleFeature;
+          if (data.features[0].properties.sport === "soccer") {
+            styleFeature = campo_futebol_Style;
+          } else if (data.features[0].properties.sport === "basketball") {
+            styleFeature = campo_basket_Style;
+          } else if (data.features[0].properties.sport === "beachvolleyball") {
+            styleFeature = campo_volei_Style;
+          } else if (data.features[0].properties.sport === "padel") {
+            styleFeature = campo_padel_Style;
+          } else if (data.features[0].properties.sport === "tennis") {
+            styleFeature = campo_tenis_Style;
+          } else {
+            styleFeature = entidadesStyle;
+          }
+      var features = new ol.format.GeoJSON().readFeatures(data, {
+        featureProjection: "EPSG:3857",
+        style: styleFeature
+
+      });
+      console.log(features);
+      entidadesSource.clear();
+      entidadesSource.addFeatures(features);
+      entidades.setVisible(true);
+    }
+  })
 });
