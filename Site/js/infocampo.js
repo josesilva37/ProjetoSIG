@@ -345,7 +345,7 @@ function imagemCampo(feature) {
       "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
       + lonlat + feature.get("id") + "</p><p id='nomeCampo' class='infoP'>" + feature.get("name") + "</p><br>";
       if(document.getElementById('logged').innerText != ""){
-        content.innerHTML += "<input type='submit' value='+' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
+        content.innerHTML += "<input type='submit' value='Criar Evento' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
         document.getElementById("btnAddEventos").addEventListener("click", function () {
           addEvento(feature);
         });
@@ -378,7 +378,7 @@ map.on("click", function (evt) {
       "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
       + lonlat + feature.get("id") + "</p><p id='nomeCampo' class='infoP'>" + feature.get("name") + "</p><br>";
       if(document.getElementById('logged').innerText != ""){
-        content.innerHTML += "<input type='submit' value='+' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
+        content.innerHTML += "<input type='submit' value='Criar Evento' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
         document.getElementById("btnAddEventos").addEventListener("click", function () {
           addEvento(feature);
         });
@@ -639,8 +639,8 @@ filtroTempo.addEventListener('change', function() {
 
 freguesias.addEventListener("change", function(){
   var dataFreguesia = {
-    freguesia : freguesias.value,
-    tipoCampo: selectCampos.value
+    freg : freguesias.value,
+    //tipoCampo: selectCampos.value
   }
   $.ajax({
     type: 'POST',

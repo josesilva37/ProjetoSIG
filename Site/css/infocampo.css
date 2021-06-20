@@ -210,10 +210,10 @@ body {
   margin-right: auto;
   display: block;
   padding: 5px;
-  width: 30px;
-  border-radius: 20px;
+  width: min-content;
+  border-radius: 10px;
   background-color: green;
-  font-size: 20px;
+  font-size: 16px;
   color: white;
   border: 0px;
 }
