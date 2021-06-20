@@ -63,6 +63,7 @@ if ($num_rows > 0) {
     $lat1 = null;
 }
 
+
 $sql = "SELECT st_x(ST_Transform(geom,4326)), st_y(ST_Transform(geom,4326)) 
 from ST_SetSRID( ST_Point( $x-10000, $y+10000), 3857) as geom;";
 
@@ -76,9 +77,9 @@ if ($num_rows > 0) {
     $long2 = null;
     $lat2 = null;
 }
+echo $long1." ".$lat1." ".$long2." ".$lat2;
 
-
-$sql_ih = "INSERT INTO hull SELECT ST_ConcaveHull(ST_Collect(ST_Transform(geom_vertex,3857)), 0.95) as geom
+$sql_ih = "INSERT INTO hull SELECT ST_ConcaveHull(ST_Collect(ST_Transform(geom,3857)), 0.95) as geom
 FROM (SELECT vias_vertex_aveiro.geom
 FROM pgr_drivingDistance('
 SELECT id, source, target, st_astext(geom_way), km/5 as cost
