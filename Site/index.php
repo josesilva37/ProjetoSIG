@@ -83,16 +83,16 @@ session_start();
           <label> Freguesias:</label>
           <select class="form-control" style="width: 250px;" id="freguesias">
             <option value="todasFreguesias" selected="selected">Todos as Freguesias</option>
-            <option value="aradas">Aradas</option>
-            <option value="cacia">Cacia</option>
-            <option value="esgueira">Esgueira</option>
-            <option value="eixo">Eixo e Eirol</option>
-            <option value="gloria">União das freguesias de Glória e Vera Cruz</option>
-            <option value="oliveirinha">Oliveirinha</option>
-            <option value="requeixo">Requeixo, Nossa Senhora de Fátima e Nariz</option>
-            <option value="santaJoana">Santa Joana</option>
-            <option value="saoBernardo">São Bernardo</option>
-            <option value="saoJacinto">São Jacinto</option>
+            <option value="Aradas">Aradas</option>
+            <option value="Cacia">Cacia</option>
+            <option value="Esgueira">Esgueira</option>
+            <option value="Eixo e Eirol">Eixo e Eirol</option>
+            <option value="União das freguesias de Glória e Vera Cruz">União das freguesias de Glória e Vera Cruz</option>
+            <option value="Oliveirinha">Oliveirinha</option>
+            <option value="Requeixo, Nossa Senhora de Fátima e Nariz">Requeixo, Nossa Senhora de Fátima e Nariz</option>
+            <option value="Santa Joana">Santa Joana</option>
+            <option value="São Bernardo">São Bernardo</option>
+            <option value="São Jacinto">São Jacinto</option>
           </select>
           <p></p>
         </form>
