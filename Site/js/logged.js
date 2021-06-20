@@ -13,12 +13,13 @@ btnPopup.onclick = function(){
     }
 }
 logoutBtn.onclick = function(){
-    console.log("clicou");
     $.ajax({
         url: "./php/logout.php",
-        sucess: function(){
-            console.log("entrou com sucesso");
-            location.reload();
+        complete: function(xhr){
+            if(xhr.status == 200){
+                location.reload();
+
+            }
         }
     })
 }
