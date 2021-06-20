@@ -15,7 +15,7 @@ if (!isset($_SESSION["username"])) {
   <link href="css/styles.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/listarEventos.css" />
   <link rel="stylesheet" href="css/logged.css">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="css/typeahed.css" rel="stylesheet" />
   <!-- Openlayers -->
   <link rel="stylesheet" href="https://openlayers.org/en/latest/css/ol.css" />
@@ -95,7 +95,9 @@ if (!isset($_SESSION["username"])) {
       <i class="fa fa-user-circle fa-2x iconProfile" id="logOut"></i>
       <div class="popuplg" id="popupLogOut">
     <div class="popup-contentlg">
-      <div id="logoutClick">Sair</div>
+    <button id="logoutClick" type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </button>
     </div>
   </div>
       <?php

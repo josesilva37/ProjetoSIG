@@ -15,5 +15,6 @@
     /* 15% from the top and centered */
     padding: 10px;
     border: 1px solid #888;
+    border-radius: 5px;
     /* Could be more or less, depending on screen size */
 }
