@@ -62,6 +62,7 @@ if (!isset($_SESSION["username"])) {
             <option value="multi">Multidesportivos</option>
           </select>
           <label style="margin-bottom: 10px ;margin-top: 15px;">Distância/Tempo:</label>
+          <br>
           <input type="checkbox" id="filtroRaio">
           <label for="raio">Campos a distancia de</label>
           <select name="raio" id="raio">
@@ -70,9 +71,10 @@ if (!isset($_SESSION["username"])) {
             <option value="3000">3km</option>
             <option value="4000">4km</option>
           </select>
+          <br>
             <input type="checkbox" id="filtroTempo">
             <label for="Tempo">Campos a</label>
-            <select name="tempo" id="tempo" class='form-control'>
+            <select name="tempo" id="tempo">
               <option value="5">5min</option>
               <option value="10">10min</option>
               <option value="15">15min</option>
