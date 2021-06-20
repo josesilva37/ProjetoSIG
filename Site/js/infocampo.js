@@ -640,7 +640,7 @@ filtroTempo.addEventListener('change', function() {
 freguesias.addEventListener("change", function(){
   var dataFreguesia = {
     freguesia : freguesias.value,
-    tipo: selectCampos.value
+    tipoCampo: selectCampos.value
   }
   $.ajax({
     type: 'POST',
@@ -648,31 +648,8 @@ freguesias.addEventListener("change", function(){
     data: { json: JSON.stringify(dataFreguesia) },
     dataType: 'JSON',
     success: function (data) {
-      console.log(data)
-      var styleFeature;
-      if (data.features[0].properties.sport === "soccer") {
-        styleFeature = campo_futebol_Style;
-      } else if (data.features[0].properties.sport === "basketball") {
-        styleFeature = campo_basket_Style;
-      } else if (data.features[0].properties.sport === "beachvolleyball") {
-        styleFeature = campo_volei_Style;
-      } else if (data.features[0].properties.sport === "padel") {
-        styleFeature = campo_padel_Style;
-      } else if (data.features[0].properties.sport === "tennis") {
-        styleFeature = campo_tenis_Style;
-      } else {
-        styleFeature = entidadesStyle;
-      }
-    var features = new ol.format.GeoJSON().readFeatures(data, {
-      featureProjection: "EPSG:4326",
-      style: styleFeature
-
-    });
-    console.log(features);
-    entidadesSource.clear();
-    entidadesSource.addFeatures(features);
-    entidades.setVisible(true);
-
+      console.log(data);
     }
-  });
+
+  })
 })

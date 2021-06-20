@@ -9,15 +9,12 @@ $freguesia = $data->freguesia;
 $tipo = $data->tipo;
 
 if($tipo == 'todos' || $tipo == ""){
-    
-    $stmt = $pdo->prepare( "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((geom),3857),6) AS geojson from fields p WHERE ST_DWithin(st_transform(p.geom,3857), ST_SetSRID(ST_Point(:lat,:lon),3857), :raio)");
-    $stmt->execute(['lat' => $lat, 'lon'=>$lon,'raio'=>$raio]);   
+    $stmt = $pdo->prepare( "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((geom),3857),6) FROM freguesias f2 JOIN fields f ON (ST_Within(st_transform(f.geom, 3857), f2.geom)) WHERE f2.freguesia = 'freg';");
+    $stmt->execute(['freg' => $freguesia]);   
 }else{
-
-    $stmt = $pdo->prepare( "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((geom),3857),6) AS geojson from fields p WHERE sport = :tipo and ST_DWithin(st_transform(p.geom,3857), ST_SetSRID(ST_Point(:lat,:lon),3857), :raio)");
-    $stmt->execute(['lat' => $lat, 'lon'=>$lon,'raio'=>$raio,'tipo'=>$tipo]);   
+    $stmt = $pdo->prepare( "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((geom),3857),6) FROM freguesias f2 JOIN fields f ON (ST_Within(st_transform(f.geom, 3857), f2.geom)) WHERE f2.freguesia = 'freg';");
+    $stmt->execute(['freg' => $freguesia]);   
 }
-
 
 
 # Build GeoJSON feature collection array
