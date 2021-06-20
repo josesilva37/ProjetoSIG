@@ -17,6 +17,7 @@ logoutBtn.onclick = function(){
     $.ajax({
         url: "./php/logout.php",
         sucess: function(){
+            console.log("entrou com sucesso");
             location.reload();
         }
     })
