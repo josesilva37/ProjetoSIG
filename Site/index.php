@@ -81,22 +81,18 @@ session_start();
             </select>
           </div>
           <label> Freguesias:</label>
-          <select class="form-control" style="width: 250px;" id="conselhos">
+          <select class="form-control" style="width: 250px;" id="freguesias">
             <option value="todasFreguesias" selected="selected">Todos as Freguesias</option>
             <option value="aradas">Aradas</option>
             <option value="cacia">Cacia</option>
             <option value="esgueira">Esgueira</option>
-            <option value="eixo">Eixo</option>
-            <option value="eirol">Eirol</option>
-            <option value="gloria">Glória</option>
-            <option value="nariz">Nariz</option>
-            <option value="fatima">Nossa Senhora de Fátima</option>
+            <option value="eixo">Eixo e Eirol</option>
+            <option value="gloria">União das freguesias de Glória e Vera Cruz</option>
             <option value="oliveirinha">Oliveirinha</option>
-            <option value="requeixo">Requeixo</option>
+            <option value="requeixo">Requeixo, Nossa Senhora de Fátima e Nariz</option>
             <option value="santaJoana">Santa Joana</option>
             <option value="saoBernardo">São Bernardo</option>
             <option value="saoJacinto">São Jacinto</option>
-            <option value="veraCruz">Vera Cruz</option>
           </select>
           <p></p>
         </form>
