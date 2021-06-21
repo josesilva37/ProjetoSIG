@@ -342,9 +342,21 @@ function imagemCampo(feature) {
     var feature = evt.element;
     var texto = "testeteste";
     var lonlat = ol.coordinate.toStringHDMS(ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
-    content.innerHTML =
+    let arrayCoordenadas = ol.proj.toLonLat(feature.getGeometry().getCoordinates());
+    let latitude = arrayCoordenadas[1];
+    let longitude = arrayCoordenadas[0]; 
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://eu1.locationiq.com/v1/reverse.php?key=pk.cfb7c951db9623604df048d01960437e&lat="+latitude+"&lon="+longitude+"&format=json",
+      "method": "GET"
+    }
+    var nomeCampo;
+    $.ajax(settings).done(function (response) {
+      nomeCampo = response.display_name;
+      content.innerHTML =
       "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
-      + lonlat + feature.get("id") + "</p><p id='nomeCampo' class='infoP'>" + feature.get("name") + "</p><br>";
+      + nomeCampo + "</p><br>";
       if(document.getElementById('logged').innerText != ""){
         content.innerHTML += "<input type='submit' value='Criar Evento' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
         document.getElementById("btnAddEventos").addEventListener("click", function () {
@@ -358,6 +370,9 @@ function imagemCampo(feature) {
     document.getElementById("imgsCampos").src = imagemCampo(feature);
 
     overlay.show(feature.getGeometry().getCoordinates(), content);
+    });
+    
+  
   }) 
 
   select.getFeatures().on(['remove'], function (evt) {
@@ -374,10 +389,21 @@ map.on("click", function (evt) {
   function voltarAtras(evt){
     var feature = evt.element;
     var texto = "testeteste";
-    var lonlat = ol.coordinate.toStringHDMS(ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
+    var lonlat = (ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
+    let latitude = lonlat[1];
+    let longitude = lonlat[0]; 
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://eu1.locationiq.com/v1/reverse.php?key=pk.cfb7c951db9623604df048d01960437e&lat="+latitude+"&lon="+longitude+"&format=json",
+      "method": "GET"
+    }
+    var nomeCampo;
+    $.ajax(settings).done(function (response) {
+      nomeCampo = response.display_name;
     content.innerHTML =
       "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
-      + lonlat + feature.get("id") + "</p><p id='nomeCampo' class='infoP'>" + feature.get("name") + "</p><br>";
+      + nomeCampo + "</p><br>";
       if(document.getElementById('logged').innerText != ""){
         content.innerHTML += "<input type='submit' value='Criar Evento' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
         document.getElementById("btnAddEventos").addEventListener("click", function () {
@@ -391,7 +417,8 @@ map.on("click", function (evt) {
     document.getElementById("imgsCampos").src = imagemCampo(feature);
 
     overlay.show(feature.getGeometry().getCoordinates(), content);
-  }
+    });
+}
 
 function infoEvento(evt, feature) {
   var count = 0;
