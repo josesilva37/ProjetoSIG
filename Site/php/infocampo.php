@@ -13,11 +13,24 @@ $conn = new PDO('pgsql:host=gis4cloud.com;dbname=ptas2021_grupo1','ptas2021_grup
 $data = json_decode($_POST['json']);
 
 $tipoCampo = $data->tipoCampo;
-if($tipoCampo == 'todos' || $tipoCampo == ""){
-    $sql = 'SELECT *, public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson FROM fields';
+$freguesia = $data->freg;
+if($freguesia == "todasFreguesias" || $freguesia == ""){
+    if($tipoCampo == 'todos' || $tipoCampo == ""){
+        $sql = 'SELECT *, public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson FROM fields';
+    }else{
+        $sql = "SELECT *, public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson FROM fields WHERE
+        sport ='".$tipoCampo."'";
+    }
 }else{
-    $sql = "SELECT *, public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson FROM fields WHERE
-    sport ='".$tipoCampo."'";
+    if($tipoCampo == 'todos'){
+        $sql = "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((f.geom),4326),6) AS geojson 
+        FROM freguesias f2 JOIN fields f ON (ST_Within(st_transform(f.geom, 4326), f2.geom)) 
+        WHERE f2.freguesia = '".$freguesia."';";
+    }else{
+        $sql = "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((f.geom),4326),6) AS geojson 
+        FROM freguesias f2 JOIN fields f ON (ST_Within(st_transform((f.geom), 3857), f2.geom)) 
+        WHERE f2.freguesia = '".$freguesia."' AND sport ilike '".$tipoCampo."'";
+    }
 }
 # Build SQL SELECT statement and return the geometry as a GeoJSON element
 //$sql = 'SELECT *, public.ST_AsGeoJSON(public.ST_Transform((geom),4326),6) AS geojson FROM fields';

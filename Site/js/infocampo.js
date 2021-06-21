@@ -278,8 +278,10 @@ map.addLayer(entidades);
 
 selectCampos.onchange = function () {
   var data = {
-    tipoCampo: selectCampos.value
+    tipoCampo: selectCampos.value,
+    freg : freguesias.value
   }
+  entidadesSource.clear();
   $.ajax({
     type: 'POST',
     url: './php/infocampo.php',
@@ -307,7 +309,6 @@ selectCampos.onchange = function () {
 
       });
       console.log(features);
-      entidadesSource.clear();
       entidadesSource.addFeatures(features);
       entidades.setVisible(true);
     }
