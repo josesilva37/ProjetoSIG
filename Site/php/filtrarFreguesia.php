@@ -6,16 +6,25 @@ $pdo = new PDO('pgsql:host=gis4cloud.com;dbname=ptas2021_grupo1','ptas2021_grupo
 
 $data = json_decode($_POST['json']);
 $freguesia = $data->freg;
-#$tipo = $data->tipo;
+$tipo = $data->tipoCampo;
 
 if($tipo == 'todos' || $tipo == ""){
-    $stmt = $pdo->prepare( "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((f.geom),3857),6) FROM freguesias f2 JOIN fields f ON (ST_Within(st_transform(f.geom, 3857), f2.geom)) WHERE f2.freguesia = freg;");
-    $stmt->execute(['freg' => $freguesia]);   
+    if($freguesia == 'todasFreguesias'){
+        $stmt = $pdo->prepare( "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((f.geom),3857),6) AS geojson FROM freguesias f2 JOIN fields f ON (ST_Within(st_transform(f.geom, 3857), f2.geom));");
+        $stmt->execute(); 
+    }else{
+        $stmt = $pdo->prepare( "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((f.geom),3857),6) AS geojson FROM freguesias f2 JOIN fields f ON (ST_Within(st_transform(f.geom, 3857), f2.geom)) WHERE f2.freguesia = '".$freguesia."';");
+        $stmt->execute();   
+    }
 }else{
-    $stmt = $pdo->prepare( "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((f.geom),3857),6) FROM freguesias f2 JOIN fields f ON (ST_Within(st_transform(f.geom, 3857), f2.geom)) WHERE f2.freguesia = freg;");
-    $stmt->execute(['freg' => $freguesia]);   
+    if($freguesia == 'todasFreguesias'){
+        $stmt = $pdo->prepare( "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((f.geom),3857),6) AS geojson FROM freguesias f2 JOIN fields f ON (ST_Within(st_transform(f.geom, 3857), f2.geom)) WHERE sport = '".$tipo."';");
+        $stmt->execute(); 
+    }else{
+        $stmt = $pdo->prepare( "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((f.geom),3857),6) AS geojson FROM freguesias f2 JOIN fields f ON (ST_Within(st_transform(f.geom, 3857), f2.geom)) WHERE f2.freguesia = '".$freguesia."' AND sport = '".$tipo."';");
+        $stmt->execute();
+    } 
 }
-
 
 # Build GeoJSON feature collection array
 $geojson = array(

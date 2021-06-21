@@ -640,7 +640,7 @@ filtroTempo.addEventListener('change', function() {
 freguesias.addEventListener("change", function(){
   var dataFreguesia = {
     freg : freguesias.value,
-    //tipoCampo: selectCampos.value
+    tipoCampo: selectCampos.value
   }
   $.ajax({
     type: 'POST',
@@ -650,29 +650,29 @@ freguesias.addEventListener("change", function(){
     success: function (data) {
       console.log(dataFreguesia);
       console.log(data);
-      // var styleFeature;
-      // if (data.features[0].properties.sport === "soccer") {
-      //   styleFeature = campo_futebol_Style;
-      // } else if (data.features[0].properties.sport === "basketball") {
-      //   styleFeature = campo_basket_Style;
-      // } else if (data.features[0].properties.sport === "beachvolleyball") {
-      //   styleFeature = campo_volei_Style;
-      // } else if (data.features[0].properties.sport === "padel") {
-      //   styleFeature = campo_padel_Style;
-      // } else if (data.features[0].properties.sport === "tennis") {
-      //   styleFeature = campo_tenis_Style;
-      // } else {
-      //   styleFeature = entidadesStyle;
-      // }
-      // var features = new ol.format.GeoJSON().readFeatures(data, {
-      //   featureProjection: "EPSG:3857",
-      //   style: styleFeature
+      var styleFeature;
+      if (data.features[0].properties.sport === "soccer") {
+        styleFeature = campo_futebol_Style;
+      } else if (data.features[0].properties.sport === "basketball") {
+        styleFeature = campo_basket_Style;
+      } else if (data.features[0].properties.sport === "beachvolleyball") {
+        styleFeature = campo_volei_Style;
+      } else if (data.features[0].properties.sport === "padel") {
+        styleFeature = campo_padel_Style;
+      } else if (data.features[0].properties.sport === "tennis") {
+        styleFeature = campo_tenis_Style;
+      } else {
+        styleFeature = entidadesStyle;
+      }
+      var features = new ol.format.GeoJSON().readFeatures(data, {
+        featureProjection: "EPSG:4326",
+        style: styleFeature
 
-      // });
-      // console.log(features);
-      // entidadesSource.clear();
-      // entidadesSource.addFeatures(features);
-      // entidades.setVisible(true);
+      });
+      console.log(features);
+      entidadesSource.clear();
+      entidadesSource.addFeatures(features);
+      entidades.setVisible(true);
     }
 
   })
