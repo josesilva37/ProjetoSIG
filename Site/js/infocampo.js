@@ -650,7 +650,7 @@ freguesias.addEventListener("change", function(){
     success: function (data) {
       console.log(data);
       if(data.features.length == 0){
-        window.alert("Não existem campos nessa freguesia");
+        window.alert("Não existem campos com esses parâmetros nessa freguesia");
       }else{
         var styleFeature;
       if (data.features[0].properties.sport === "soccer") {
