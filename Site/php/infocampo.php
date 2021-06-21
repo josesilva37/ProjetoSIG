@@ -24,12 +24,12 @@ if($freguesia == "todasFreguesias" || $freguesia == ""){
 }else{
     if($tipoCampo == 'todos'){
         $sql = "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((f.geom),4326),6) AS geojson 
-        FROM freguesias f2 JOIN fields f ON (ST_Within(st_transform(f.geom, 4326), f2.geom)) 
+        FROM freguesias f2 JOIN fields f ON (ST_Within(st_transform(f.geom, 3857), f2.geom)) 
         WHERE f2.freguesia = '".$freguesia."';";
     }else{
         $sql = "SELECT *,public.ST_AsGeoJSON(public.ST_Transform((f.geom),4326),6) AS geojson 
         FROM freguesias f2 JOIN fields f ON (ST_Within(st_transform((f.geom), 3857), f2.geom)) 
-        WHERE f2.freguesia = '".$freguesia."' AND sport ilike '".$tipoCampo."'";
+        WHERE f2.freguesia = '".$freguesia."' AND sport = '".$tipoCampo."'";
     }
 }
 # Build SQL SELECT statement and return the geometry as a GeoJSON element
