@@ -100,11 +100,11 @@ session_start();
       <div name="menuContent">
         <h3 class="titulo">Eventos:</h3>
         <ul>
-          <li><i class="far fa-futbol iconFutebol"></i>Futebol</li>
-          <li><i class='fas fa-basketball-ball iconBasket'></i>Basquetebol</li>
-          <li><i class="fas fa-volleyball-ball iconVolley"></i>Voleibol</li>
-          <li><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
-          <li><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel
+          <li onclick="redireciona()" class="eventosListar"><i class="far fa-futbol iconFutebol"></i>Futebol</li>
+          <li onclick="redireciona()" class="eventosListar"><i class='fas fa-basketball-ball iconBasket'></i>Basquetebol</li>
+          <li onclick="redireciona()" class="eventosListar"><i class="fas fa-volleyball-ball iconVolley"></i>Voleibol</li>
+          <li onclick="redireciona()" class="eventosListar"><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
+          <li onclick="redireciona()" class="eventosListar"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel
           </li>
         </ul>
       </div>

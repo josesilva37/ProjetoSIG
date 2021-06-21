@@ -54,3 +54,7 @@ function gravar(){
       dataType: 'json'
   })
 }
+
+function redireciona(){
+  window.alert("Necessita fazer login para aceder a esta funcionalidade");
+}

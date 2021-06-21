@@ -648,9 +648,11 @@ freguesias.addEventListener("change", function(){
     data: { json: JSON.stringify(dataFreguesia) },
     dataType: 'JSON',
     success: function (data) {
-      console.log(dataFreguesia);
       console.log(data);
-      var styleFeature;
+      if(data.features.length == 0){
+        window.alert("Não existem campos nessa freguesia");
+      }else{
+        var styleFeature;
       if (data.features[0].properties.sport === "soccer") {
         styleFeature = campo_futebol_Style;
       } else if (data.features[0].properties.sport === "basketball") {
@@ -673,6 +675,7 @@ freguesias.addEventListener("change", function(){
       entidadesSource.clear();
       entidadesSource.addFeatures(features);
       entidades.setVisible(true);
+      }
     }
 
   })
