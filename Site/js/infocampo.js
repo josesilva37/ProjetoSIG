@@ -363,7 +363,7 @@ function imagemCampo(feature) {
           addEvento(feature);
         });
         document.getElementById("btnVerEventos").addEventListener("click", function () {
-          infoEvento(evt, feature);
+          infoEvento(evt, feature, nomeCampo);
         }, false);
       }
     
@@ -401,6 +401,7 @@ map.on("click", function (evt) {
     var nomeCampo;
     $.ajax(settings).done(function (response) {
       nomeCampo = response.display_name;
+      console.log(nomeCampo)
     content.innerHTML =
       "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
       + nomeCampo + "</p><br>";
@@ -410,7 +411,7 @@ map.on("click", function (evt) {
           addEvento(feature);
         });
         document.getElementById("btnVerEventos").addEventListener("click", function () {
-          infoEvento(evt, feature);
+          infoEvento(evt, feature, nomeCampo);
         }, false);
       }
     
@@ -420,10 +421,10 @@ map.on("click", function (evt) {
     });
 }
 
-function infoEvento(evt, feature) {
+function infoEvento(evt, feature, nomeCampo) {
   var count = 0;
   var info = {
-    nome: feature.get("name"),
+    campoGeom: feature.get("geom"),
   }
   content.innerHTML = "<div class='siema' id='caixaSiema'>";
   $.ajax({
@@ -444,11 +445,12 @@ function infoEvento(evt, feature) {
         const mySiema = new Siema();
       } else {
         data.eventos.forEach(function (evento) {
+          console.log(nomeCampo)
           var dhora = evento.data_hora;
           console.log(dhora);
           caixaSiema.innerHTML += "<div><button id='btnVoltarAtras' class='voltarAtras'><i class='fas fa-arrow-circle-left'></i></button>" +
             "<img src='' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
-            evento.nome_local +
+            nomeCampo +
             "</p>" +
             "<p class='infoP'>Data e Hora: " + evento.data_hora + "</p><input type='submit' value='Entrar' id=" + evento.data_hora.replace(" ", "_") + " class='btnEventos' onclick='entrarEvento(this)'>" +
             "<p class='infoP'>Participantes: " + evento.participantes + "</p><p class='infoP'>MáxParticipantes: " + evento.participantesmax +

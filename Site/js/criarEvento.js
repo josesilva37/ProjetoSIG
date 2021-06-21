@@ -20,9 +20,11 @@ var tipo_desporto = "";
 function addEvento(feature){
   popupADD.style.display = "block";
   fotoPOP.src = foto[0].src;
-  local.innerText = "Localização: "+nome[1].innerText;
+  //local.innerText = "Localização: "+nome[1].innerText;
   tipo_desporto = feature.get("sport");
   console.log(tipo_desporto);
+  geomtria = feature.get("geom");
+  console.log(geomtria)
 }
 
 
@@ -39,7 +41,7 @@ window.onclick = function(event) {
 
 function gravar(){
   var data = {
-      local : nome[1].innerText,
+      campoGeom: geomtria,
       data_hora : data2.value + " " + hora.value,
       participantes : participantes.value,
       tipo_desporto : tipo_desporto,
