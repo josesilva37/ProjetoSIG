@@ -12,9 +12,9 @@ $tipo_desporto = $data->tipo_desporto;
 
 try{
     global $pdo;
-    $q = "INSERT INTO evento(nome_local, data_hora,participantes,tipo_desporto,duracao) VALUES (?,?,?,?,?)";
+    $q = "INSERT INTO evento(nome_local, data_hora,tipo_desporto,duracao,participantes,participantesmax) VALUES (?,?,?,?,?,?)";
     $stmt = $pdo->prepare($q);
-    $stmt->execute([$local, $data_hora, $participantes,$tipo_desporto,$duracao]);
+    $stmt->execute([$local, $data_hora,$tipo_desporto,$duracao,0,$participantes]);
 }catch(PDOException $e){
     echo $e->getMessage();
 }
