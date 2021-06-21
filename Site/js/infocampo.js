@@ -424,7 +424,7 @@ function infoEvento(evt, feature) {
             evento.nome_local +
             "</p>" +
             "<p class='infoP'>Data e Hora: " + evento.data_hora + "</p><input type='submit' value='Entrar' id=" + evento.data_hora.replace(" ", "_") + " class='btnEventos' onclick='entrarEvento(this)'>" +
-            "<p class='infoP'>Participantes: " + evento.participantes + "</p>" +
+            "<p class='infoP'>Participantes: " + evento.participantes + "</p><p class='infoP'>MáxParticipantes: " + evento.participantesmax +
             "<div class='divParticipantes' id=" + count + ">";
           // divPart = document.getElementById(count);
           // for (let i = 0; i < parseInt(evento.participantes); i++) {
@@ -459,7 +459,6 @@ function infoEvento(evt, feature) {
 }
 
 function entrarEvento(element) {
-
   let horaEv = element.getAttribute("id");
   var entrarEvento = {
     dataHora: horaEv,

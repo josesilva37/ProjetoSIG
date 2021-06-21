@@ -12,11 +12,11 @@ try{
     global $pdo;
     $q = "INSERT INTO evento_utilizador(username,data_hora) values (?,?)";
     $stmt = $pdo->prepare($q);
-    $stmt->execute([$username, $dh]);
-
-    $q2 = "UPDATE evento SET participantes = participantes + 1 WHERE data_hora = '".$dh."'";
-    $stmt2 = $pdo->prepare($q2);
-    $stmt2->execute();
+    if ($stmt->execute([$username, $dh])) { 
+        $q2 = "UPDATE evento SET participantes = participantes + 1 WHERE  data_hora = '".$dh."'";
+        $stmt2 = $pdo->prepare($q2);
+        $stmt2->execute();
+    }
     
     echo "sucesso";
 
