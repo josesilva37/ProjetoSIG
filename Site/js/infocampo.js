@@ -472,6 +472,9 @@ function entrarEvento(element) {
       if (data == "sucesso") {
         alert("Entrou no evento com sucesso");
         location.reload()
+      }else{
+        alert("Já existe um máximo de participantes");
+        location.reload();
       }
     }
   })
