@@ -83,7 +83,7 @@ $sql_ih = "INSERT INTO hull SELECT ST_ConcaveHull(ST_Collect(ST_Transform(geom,3
 FROM (SELECT vias_vertex_aveiro.geom
 FROM pgr_drivingDistance('
 SELECT id, source, target, st_astext(geom_way), km/5 as cost
-FROM vias_aveiro WHERE geom_way && ST_Expand(ST_SetSRID(ST_MakeEnvelope( ".$long1.",".$lat1.", ".$long2." , ".$lat2."), 4326),
+FROM vias_aveiro WHERE geom_way && ST_Expand(ST_SetSRID(ST_MakeEnvelope($long1,$lat1, $long2 , $lat2), 4326),
 0.5)', $idM, $d, false) dd
 INNER JOIN vias_aveiro on (vias_aveiro.id = dd.node)
 INNER JOIN vias_vertex_aveiro on

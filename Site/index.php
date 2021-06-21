@@ -108,7 +108,7 @@ session_start();
           </li>
         </ul>
       </div>
-      <i class="fa fa-user-circle fa-2x iconProfile" id="logIn"></i>
+      <i class="fa fa-user-circle fa-2x iconProfile onHover" id="logIn"></i>
       <p id="logged"></p>
       <?php
       if (isset($_SESSION["error"])) {

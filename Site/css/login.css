@@ -172,3 +172,6 @@ div#btnCriarConta:hover {
     bottom:0px;
     left:65px;
 }
+.onHover:hover{
+    cursor: pointer;
+}
