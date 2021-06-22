@@ -58,11 +58,18 @@ var osm = new ol.layer.Tile(
         layer: 'watercolor'
       })
     });
+  var terrain = new ol.layer.Tile({
+    title: "Terrain",
+    baseLayer: true,
+    source: new ol.source.Stamen({
+    layer: 'terrain'
+    })
+  })
 // GeoJSON layer with a preview attribute
 
 var map = new ol.Map({
   target: "map",
-  layers: [osm, stamen],
+  layers: [osm, stamen,terrain],
   view: new ol.View({
     center: ol.proj.fromLonLat([-8.65, 40.64]),
     zoom: 12,
