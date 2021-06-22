@@ -291,6 +291,7 @@ map.addLayer(entidades);
 
 
 selectCampos.onchange = function () {
+  isFiltroRaio.checked = false;
   var data = {
     tipoCampo: selectCampos.value,
     freg : freguesias.value
