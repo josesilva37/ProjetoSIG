@@ -1858,9 +1858,9 @@
   
   .ol-control.ol-layerswitcher-image {
     position: absolute;
-    right: 0.5em;
+    margin-top: 40px;
+    left: 0.5em;
     text-align: left;
-    top: 1em;
     transition: all 0.2s ease 0s;
     -webkit-transition: all 0.2s ease 0s;
   }

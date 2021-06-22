@@ -45,20 +45,32 @@ $('#location-button').click(function () {
 
 })
 */
+var osm = new ol.layer.Tile(
+  {	title: "OSM",
+    baseLayer: true,
+    source: new ol.source.OSM(),
+    visible: false
+  });
+  var stamen = new ol.layer.Tile(
+    {	title: "Watercolor",
+      baseLayer: true,
+      source: new ol.source.Stamen({
+        layer: 'watercolor'
+      })
+    });
+// GeoJSON layer with a preview attribute
 
 var map = new ol.Map({
   target: "map",
-  layers: [
-    new ol.layer.Tile({
-      source: new ol.source.OSM(),
-    }),
-  ],
+  layers: [osm, stamen],
   view: new ol.View({
     center: ol.proj.fromLonLat([-8.65, 40.64]),
-    zoom: 13,
+    zoom: 12,
   }),
   overlays: [overlay],
 });
+
+map.addControl (new ol.control.LayerSwitcherImage());
 
 var campo_futebol_Style = [
   new ol.style.Style({
@@ -152,6 +164,8 @@ var entidadesSource = new ol.source.Vector({
 });
 var entidades = new ol.layer.Vector({
   title: "Equipamentos desportivos de Aveiro",
+  baseLayer: false,
+  displayInLayerSwitcher: false,
   source: entidadesSource,
   style: funcao_style,
 });
