@@ -45,38 +45,24 @@ $('#location-button').click(function () {
 
 })
 */
-var stamen = new ol.layer.Tile(
-  {	title: "Watercolor",
-    baseLayer: true,
-    source: new ol.source.Stamen({
-      layer: 'watercolor'
-    })
-  });
 var osm = new ol.layer.Tile(
   {	title: "OSM",
     baseLayer: true,
     source: new ol.source.OSM(),
     visible: false
   });
-
+  var stamen = new ol.layer.Tile(
+    {	title: "Watercolor",
+      baseLayer: true,
+      source: new ol.source.Stamen({
+        layer: 'watercolor'
+      })
+    });
 // GeoJSON layer with a preview attribute
-var vectorSource = new ol.source.Vector(
-{	url: '../data/fond_guerre.geojson',
-projection: 'EPSG:3857',
-format: new ol.format.GeoJSON(),
-attributions: [ "&copy; <a href='https://data.culture.gouv.fr/explore/dataset/fonds-de-la-guerre-14-18-extrait-de-la-base-memoire'>data.culture.gouv.fr</a>" ],
-logo:"https://www.data.gouv.fr/s/avatars/37/e56718abd4465985ddde68b33be1ef.jpg" 
-});
-
-var vector = new ol.layer.Vector(
-{	name: '1914-18',
-preview: "http://www.culture.gouv.fr/Wave/image/memoire/2445/sap40_z0004141_v.jpg",
-source: vectorSource
-});
 
 var map = new ol.Map({
   target: "map",
-  layers: [stamen, osm, vector],
+  layers: [osm, stamen],
   view: new ol.View({
     center: ol.proj.fromLonLat([-8.65, 40.64]),
     zoom: 12,
