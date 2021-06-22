@@ -49,7 +49,6 @@ var osm = new ol.layer.Tile({
   title: "OSM",
   baseLayer: true,
   source: new ol.source.OSM(),
-  visible: false,
 });
 var stamen = new ol.layer.Tile({
   title: "Watercolor",
@@ -57,19 +56,22 @@ var stamen = new ol.layer.Tile({
   source: new ol.source.Stamen({
     layer: "watercolor",
   }),
+  visible: false,
 });
 
 var satelite = new ol.layer.Tile({
+  title: "Satelite",
   source: new ol.source.XYZ({
     url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    baseLayer: true
-  })
+  }),
+  baseLayer: true,
+  visible: false,
 });
 // GeoJSON layer with a preview attribute
 
 var map = new ol.Map({
   target: "map",
-  layers: [stamen, osm, satelite],
+  layers: [osm, stamen, satelite],
   view: new ol.View({
     center: ol.proj.fromLonLat([-8.65, 40.64]),
     zoom: 12,
