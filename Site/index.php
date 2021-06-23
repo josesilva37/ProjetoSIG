@@ -63,7 +63,7 @@ session_start();
           <p style="margin-left:10px;"></p>
           <div style="margin-left:10px;">
           <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="filtroRaio">
+          <input class="form-check-input tamanhoCheck2" type="checkbox" id="filtroRaio">
           <label class="form-check-label" for="raio">Campos a distancia de</label>
             <select class="form-select" name="raio" id="raio">
               <option value="1000">1km</option>
@@ -72,7 +72,7 @@ session_start();
               <option value="4000">4km</option>
             </select>
             <br>
-            <input class="form-check-input" type="checkbox" id="filtroTempo">
+            <input class="form-check-input tamanhoCheck" type="checkbox" id="filtroTempo">
           <label class="form-check-label" for="tempo">Campos a</label>
             <select class="form-select" name="tempo" id="tempo">
             <option value="1">1min</option>
