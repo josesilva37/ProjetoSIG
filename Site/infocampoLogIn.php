@@ -72,9 +72,11 @@ if (!isset($_SESSION["username"])) {
             <option value="4000">4km</option>
           </select>
           <br>
-            <input type="checkbox" id="filtroTempo">
-            <label for="Tempo">Campos a</label>
+          <input type="checkbox" id="filtroTempo">
+          <label for="tempo">Campos a</label>
             <select name="tempo" id="tempo">
+              <option value="1">1min</option>
+              <option value="3">3min</option>
               <option value="5">5min</option>
               <option value="10">10min</option>
               <option value="15">15min</option>
