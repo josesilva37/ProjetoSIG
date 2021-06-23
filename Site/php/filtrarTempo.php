@@ -22,14 +22,13 @@ $x = $data->x;
 $y = $data->y;
 
 //distancia em tempo???
-/*
+
 $d = $data->d; //distancia
 $d = (float) $d / 60;
-*/
-$d = $data->d;
+
+//$d = $data->d;
 //categoria do ponto
 $c = null;
-
 
 
 #Calcular o nó mais próximo

@@ -17,6 +17,7 @@ var isFiltroRaio = document.getElementById("filtroRaio");
 var userLoc;
 var filtroTempo = document.getElementById("filtroTempo");
 var freguesias = document.getElementById("freguesias");
+var selectTempo = document.getElementById("tempo");
 
 var overlay = new ol.Overlay.Popup({
   popupClass: "default anim", //"tooltips", "warning" "black" "default", "tips", "shadow",
@@ -694,7 +695,7 @@ filtroTempo.addEventListener("change", function () {
       var dataTempo = {
         x: userLoc[0],
         y: userLoc[1],
-        d: 4000,
+        d: selectTempo.value,
       };
       $.ajax({
         type: "POST",
@@ -702,8 +703,10 @@ filtroTempo.addEventListener("change", function () {
         data : { json: JSON.stringify(dataTempo) },
         dataType : 'json',
         success : function(data){
-          
-          var styleFeature;
+          if(data.features.length == 0){
+            window.alert("Nao existem campos a " + selectTempo.value+" min do ponto selecionado")
+          }else{
+            var styleFeature;
           if (data.features[0].properties.sport === "soccer") {
             styleFeature = campo_futebol_Style;
           } else if (data.features[0].properties.sport === "basketball") {
@@ -725,6 +728,8 @@ filtroTempo.addEventListener("change", function () {
           entidadesSource.clear();
           entidadesSource.addFeatures(features);
           entidades.setVisible(true);
+          }
+          
     }});
   }else{
         var data = {
