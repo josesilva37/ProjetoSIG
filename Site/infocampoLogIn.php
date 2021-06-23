@@ -147,32 +147,22 @@ if (!isset($_SESSION["username"])) {
   </div>
   <div class="popup" id="popupListarFutebol">
     <div class="popup-content" id="popListarFutebolContent">
-      <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
-      <h2>Eventos de Futebol</h2>
     </div>
   </div>
   <div class="popup" id="popupListarBasquetebol">
     <div class="popup-content" id="popListarBasquetebolContent">
-      <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
-      <h2>Eventos de Basquetebol</h2>
     </div>
   </div>
   <div class="popup" id="popupListarVolei">
     <div class="popup-content" id="popListarVoleiContent">
-      <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
-      <h2>Eventos de Voleibol</h2>
     </div>
   </div>
   <div class="popup" id="popupListarTenis">
     <div class="popup-content" id="popListarTenisContent">
-      <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
-      <h2>Eventos de Ténis</h2>
     </div>
   </div>
   <div class="popup" id="popupListarPadel">
     <div class="popup-content" id="popListarPadelContent">
-      <span class="close" id="closeAdd" onclick="closePOPLista()">&times;</span>
-      <h2>Eventos de Pádel</h2>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

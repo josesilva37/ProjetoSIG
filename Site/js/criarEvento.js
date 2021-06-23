@@ -39,6 +39,10 @@ function addEvento(feature){
 
 function closePOP() {
   popupADD.style.display = "none";
+  data2.value = "";
+  hora.value = "";
+  participantes.value = "";
+  duracao.value = "";
 }
 
 window.onclick = function(event) {
@@ -52,7 +56,7 @@ function gravar(){
   var data = {
       campoGeom: geomtria,
       data_hora : data2.value + " " + hora.value,
-      participantes : participantes.value,
+      maxparticipantes : participantes.value,
       tipo_desporto : tipo_desporto,
       duracao : duracao.value,
       nome_campo :  campo
