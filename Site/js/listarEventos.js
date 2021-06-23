@@ -36,6 +36,26 @@ function addEventoListarFutebol(){
     popupListarVolei.style.display = "none";
     popupListarTenis.style.display = "none";
     popupListarPadel.style.display = "none";
+    $.ajax({
+        url: "./php/listarEventos.php",
+        type: 'POST',
+        dataType: 'json',
+        success: function(evento){
+            popListarFutebolContent.innerHTML = "<span class='close' id='closeAdd' onclick='closePOPLista()'>&times;</span>"+
+            "<h2>Eventos de Futebol</h2>";
+            for(let i = 0;i<evento.eventos.length;i++){
+                if(evento.eventos[i].tipo_desporto === "soccer"){
+                    popListarFutebolContent.innerHTML += "<div class='eventoRow'>"+
+                    "<h5><b>Local: </b>"+ evento.eventos[i].nome_campo+"</h5>"+
+                    "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
+                    "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
+                    "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
+                    "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
+                    "</div>";
+                }
+            }
+        }
+    });
 }
 function addEventoListarBasquete(){
     popupListarFutebol.style.display = "none";
@@ -43,6 +63,26 @@ function addEventoListarBasquete(){
     popupListarVolei.style.display = "none";
     popupListarTenis.style.display = "none";
     popupListarPadel.style.display = "none";
+    $.ajax({
+        url: "./php/listarEventos.php",
+        type: 'POST',
+        dataType: 'json',
+        success: function(evento){
+            popListarBasquetebolContent.innerHTML = "<span class='close' id='closeAdd' onclick='closePOPLista()'>&times;</span>"+
+            "<h2>Eventos de Basquetebol</h2>";
+            for(let i = 0;i<evento.eventos.length;i++){
+                if(evento.eventos[i].tipo_desporto === "basketball"){
+                    popListarBasquetebolContent.innerHTML += "<div class='eventoRow'>"+
+                    "<h5><b>Local: </b>"+ evento.eventos[i].nome_campo+"</h5>"+
+                    "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
+                    "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
+                    "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
+                    "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
+                    "</div>";
+                }
+            }
+        }
+    })
 }
 function addEventoListarVolei(){
     popupListarFutebol.style.display = "none";
@@ -50,6 +90,26 @@ function addEventoListarVolei(){
     popupListarVolei.style.display = "block";
     popupListarTenis.style.display = "none";
     popupListarPadel.style.display = "none";
+    $.ajax({
+        url: "./php/listarEventos.php",
+        type: 'POST',
+        dataType: 'json',
+        success: function(evento){
+            popListarVoleiContent.innerHTML = "<span class='close' id='closeAdd' onclick='closePOPLista()'>&times;</span>"+
+            "<h2>Eventos de Voleibol</h2>";
+            for(let i = 0;i<evento.eventos.length;i++){
+                if(evento.eventos[i].tipo_desporto === "beachvolleyball"){
+                    popListarVoleiContent.innerHTML += "<div class='eventoRow'>"+
+                    "<h5><b>Local: </b>"+ evento.eventos[i].nome_campo+"</h5>"+
+                    "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
+                    "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
+                    "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
+                    "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
+                    "</div>";
+                }
+            }
+        }
+    })
 }
 function addEventoListarTenis(){
     popupListarFutebol.style.display = "none";
@@ -57,6 +117,26 @@ function addEventoListarTenis(){
     popupListarVolei.style.display = "none";
     popupListarTenis.style.display = "block";
     popupListarPadel.style.display = "none";
+    $.ajax({
+        url: "./php/listarEventos.php",
+        type: 'POST',
+        dataType: 'json',
+        success: function(evento){
+            popListarTenisContent.innerHTML = "<span class='close' id='closeAdd' onclick='closePOPLista()'>&times;</span>"+
+            "<h2>Eventos de Ténis</h2>";
+            for(let i = 0;i<evento.eventos.length;i++){
+                if(evento.eventos[i].tipo_desporto === "tennis"){
+                    popListarTenisContent.innerHTML += "<div class='eventoRow'>"+
+                    "<h5><b>Local: </b>"+ evento.eventos[i].nome_campo+"</h5>"+
+                    "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
+                    "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
+                    "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
+                    "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
+                    "</div>";
+                }
+            }
+        }
+    })
 }
 function addEventoListarPadel(){
     popupListarFutebol.style.display = "none";
@@ -64,6 +144,26 @@ function addEventoListarPadel(){
     popupListarVolei.style.display = "none";
     popupListarTenis.style.display = "none";
     popupListarPadel.style.display = "block";
+    $.ajax({
+        url: "./php/listarEventos.php",
+        type: 'POST',
+        dataType: 'json',
+        success: function(evento){
+            popListarPadelContent.innerHTML = "<span class='close' id='closeAdd' onclick='closePOPLista()'>&times;</span>"+
+            "<h2>Eventos de Pádel</h2>";
+            for(let i = 0;i<evento.eventos.length;i++){
+                if(evento.eventos[i].tipo_desporto === "padel"){
+                    popListarPadelContent.innerHTML += "<div class='eventoRow'>"+
+                    "<h5><b>Local: </b>"+ evento.eventos[i].nome_campo+"</h5>"+
+                    "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
+                    "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
+                    "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
+                    "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
+                    "</div>";
+                }
+            }
+        }
+    })
 }
 
 function closePOPLista() {
@@ -94,58 +194,3 @@ window.onclick = function(event) {
         popupListarPadel.style.display = "none";
     }
 }
-
-$.ajax({
-    url: "./php/listarEventos.php",
-    type: 'POST',
-    dataType: 'json',
-    success: function(evento){
-        for(let i = 0;i<evento.eventos.length;i++){
-            if(evento.eventos[i].tipo_desporto === "soccer"){
-                popListarFutebolContent.innerHTML += "<div class='eventoRow'>"+
-                "<h5><b>Local: </b>"+ evento.eventos[i].nome_local+"</h5>"+
-                "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
-                "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
-                "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
-                "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
-                "</div>";
-            }
-            if(evento.eventos[i].tipo_desporto === "basketball"){
-                popListarBasquetebolContent.innerHTML += "<div class='eventoRow'>"+
-                "<h5><b>Local: </b>"+ evento.eventos[i].nome_local+"</h5>"+
-                "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
-                "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
-                "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
-                "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
-                "</div>";
-            }
-            if(evento.eventos[i].tipo_desporto === "beachvolleyball"){
-                popListarVoleiContent.innerHTML += "<div class='eventoRow'>"+
-                "<h5><b>Local: </b>"+ evento.eventos[i].nome_local+"</h5>"+
-                "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
-                "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
-                "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
-                "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
-                "</div>";
-            }
-            if(evento.eventos[i].tipo_desporto === "tennis"){
-                popListarTenisContent.innerHTML += "<div class='eventoRow'>"+
-                "<h5><b>Local: </b>"+ evento.eventos[i].nome_local+"</h5>"+
-                "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
-                "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
-                "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
-                "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
-                "</div>";
-            }
-            if(evento.eventos[i].tipo_desporto === "padel"){
-                popListarPadelContent.innerHTML += "<div class='eventoRow'>"+
-                "<h5><b>Local: </b>"+ evento.eventos[i].nome_local+"</h5>"+
-                "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
-                "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
-                "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
-                "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
-                "</div>";
-            }
-        }
-    }
-})
