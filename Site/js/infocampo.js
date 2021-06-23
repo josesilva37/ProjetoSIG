@@ -43,7 +43,6 @@ $('#location-button').click(function () {
     console.log(position);
     var place = [position.coords.latitude, position.coords.longitude];
   })
-
 })
 */
 var osm = new ol.layer.Tile({
@@ -76,6 +75,7 @@ var map = new ol.Map({
   view: new ol.View({
     center: ol.proj.fromLonLat([-8.65, 40.64]),
     zoom: 12,
+    //extent: [-8.224454, 39.399872],
   }),
   overlays: [overlay],
 });
@@ -90,6 +90,18 @@ var campo_futebol_Style = [
       //     offset: [52, 0],
       //     opacity: 1,
       scale: 0.035,
+      src: "./icons/football.svg",
+    }),
+  }),
+];
+var campo_futebol_highlight_Style = [
+  new ol.style.Style({
+    image: new ol.style.Icon({
+      anchor: [0.5, 0.5],
+      //     size: [52, 52],
+      //     offset: [52, 0],
+      //     opacity: 1,
+      scale: 0.6,
       src: "./icons/football.svg",
     }),
   }),
@@ -357,6 +369,7 @@ function imagemCampo(feature) {
 
 select.getFeatures().on(["add"], function (evt) {
   var feature = evt.element;
+  
   var texto = "testeteste";
   var lonlat = ol.coordinate.toStringHDMS(
     ol.proj.toLonLat(feature.getGeometry().getCoordinates())

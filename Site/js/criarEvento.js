@@ -17,13 +17,19 @@ btnCriar.addEventListener("click", gravar);
 const duracao = document.getElementById("duracao");
 var tipo_desporto = "";
 var today = new Date().toISOString().split('T')[0];
+var d = new Date();
+var hours = d.getHours()+":"+d.getMinutes();
+hora.setAttribute('min', hours);
 data2.setAttribute('min', today);
+var campo = "";
 
 
 function addEvento(feature){
+  var split = nome[0].innerText.split(":");
+  campo = split[1];
   popupADD.style.display = "block";
   fotoPOP.src = foto[0].src;
-  local.innerHTML = "<b>Localização: </b>"+nome[0].innerText;
+  local.innerHTML = "<b>Localização: </b>"+campo;
   tipo_desporto = feature.get("sport");
   console.log(tipo_desporto);
   geomtria = feature.get("geom");
@@ -48,7 +54,8 @@ function gravar(){
       data_hora : data2.value + " " + hora.value,
       participantes : participantes.value,
       tipo_desporto : tipo_desporto,
-      duracao: duracao.value
+      duracao : duracao.value,
+      nome_campo :  campo
   }
   console.log(data);
   url = "./php/criarEvento.php";
