@@ -25,8 +25,8 @@ var overlay = new ol.Overlay.Popup({
   positioning: "auto",
   autoPan: true,
   autoPanAnimation: {
-    duration: 100
-  }
+    duration: 100,
+  },
 });
 
 // closer.onclick = function () {
@@ -45,24 +45,33 @@ $('#location-button').click(function () {
 
 })
 */
-var osm = new ol.layer.Tile(
-  {	title: "OSM",
-    baseLayer: true,
-    source: new ol.source.OSM(),
-    visible: false
-  });
-  var stamen = new ol.layer.Tile(
-    {	title: "Watercolor",
-      baseLayer: true,
-      source: new ol.source.Stamen({
-        layer: 'watercolor'
-      })
-    });
+var osm = new ol.layer.Tile({
+  title: "OSM",
+  baseLayer: true,
+  source: new ol.source.OSM(),
+});
+var stamen = new ol.layer.Tile({
+  title: "Watercolor",
+  baseLayer: true,
+  source: new ol.source.Stamen({
+    layer: "watercolor",
+  }),
+  visible: false,
+});
+
+var satelite = new ol.layer.Tile({
+  title: "Satelite",
+  source: new ol.source.XYZ({
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+  }),
+  baseLayer: true,
+  visible: false,
+});
 // GeoJSON layer with a preview attribute
 
 var map = new ol.Map({
   target: "map",
-  layers: [osm, stamen],
+  layers: [osm, stamen, satelite],
   view: new ol.View({
     center: ol.proj.fromLonLat([-8.65, 40.64]),
     zoom: 12,
@@ -70,7 +79,7 @@ var map = new ol.Map({
   overlays: [overlay],
 });
 
-map.addControl (new ol.control.LayerSwitcherImage());
+map.addControl(new ol.control.LayerSwitcherImage());
 
 var campo_futebol_Style = [
   new ol.style.Style({
@@ -80,9 +89,9 @@ var campo_futebol_Style = [
       //     offset: [52, 0],
       //     opacity: 1,
       scale: 0.035,
-      src: "./icons/football.svg"
-    })
-  })
+      src: "./icons/football.svg",
+    }),
+  }),
 ];
 var campo_basket_Style = [
   new ol.style.Style({
@@ -92,9 +101,9 @@ var campo_basket_Style = [
       //     offset: [52, 0],
       //     opacity: 1,
       scale: 0.05,
-      src: "./icons/basketball.svg"
-    })
-  })
+      src: "./icons/basketball.svg",
+    }),
+  }),
 ];
 var campo_volei_Style = [
   new ol.style.Style({
@@ -104,9 +113,9 @@ var campo_volei_Style = [
       //     offset: [52, 0],
       //     opacity: 1,
       scale: 0.05,
-      src: "./icons/volleyball.svg"
-    })
-  })
+      src: "./icons/volleyball.svg",
+    }),
+  }),
 ];
 var campo_tenis_Style = [
   new ol.style.Style({
@@ -116,9 +125,9 @@ var campo_tenis_Style = [
       //     offset: [52, 0],
       //     opacity: 1,
       scale: 0.09,
-      src: "./icons/tennis.ico"
-    })
-  })
+      src: "./icons/tennis.ico",
+    }),
+  }),
 ];
 var campo_padel_Style = [
   new ol.style.Style({
@@ -128,9 +137,9 @@ var campo_padel_Style = [
       //     offset: [52, 0],
       //     opacity: 1,
       scale: 0.05,
-      src: "./icons/paddle.svg"
-    })
-  })
+      src: "./icons/paddle.svg",
+    }),
+  }),
 ];
 var entidadesStyle = new ol.style.Style({
   image: new ol.style.Icon({
@@ -159,8 +168,8 @@ function funcao_style(feature) {
   }
 }
 var entidadesSource = new ol.source.Vector({
-  url: './php/infocampo.php',
-  format: new ol.format.GeoJSON()
+  url: "./php/infocampo.php",
+  format: new ol.format.GeoJSON(),
 });
 var entidades = new ol.layer.Vector({
   title: "Equipamentos desportivos de Aveiro",
@@ -170,137 +179,136 @@ var entidades = new ol.layer.Vector({
   style: funcao_style,
 });
 
-
 var futebol = new Bloodhound({
-  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
-  prefetch: './php/pesquisaMenu.php?name=soccer'
+  prefetch: "./php/pesquisaMenu.php?name=soccer",
 });
 var basketball = new Bloodhound({
-  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
-  prefetch: './php/pesquisaMenu.php?name=basketball'
+  prefetch: "./php/pesquisaMenu.php?name=basketball",
 });
 var tennis = new Bloodhound({
-  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
-  prefetch: './php/pesquisaMenu.php?name=tennis'
+  prefetch: "./php/pesquisaMenu.php?name=tennis",
 });
 var padel = new Bloodhound({
-  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
-  prefetch: './php/pesquisaMenu.php?name=padel'
+  prefetch: "./php/pesquisaMenu.php?name=padel",
 });
 var multi = new Bloodhound({
-  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
-  prefetch: './php/pesquisaMenu.php?name=multi'
+  prefetch: "./php/pesquisaMenu.php?name=multi",
 });
 var volei = new Bloodhound({
-  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
-  prefetch: './php/pesquisaMenu.php?name=beachvolleyball'
+  prefetch: "./php/pesquisaMenu.php?name=beachvolleyball",
 });
 
-$('#multiple-datasets .typeahead').typeahead({
-  highlight: true
-}, {
-  name: 'fut-points',
-  display: 'name',
-  source: futebol.ttAdapter(),
-  templates: {
-    header: '<h3 class="type-name">Futebol:</h3>'
-  },
-},
+$("#multiple-datasets .typeahead").typeahead(
   {
-    name: 'basket-points',
-    display: 'name',
+    highlight: true,
+  },
+  {
+    name: "fut-points",
+    display: "name",
+    source: futebol.ttAdapter(),
+    templates: {
+      header: '<h3 class="type-name">Futebol:</h3>',
+    },
+  },
+  {
+    name: "basket-points",
+    display: "name",
     source: basketball.ttAdapter(),
     templates: {
-      header: '<h3 class="type-name">Basketball:</h3>'
+      header: '<h3 class="type-name">Basketball:</h3>',
     },
-
   },
   {
-    name: 'tennis-points',
-    display: 'name',
+    name: "tennis-points",
+    display: "name",
     source: tennis.ttAdapter(),
     templates: {
-      header: '<h3 class="type-name">Ténis:</h3>'
+      header: '<h3 class="type-name">Ténis:</h3>',
     },
   },
   {
-    name: 'multi-points',
-    display: 'name',
+    name: "multi-points",
+    display: "name",
     source: multi.ttAdapter(),
     templates: {
-      header: '<h3 class="type-name">MultiDesportivo:</h3>'
+      header: '<h3 class="type-name">MultiDesportivo:</h3>',
     },
   },
   {
-    name: 'padel-points',
-    display: 'name',
+    name: "padel-points",
+    display: "name",
     source: padel.ttAdapter(),
     templates: {
-      header: '<h3 class="type-name">Pádel:</h3>'
+      header: '<h3 class="type-name">Pádel:</h3>',
     },
   },
-    {
-    name: 'volei-points',
-    display: 'name',
+  {
+    name: "volei-points",
+    display: "name",
     source: volei.ttAdapter(),
     templates: {
-      header: '<h3 class="type-name">Voleyball:</h3>'
+      header: '<h3 class="type-name">Voleyball:</h3>',
     },
-  
-      
-        
-});
+  }
+);
 
 var select = new ol.interaction.Select({});
 map.addInteraction(select);
 
-$('#multiple-datasets .typeahead').on('typeahead:selected', function(e, datum) {
-  select.getFeatures().clear()
-  var nome = datum.name;
-  entidades.getSource().forEachFeature(function(feature) {
-      var att = feature.get('name');
+$("#multiple-datasets .typeahead").on(
+  "typeahead:selected",
+  function (e, datum) {
+    select.getFeatures().clear();
+    var nome = datum.name;
+    entidades.getSource().forEachFeature(function (feature) {
+      var att = feature.get("name");
       if (att == nome) {
-          var features = select.getFeatures();
-          features.push(feature);
+        var features = select.getFeatures();
+        features.push(feature);
       }
-  });
+    });
 
-
-  select.getFeatures().forEach(function(feature) {
+    select.getFeatures().forEach(function (feature) {
       var ext = feature.getGeometry().getExtent();
       var center = ol.extent.getCenter(ext);
-      map.setView(new ol.View({
-          projection: 'EPSG:3857', //or any projection you are using
+      map.setView(
+        new ol.View({
+          projection: "EPSG:3857", //or any projection you are using
           center: [center[0], center[1]], //zoom to the center of your feature
-          zoom: 15 //here you define the levelof zoom
-      }));
-  });
+          zoom: 15, //here you define the levelof zoom
+        })
+      );
+    });
 
-  $('#multiple-datasets .typeahead').typeahead('val', '');
-});
-
-
+    $("#multiple-datasets .typeahead").typeahead("val", "");
+  }
+);
 
 map.addLayer(entidades);
-
 
 selectCampos.onchange = function () {
   var data = {
     tipoCampo: selectCampos.value,
-    freg : freguesias.value
-  }
+    freg: freguesias.value,
+  };
   entidadesSource.clear();
   $.ajax({
-    type: 'POST',
-    url: './php/infocampo.php',
+    type: "POST",
+    url: "./php/infocampo.php",
     data: { json: JSON.stringify(data) },
-    dataType: 'JSON',
+    dataType: "JSON",
     success: function (data) {
       console.log(data);
       var styleFeature;
@@ -319,22 +327,16 @@ selectCampos.onchange = function () {
       }
       var features = new ol.format.GeoJSON().readFeatures(data, {
         featureProjection: "EPSG:3857",
-        style: styleFeature
-
+        style: styleFeature,
       });
       console.log(features);
       entidadesSource.addFeatures(features);
       entidades.setVisible(true);
-    }
-
-  })
+    },
+  });
 };
 
-
 var btnVerEventos = document.getElementById("btnVerEventos");
-
-
-
 
 function imagemCampo(feature) {
   if (feature.get("sport") === "soccer") {
@@ -352,123 +354,161 @@ function imagemCampo(feature) {
   }
 }
 
-  select.getFeatures().on(['add'], function (evt) {
-    var feature = evt.element;
-    var texto = "testeteste";
-    var lonlat = ol.coordinate.toStringHDMS(ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
-    let arrayCoordenadas = ol.proj.toLonLat(feature.getGeometry().getCoordinates());
-    let latitude = arrayCoordenadas[1];
-    let longitude = arrayCoordenadas[0]; 
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://eu1.locationiq.com/v1/reverse.php?key=pk.cfb7c951db9623604df048d01960437e&lat="+latitude+"&lon="+longitude+"&format=json",
-      "method": "GET"
-    }
-    var nomeCampo;
-    $.ajax(settings).done(function (response) {
-      nomeCampo = response.display_name;
-      content.innerHTML =
-      "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
-      + nomeCampo + "</p><br>";
-      if(document.getElementById('logged').innerText != ""){
-        content.innerHTML += "<input type='submit' value='Criar Evento' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
-        document.getElementById("btnAddEventos").addEventListener("click", function () {
+select.getFeatures().on(["add"], function (evt) {
+  var feature = evt.element;
+  var texto = "testeteste";
+  var lonlat = ol.coordinate.toStringHDMS(
+    ol.proj.toLonLat(feature.getGeometry().getCoordinates())
+  );
+  let arrayCoordenadas = ol.proj.toLonLat(
+    feature.getGeometry().getCoordinates()
+  );
+  let latitude = arrayCoordenadas[1];
+  let longitude = arrayCoordenadas[0];
+  var settings = {
+    async: true,
+    crossDomain: true,
+    url:
+      "https://eu1.locationiq.com/v1/reverse.php?key=pk.cfb7c951db9623604df048d01960437e&lat=" +
+      latitude +
+      "&lon=" +
+      longitude +
+      "&format=json",
+    method: "GET",
+  };
+  var nomeCampo;
+  $.ajax(settings).done(function (response) {
+    nomeCampo = response.display_name;
+    content.innerHTML =
+      "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
+      nomeCampo +
+      "</p><br>";
+    if (document.getElementById("logged").innerText != "") {
+      content.innerHTML +=
+        "<input type='submit' value='Criar Evento' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
+      document
+        .getElementById("btnAddEventos")
+        .addEventListener("click", function () {
           addEvento(feature);
         });
-        document.getElementById("btnVerEventos").addEventListener("click", function () {
+      document.getElementById("btnVerEventos").addEventListener(
+        "click",
+        function () {
           infoEvento(evt, feature, nomeCampo);
-        }, false);
-      }
-    
+        },
+        false
+      );
+    }
+
     document.getElementById("imgsCampos").src = imagemCampo(feature);
 
     overlay.show(feature.getGeometry().getCoordinates(), content);
-    });
-    
-  
-  }) 
-
-  select.getFeatures().on(['remove'], function (evt) {
-    overlay.hide()
   });
+});
+
+select.getFeatures().on(["remove"], function (evt) {
+  overlay.hide();
+});
 /*
 map.on("click", function (evt) {
   var pixel = evt.pixel;
   displayFeatureInfo(evt);
   });*/
 
-
-
-  function voltarAtras(evt){
-    var feature = evt.element;
-    var texto = "testeteste";
-    var lonlat = (ol.proj.toLonLat(feature.getGeometry().getCoordinates()));
-    let latitude = lonlat[1];
-    let longitude = lonlat[0]; 
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://eu1.locationiq.com/v1/reverse.php?key=pk.cfb7c951db9623604df048d01960437e&lat="+latitude+"&lon="+longitude+"&format=json",
-      "method": "GET"
-    }
-    var nomeCampo;
-    $.ajax(settings).done(function (response) {
-      nomeCampo = response.display_name;
-      console.log(nomeCampo)
+function voltarAtras(evt) {
+  var feature = evt.element;
+  var texto = "testeteste";
+  var lonlat = ol.proj.toLonLat(feature.getGeometry().getCoordinates());
+  let latitude = lonlat[1];
+  let longitude = lonlat[0];
+  var settings = {
+    async: true,
+    crossDomain: true,
+    url:
+      "https://eu1.locationiq.com/v1/reverse.php?key=pk.cfb7c951db9623604df048d01960437e&lat=" +
+      latitude +
+      "&lon=" +
+      longitude +
+      "&format=json",
+    method: "GET",
+  };
+  var nomeCampo;
+  $.ajax(settings).done(function (response) {
+    nomeCampo = response.display_name;
+    console.log(nomeCampo);
     content.innerHTML =
-      "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: "
-      + nomeCampo + "</p><br>";
-      if(document.getElementById('logged').innerText != ""){
-        content.innerHTML += "<input type='submit' value='Criar Evento' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
-        document.getElementById("btnAddEventos").addEventListener("click", function () {
+      "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
+      nomeCampo +
+      "</p><br>";
+    if (document.getElementById("logged").innerText != "") {
+      content.innerHTML +=
+        "<input type='submit' value='Criar Evento' class='btnAddEventos' id='btnAddEventos'><br><input type='submit' value='Ver Eventos' class='btnEventos' id='btnVerEventos'>";
+      document
+        .getElementById("btnAddEventos")
+        .addEventListener("click", function () {
           addEvento(feature);
         });
-        document.getElementById("btnVerEventos").addEventListener("click", function () {
+      document.getElementById("btnVerEventos").addEventListener(
+        "click",
+        function () {
           infoEvento(evt, feature, nomeCampo);
-        }, false);
-      }
-    
+        },
+        false
+      );
+    }
+
     document.getElementById("imgsCampos").src = imagemCampo(feature);
 
     overlay.show(feature.getGeometry().getCoordinates(), content);
-    });
+  });
 }
 
 function infoEvento(evt, feature, nomeCampo) {
   var count = 0;
   var info = {
     campoGeom: feature.get("geom"),
-  }
+  };
   content.innerHTML = "<div class='siema' id='caixaSiema'>";
   $.ajax({
-    type: 'POST',
-    url: './php/verEventos.php',
+    type: "POST",
+    url: "./php/verEventos.php",
     data: { json: JSON.stringify(info) },
-    dataType: 'JSON',
+    dataType: "JSON",
     success: function (data) {
       caixaSiema = document.getElementById("caixaSiema");
       if (data.eventos.length <= 0) {
-        caixaSiema.innerHTML = "<div id='divVoltar'><button id='btnVoltarAtras' class='voltarAtras'><i class='fas fa-arrow-circle-left'></i></button>Não existem eventos!</div></div>";
-        let botoesVolAtrasSemEvt = document.getElementsByClassName('voltarAtras');
-        for(let i = 0; i<botoesVolAtrasSemEvt.length; i++){
-          botoesVolAtrasSemEvt[i].addEventListener("click", function(){
+        caixaSiema.innerHTML =
+          "<div id='divVoltar'><button id='btnVoltarAtras' class='voltarAtras'><i class='fas fa-arrow-circle-left'></i></button>Não existem eventos!</div></div>";
+        let botoesVolAtrasSemEvt =
+          document.getElementsByClassName("voltarAtras");
+        for (let i = 0; i < botoesVolAtrasSemEvt.length; i++) {
+          botoesVolAtrasSemEvt[i].addEventListener("click", function () {
             voltarAtras(evt);
-          })
+          });
         }
         const mySiema = new Siema();
       } else {
         data.eventos.forEach(function (evento) {
-          console.log(nomeCampo)
+          console.log(nomeCampo);
           var dhora = evento.data_hora;
           console.log(dhora);
-          caixaSiema.innerHTML += "<div><button id='btnVoltarAtras' class='voltarAtras'><i class='fas fa-arrow-circle-left'></i></button>" +
+          caixaSiema.innerHTML +=
+            "<div><button id='btnVoltarAtras' class='voltarAtras'><i class='fas fa-arrow-circle-left'></i></button>" +
             "<img src='' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
             nomeCampo +
             "</p>" +
-            "<p class='infoP'>Data e Hora: " + evento.data_hora + "</p><input type='submit' value='Entrar' id=" + evento.data_hora.replace(" ", "_") + " class='btnEventos' onclick='entrarEvento(this)'>" +
-            "<p class='infoP'>Participantes: " + evento.participantes + "</p><p class='infoP'>MáxParticipantes: " + evento.participantesmax +
-            "<div class='divParticipantes' id=" + count + ">";
+            "<p class='infoP'>Data e Hora: " +
+            evento.data_hora +
+            "</p><input type='submit' value='Entrar' id=" +
+            evento.data_hora.replace(" ", "_") +
+            " class='btnEventos' onclick='entrarEvento(this)'>" +
+            "<p class='infoP'>Participantes: " +
+            evento.participantes +
+            "</p><p class='infoP'>MáxParticipantes: " +
+            evento.participantesmax +
+            "<div class='divParticipantes' id=" +
+            count +
+            ">";
           // divPart = document.getElementById(count);
           // for (let i = 0; i < parseInt(evento.participantes); i++) {
           //   divPart.innerHTML += "<img src='./icons/avatarParticipantes.png' alt='participante' class='imagensAvatares'>"
@@ -476,54 +516,51 @@ function infoEvento(evt, feature, nomeCampo) {
 
           caixaSiema.innerHTML += "</div></div>";
           count++;
-
         });
         caixaSiema.innerHTML += "</div>";
         content.innerHTML +=
           "<button class='prev btnSetas'><i class='fas fa-arrow-left setas'></i></button>" +
-          "<button class='next btnSetas' id='setaDireita'><i class='fas fa-arrow-right setas'></i></button>"
+          "<button class='next btnSetas' id='setaDireita'><i class='fas fa-arrow-right setas'></i></button>";
         const mySiema = new Siema();
         $(".imagensCampos").attr("src", imagemCampo(feature));
-        var botoesVolAtras = document.getElementsByClassName('voltarAtras');
-        for(let i = 0; i<botoesVolAtras.length; i++){
-          botoesVolAtras[i].addEventListener("click", function(){
+        var botoesVolAtras = document.getElementsByClassName("voltarAtras");
+        for (let i = 0; i < botoesVolAtras.length; i++) {
+          botoesVolAtras[i].addEventListener("click", function () {
             voltarAtras(evt);
-          })
+          });
         }
-        document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
-        document.querySelector('.next').addEventListener('click', () => mySiema.next());
-
-
-
+        document
+          .querySelector(".prev")
+          .addEventListener("click", () => mySiema.prev());
+        document
+          .querySelector(".next")
+          .addEventListener("click", () => mySiema.next());
       }
-    }
+    },
   });
-
 }
 
 function entrarEvento(element) {
   let horaEv = element.getAttribute("id");
   var entrarEvento = {
     dataHora: horaEv,
-  }
+  };
   $.ajax({
-    type: 'POST',
-    url: './php/entrarEvento.php',
+    type: "POST",
+    url: "./php/entrarEvento.php",
     data: { json: JSON.stringify(entrarEvento) },
-    dataType: 'text',
+    dataType: "text",
     success: function (data) {
       if (data == "sucesso") {
         alert("Entrou no evento com sucesso");
-        location.reload()
-      }else{
+        location.reload();
+      } else {
         alert("Já existe um máximo de participantes");
         location.reload();
       }
-    }
-  })
-};
-
-
+    },
+  });
+}
 
 var locationSource = new ol.source.Vector();
 
@@ -534,12 +571,11 @@ var locationLayer = new ol.layer.Vector({
       anchor: [0.5, 0.5],
 
       scale: 0.1,
-      src: "./icons/icone.png"
-    })
-  })
+      src: "./icons/icone.png",
+    }),
+  }),
 });
-map.on('dblclick', function (evt) {
-
+map.on("dblclick", function (evt) {
   locationSource.clear();
   console.log(locationSource.getFeatures());
   userLoc = evt.coordinate;
@@ -548,34 +584,32 @@ map.on('dblclick', function (evt) {
 
   var locationFeature = new ol.Feature({
     geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
-    name: 'User Location',
+    name: "User Location",
   });
 
   locationSource.addFeature(locationFeature);
 
   map.addLayer(locationLayer);
-
 });
-isFiltroRaio.addEventListener('change', function() {
+isFiltroRaio.addEventListener("change", function () {
   if (userLoc == null) {
     alert("Selecione a localização de partida com duplo clique no mapa");
     isFiltroRaio.checked = false;
-  }else{
+  } else {
     if (this.checked) {
       var raioData = {
         raio: selectedRaio.value,
         lat: userLoc[0],
         long: userLoc[1],
-        tipo: selectCampos.value
-  
-      }
+        tipo: selectCampos.value,
+      };
       $.ajax({
-        type: 'POST',
-        url: './php/filtrarRaio.php',
+        type: "POST",
+        url: "./php/filtrarRaio.php",
         data: { json: JSON.stringify(raioData) },
-        dataType: 'JSON',
+        dataType: "JSON",
         success: function (data) {
-          console.log(data)
+          console.log(data);
           var styleFeature;
           if (data.features[0].properties.sport === "soccer") {
             styleFeature = campo_futebol_Style;
@@ -590,27 +624,25 @@ isFiltroRaio.addEventListener('change', function() {
           } else {
             styleFeature = entidadesStyle;
           }
-        var features = new ol.format.GeoJSON().readFeatures(data, {
-          featureProjection: "EPSG:4326",
-          style: styleFeature
-  
-        });
-        console.log(features);
-        entidadesSource.clear();
-        entidadesSource.addFeatures(features);
-        entidades.setVisible(true);
-  
-        }
+          var features = new ol.format.GeoJSON().readFeatures(data, {
+            featureProjection: "EPSG:4326",
+            style: styleFeature,
+          });
+          console.log(features);
+          entidadesSource.clear();
+          entidadesSource.addFeatures(features);
+          entidades.setVisible(true);
+        },
       });
     } else {
       var data = {
-        tipoCampo: selectCampos.value
-      }
+        tipoCampo: selectCampos.value,
+      };
       $.ajax({
-        type: 'POST',
-        url: './php/infocampo.php',
+        type: "POST",
+        url: "./php/infocampo.php",
         data: { json: JSON.stringify(data) },
-        dataType: 'JSON',
+        dataType: "JSON",
         success: function (data) {
           console.log(data);
           var styleFeature;
@@ -629,27 +661,23 @@ isFiltroRaio.addEventListener('change', function() {
           }
           var features = new ol.format.GeoJSON().readFeatures(data, {
             featureProjection: "EPSG:3857",
-            style: styleFeature
-    
+            style: styleFeature,
           });
           console.log(features);
           entidadesSource.clear();
           entidadesSource.addFeatures(features);
           entidades.setVisible(true);
-        }
-    
-      })
+        },
+      });
     }
   }
-  
-  
 });
-filtroTempo.addEventListener('change', function() {
+filtroTempo.addEventListener("change", function () {
   var dataTempo = {
     x: userLoc[0],
     y: userLoc[1],
     d: 4000,
-  }
+  };
   $.ajax({
     type: "POST",
     url: "./php/filtrarTempo.php",
@@ -701,6 +729,9 @@ freguesias.addEventListener("change", function(){
         window.alert("Não existem campos com esses parâmetros nessa freguesia");
       }else{
         var styleFeature;
+    data: { json: JSON.stringify(dataTempo) },
+    complete: function (data) {
+      var styleFeature;
       if (data.features[0].properties.sport === "soccer") {
         styleFeature = campo_futebol_Style;
       } else if (data.features[0].properties.sport === "basketball") {
@@ -715,16 +746,55 @@ freguesias.addEventListener("change", function(){
         styleFeature = entidadesStyle;
       }
       var features = new ol.format.GeoJSON().readFeatures(data, {
-        featureProjection: "EPSG:4326",
-        style: styleFeature
-
+        featureProjection: "EPSG:3857",
+        style: styleFeature,
       });
       console.log(features);
       entidadesSource.clear();
       entidadesSource.addFeatures(features);
       entidades.setVisible(true);
-      }
-    }
+    },
+  });
+});
 
-  })
-})
+freguesias.addEventListener("change", function () {
+  var dataFreguesia = {
+    freg: freguesias.value,
+    tipoCampo: selectCampos.value,
+  };
+  $.ajax({
+    type: "POST",
+    url: "./php/filtrarFreguesia.php",
+    data: { json: JSON.stringify(dataFreguesia) },
+    dataType: "JSON",
+    success: function (data) {
+      console.log(data);
+      if (data.features.length == 0) {
+        window.alert("Não existem campos com esses parâmetros nessa freguesia");
+      } else {
+        var styleFeature;
+        if (data.features[0].properties.sport === "soccer") {
+          styleFeature = campo_futebol_Style;
+        } else if (data.features[0].properties.sport === "basketball") {
+          styleFeature = campo_basket_Style;
+        } else if (data.features[0].properties.sport === "beachvolleyball") {
+          styleFeature = campo_volei_Style;
+        } else if (data.features[0].properties.sport === "padel") {
+          styleFeature = campo_padel_Style;
+        } else if (data.features[0].properties.sport === "tennis") {
+          styleFeature = campo_tenis_Style;
+        } else {
+          styleFeature = entidadesStyle;
+        }
+        var features = new ol.format.GeoJSON().readFeatures(data, {
+          featureProjection: "EPSG:4326",
+          style: styleFeature,
+        });
+        console.log(features);
+        entidadesSource.clear();
+        entidadesSource.addFeatures(features);
+        entidades.setVisible(true);
+      }
+    },
+  });
+});
