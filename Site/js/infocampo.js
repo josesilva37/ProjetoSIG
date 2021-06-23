@@ -673,45 +673,85 @@ isFiltroRaio.addEventListener("change", function () {
   }
 });
 filtroTempo.addEventListener("change", function () {
-  var dataTempo = {
-    x: userLoc[0],
-    y: userLoc[1],
-    d: 4000,
-  };
-  $.ajax({
-    type: "POST",
-    url: "./php/filtrarTempo.php",
-    data : { json: JSON.stringify(dataTempo) },
-    dataType : 'json',
-    success : function(data){
-      console.log(data);
-      var styleFeature;
-      if (data.features[0].properties.sport === "soccer") {
-        styleFeature = campo_futebol_Style;
-      } else if (data.features[0].properties.sport === "basketball") {
-        styleFeature = campo_basket_Style;
-      } else if (data.features[0].properties.sport === "beachvolleyball") {
-        styleFeature = campo_volei_Style;
-      } else if (data.features[0].properties.sport === "padel") {
-        styleFeature = campo_padel_Style;
-      } else if (data.features[0].properties.sport === "tennis") {
-        styleFeature = campo_tenis_Style;
-      } else {
-        styleFeature = entidadesStyle;
+  if (userLoc == null) {
+    alert("Selecione a localização de partida com duplo clique no mapa");
+    filtroTempo.checked = false;
+  }else{
+    if(this.checked){
+      var dataTempo = {
+        x: userLoc[0],
+        y: userLoc[1],
+        d: 4000,
+      };
+      $.ajax({
+        type: "POST",
+        url: "./php/filtrarTempo.php",
+        data : { json: JSON.stringify(dataTempo) },
+        dataType : 'json',
+        success : function(data){
+          
+          var styleFeature;
+          if (data.features[0].properties.sport === "soccer") {
+            styleFeature = campo_futebol_Style;
+          } else if (data.features[0].properties.sport === "basketball") {
+            styleFeature = campo_basket_Style;
+          } else if (data.features[0].properties.sport === "beachvolleyball") {
+            styleFeature = campo_volei_Style;
+          } else if (data.features[0].properties.sport === "padel") {
+            styleFeature = campo_padel_Style;
+          } else if (data.features[0].properties.sport === "tennis") {
+            styleFeature = campo_tenis_Style;
+          } else {
+            styleFeature = entidadesStyle;
+          }
+          var features = new ol.format.GeoJSON().readFeatures(data, {
+            featureProjection: "EPSG:3857",
+            style: styleFeature
+            
+          });
+          entidadesSource.clear();
+          entidadesSource.addFeatures(features);
+          entidades.setVisible(true);
+    }});
+  }else{
+        var data = {
+          tipoCampo: selectCampos.value,
+        };
+        $.ajax({
+          type: "POST",
+          url: "./php/infocampo.php",
+          data: { json: JSON.stringify(data) },
+          dataType: "JSON",
+          success: function (data) {
+            console.log(data);
+            var styleFeature;
+            if (data.features[0].properties.sport === "soccer") {
+              styleFeature = campo_futebol_Style;
+            } else if (data.features[0].properties.sport === "basketball") {
+              styleFeature = campo_basket_Style;
+            } else if (data.features[0].properties.sport === "beachvolleyball") {
+              styleFeature = campo_volei_Style;
+            } else if (data.features[0].properties.sport === "padel") {
+              styleFeature = campo_padel_Style;
+            } else if (data.features[0].properties.sport === "tennis") {
+              styleFeature = campo_tenis_Style;
+            } else {
+              styleFeature = entidadesStyle;
+            }
+            var features = new ol.format.GeoJSON().readFeatures(data, {
+              featureProjection: "EPSG:3857",
+              style: styleFeature,
+            });
+            console.log(features);
+            entidadesSource.clear();
+            entidadesSource.addFeatures(features);
+            entidades.setVisible(true);
+          },
+        });
       }
-      var features = new ol.format.GeoJSON().readFeatures(data, {
-        featureProjection: "EPSG:3857",
-        style: styleFeature
-
-      });
-      console.log(features);
-      entidadesSource.clear();
-      entidadesSource.addFeatures(features);
-      entidades.setVisible(true);
     }
-  })
-});
-
+  });
+/*
 
 freguesias.addEventListener("change", function(){
   var dataFreguesia = {
@@ -728,9 +768,6 @@ freguesias.addEventListener("change", function(){
       if(data.features.length == 0){
         window.alert("Não existem campos com esses parâmetros nessa freguesia");
       }else{
-        var styleFeature;
-    data: { json: JSON.stringify(dataTempo) },
-    complete: function (data) {
       var styleFeature;
       if (data.features[0].properties.sport === "soccer") {
         styleFeature = campo_futebol_Style;
@@ -753,9 +790,10 @@ freguesias.addEventListener("change", function(){
       entidadesSource.clear();
       entidadesSource.addFeatures(features);
       entidades.setVisible(true);
-    },
+    }
   });
-});
+});});
+*/
 
 freguesias.addEventListener("change", function () {
   var dataFreguesia = {

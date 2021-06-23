@@ -26,7 +26,7 @@ $y = $data->y;
 $d = $data->d; //distancia
 $d = (float) $d / 60;
 */
-$d = 1800;
+$d = $data->d;
 //categoria do ponto
 $c = null;
 
@@ -58,7 +58,7 @@ $sql_ih = "INSERT INTO hull SELECT ST_ConcaveHull(ST_Collect(ST_Transform(geom,3
 FROM (SELECT vias_vertex_aveiro.geom
 FROM pgr_drivingDistance('
 SELECT id, source, target, st_astext(geom), cost as cost
-FROM vias_aveiro', ".$idM.", 300, false) dd
+FROM vias_aveiro', ".$idM.", ".$d.", false) dd
 INNER JOIN vias_aveiro on (vias_aveiro.id = dd.node)
 INNER JOIN vias_vertex_aveiro on
 (vias_vertex_aveiro.id = dd.node)) as t;";
