@@ -22,6 +22,8 @@ var popListarPadelContent = document.getElementById("popListarPadelContent");
 
 
 var popupADD = document.getElementById("popupAdd");
+
+
 futEventos.addEventListener("click", addEventoListarFutebol);
 basqueteEventos.addEventListener("click",addEventoListarBasquete);
 voleiEventos.addEventListener("click", addEventoListarVolei);
