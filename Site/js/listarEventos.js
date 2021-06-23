@@ -102,48 +102,48 @@ $.ajax({
     success: function(evento){
         for(let i = 0;i<evento.eventos.length;i++){
             if(evento.eventos[i].tipo_desporto === "soccer"){
-                console.log(evento.eventos[i]);
                 popListarFutebolContent.innerHTML += "<div class='eventoRow'>"+
-                "<h5>Local:"+ evento.eventos[i].nome_local+"</h5>"+
-                "<h5>Data e Hora:"+ evento.eventos[i].data_hora+"</h5>"+
-                "<h5>Participantes:"+ evento.eventos[i].participantes+"</h5>"+
-                "<h5>Duração:"+ evento.eventos[i].duracao+"h</h5>"+
+                "<h5><b>Local: </b>"+ evento.eventos[i].nome_local+"</h5>"+
+                "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
+                "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
+                "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
+                "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
                 "</div>";
             }
             if(evento.eventos[i].tipo_desporto === "basketball"){
-                console.log(evento.eventos[i]);
                 popListarBasquetebolContent.innerHTML += "<div class='eventoRow'>"+
-                "<h5>Local:"+ evento.eventos[i].nome_local+"</h5>"+
-                "<h5>Data e Hora:"+ evento.eventos[i].data_hora+"</h5>"+
-                "<h5>Participantes:"+ evento.eventos[i].participantes+"</h5>"+
-                "<h5>Duração:"+ evento.eventos[i].duracao+"h</h5>"+
+                "<h5><b>Local: </b>"+ evento.eventos[i].nome_local+"</h5>"+
+                "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
+                "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
+                "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
+                "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
                 "</div>";
             }
             if(evento.eventos[i].tipo_desporto === "beachvolleyball"){
-                console.log(evento.eventos[i]);
                 popListarVoleiContent.innerHTML += "<div class='eventoRow'>"+
-                "<h5>Local:"+ evento.eventos[i].nome_local+"</h5>"+
-                "<h5>Data e Hora:"+ evento.eventos[i].data_hora+"</h5>"+
-                "<h5>Participantes:"+ evento.eventos[i].participantes+"</h5>"+
-                "<h5>Duração:"+ evento.eventos[i].duracao+"h</h5>"+
+                "<h5><b>Local: </b>"+ evento.eventos[i].nome_local+"</h5>"+
+                "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
+                "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
+                "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
+                "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
                 "</div>";
             }
             if(evento.eventos[i].tipo_desporto === "tennis"){
-                console.log(evento.eventos[i]);
                 popListarTenisContent.innerHTML += "<div class='eventoRow'>"+
-                "<h5>Local:"+ evento.eventos[i].nome_local+"</h5>"+
-                "<h5>Data e Hora:"+ evento.eventos[i].data_hora+"</h5>"+
-                "<h5>Participantes:"+ evento.eventos[i].participantes+"</h5>"+
-                "<h5>Duração:"+ evento.eventos[i].duracao+"h</h5>"+
+                "<h5><b>Local: </b>"+ evento.eventos[i].nome_local+"</h5>"+
+                "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
+                "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
+                "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
+                "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
                 "</div>";
             }
             if(evento.eventos[i].tipo_desporto === "padel"){
-                console.log(evento.eventos[i]);
                 popListarPadelContent.innerHTML += "<div class='eventoRow'>"+
-                "<h5>Local:"+ evento.eventos[i].nome_local+"</h5>"+
-                "<h5>Data e Hora:"+ evento.eventos[i].data_hora+"</h5>"+
-                "<h5>Participantes:"+ evento.eventos[i].participantes+"</h5>"+
-                "<h5>Duração:"+ evento.eventos[i].duracao+"h</h5>"+
+                "<h5><b>Local: </b>"+ evento.eventos[i].nome_local+"</h5>"+
+                "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
+                "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
+                "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
+                "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
                 "</div>";
             }
         }

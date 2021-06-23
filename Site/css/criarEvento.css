@@ -54,6 +54,7 @@
 
 
 .popup-content {
+    border-radius: 5px;
     background-color: white;
     margin: 15% auto;
     /* 15% from the top and centered */
@@ -135,8 +136,10 @@ h4{
     padding: 0.75rem 1rem;
 	border: 0;
 	border-radius: 0.317rem;
-	background-color: #aaa;
+	background-color: rgb(121, 121, 121);
 	color: #fff;
+    width: 130px;
+    height: 40px;
 	text-decoration: none;
 	font-weight: 700;
 	font-size: 1rem;

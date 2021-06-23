@@ -16,11 +16,14 @@ var local = document.getElementById("localizacao");
 btnCriar.addEventListener("click", gravar);
 const duracao = document.getElementById("duracao");
 var tipo_desporto = "";
+var today = new Date().toISOString().split('T')[0];
+data2.setAttribute('min', today);
+
 
 function addEvento(feature){
   popupADD.style.display = "block";
   fotoPOP.src = foto[0].src;
-  //local.innerText = "Localização: "+nome[1].innerText;
+  local.innerHTML = "<b>Localização: </b>"+nome[0].innerText;
   tipo_desporto = feature.get("sport");
   console.log(tipo_desporto);
   geomtria = feature.get("geom");
