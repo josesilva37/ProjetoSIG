@@ -16,10 +16,15 @@ try{
     if ($stmt->execute([$username, $dh])) { 
         $q2 = "UPDATE evento SET participantes = participantes + 1 WHERE  data_hora = '".$dh."'";
         $stmt2 = $pdo->prepare($q2);
-        $stmt2->execute();
-        echo "sucesso";
+        if($stmt2->execute()){
+            echo "sucesso";
+        }else{
+            echo "Máximo de participantes";
+        }
+    }else{
+        echo "Já entrou neste evento";
     }
-
+    
 }catch(PDOException $e){
     echo $e->getMessage();
 }

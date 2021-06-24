@@ -568,8 +568,11 @@ function entrarEvento(element) {
       if (data == "sucesso") {
         alert("Entrou no evento com sucesso");
         location.reload();
-      } else {
-        alert("Já existe um máximo de participantes");
+      } else if(data == "Já entrou neste evento"){
+        alert("Já está inscrito neste evento");
+        location.reload();
+      }else if(data == "Máximo de participantes"){
+        alert("Já existe um número máximo de participantes");
         location.reload();
       }
     },
