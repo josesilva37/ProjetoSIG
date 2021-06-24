@@ -357,7 +357,7 @@ function imagemCampo(feature) {
   } else if (feature.get("sport") === "basketball") {
     return "./camposFotos/campoBasket.jpg";
   } else if (feature.get("sport") === "beachvolleyball") {
-    return "./camposFotos/campoVolei.jpg";
+    return "./camposFotos/beachvolei.jpeg";
   } else if (feature.get("sport") === "padel") {
     return "./camposFotos/campoPadel.jpg";
   } else if (feature.get("sport") === "tennis") {
@@ -394,7 +394,7 @@ select.getFeatures().on(["add"], function (evt) {
   $.ajax(settings).done(function (response) {
     nomeCampo = response.display_name;
     content.innerHTML =
-      "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
+      "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'><span class='infoSpan'>Localização:</span> " +
       nomeCampo +
       "</p><br>";
     if (document.getElementById("logged").innerText != "") {
@@ -451,7 +451,7 @@ function voltarAtras(evt) {
     nomeCampo = response.display_name;
     console.log(nomeCampo);
     content.innerHTML =
-      "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
+      "<img src='' id=imgsCampos alt='campo' class='imagensCampos'><p class='infoP'><span class='infoSpan'>Localização:</span> " +
       nomeCampo +
       "</p><br>";
     if (document.getElementById("logged").innerText != "") {
@@ -508,17 +508,17 @@ function infoEvento(evt, feature, nomeCampo) {
           console.log(dhora);
           caixaSiema.innerHTML +=
             "<div><button id='btnVoltarAtras' class='voltarAtras'><i class='fas fa-arrow-circle-left'></i></button>" +
-            "<img src='' alt='campo' class='imagensCampos'><p class='infoP'>Localização: " +
+            "<img src='' alt='campo' class='imagensCampos'><p class='infoP'><span class='infoSpan'>Localização:</span> " +
             nomeCampo +
             "</p>" +
-            "<p class='infoP'>Data e Hora: " +
+            "<p class='infoP'><span class='infoSpan'>Data e Hora:</span> " +
             evento.data_hora +
             "</p><input type='submit' value='Entrar' id=" +
             evento.data_hora.replace(" ", "_") +
             " class='btnEventos' onclick='entrarEvento(this)'>" +
-            "<p class='infoP'>Participantes: " +
+            "<p class='infoP'><span class='infoSpan'>Participantes: </span>" +
             evento.participantes +
-            "</p><p class='infoP'>MáxParticipantes: " +
+            "</p><p class='infoP'><span class='infoSpan'>MáxParticipantes: </span>" +
             evento.participantesmax +
             "<div class='divParticipantes' id=" +
             count +
