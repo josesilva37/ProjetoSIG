@@ -45,34 +45,35 @@ $('#location-button').click(function () {
   })
 })
 */
-var rotaSource;
-var rotas;
-var primeiro_click_coords = null;
-function criarRota(xOrigem,yOrigem , xDestino,yDestino){
-  rotaSource.clear();
-  
-  // console.log("https://api.geoapify.com/v1/routing?waypoints="+xOrigem+","+yOrigem+"|"+xDestino+","+yDestino+"&mode=drive&apiKey=bada00150d404e2e87c325718cf78762");
-  rotaSource.setUrl("./php/criarRota.php?xOrigem="+xOrigem+"&yOrigem="+yOrigem+"&xDestino="+xDestino + "&yDestino=" + yDestino);
-  rotaSource.refresh();
-}
 $(document).ready(function(){
-rotaSource = new ol.source.Vector({     //busca os pontos das maquinas
-  url: "",
-  format: new ol.format.GeoJSON(),
+var rotas;
+
+
+
+var textoObj = { "type": "FeatureCollection", "features": [ {"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.6584932,40.6378579],[-8.6584256,40.6378001],[-8.6583468,40.6377604],[-8.6582053,40.6376967],[-8.6579835,40.6376009]]]}, "properties": {"seq":"1","node":"230","edge":"62433","cost":"0.0010398"}},{"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.6579835,40.6376009],[-8.6579019,40.6375423],[-8.6578528,40.637507],[-8.6576933,40.6373919],[-8.6575869,40.6373152]]]}, "properties": {"seq":"2","node":"47948","edge":"62432","cost":"0.0009228"}},{"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.6575869,40.6373152],[-8.6569565,40.6368266],[-8.6567385,40.6366458],[-8.656655,40.6365813],[-8.6565682,40.6365143],[-8.656529,40.6364841],[-8.6563659,40.6363581]]]}, "properties": {"seq":"3","node":"15384","edge":"67993","cost":"0.0029628"}},{"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.6563659,40.6363581],[-8.6561904,40.6362226]]]}, "properties": {"seq":"4","node":"19548","edge":"67994","cost":"0.0004225"}},{"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.6561904,40.6362226],[-8.6559695,40.636052]]]}, "properties": {"seq":"5","node":"15380","edge":"67995","cost":"0.0005319"}},{"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.6559695,40.636052],[-8.6557529,40.6358936]]]}, "properties": {"seq":"6","node":"19549","edge":"67996","cost":"0.0005077"}},{"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.6557529,40.6358936],[-8.6557061,40.635819],[-8.6556899,40.6357614],[-8.655694,40.6356863]]]}, "properties": {"seq":"7","node":"14238","edge":"18770","cost":"0.0004819"}},{"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.655694,40.6356863],[-8.6557528,40.6356481],[-8.6558273,40.6355634],[-8.6559287,40.6353826]]]}, "properties": {"seq":"8","node":"192","edge":"219","cost":"0.0007941"}},{"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.6559287,40.6353826],[-8.6559541,40.6352864],[-8.6559225,40.6352326],[-8.6558751,40.6351998],[-8.6558369,40.6351758]]]}, "properties": {"seq":"9","node":"25056","edge":"220","cost":"0.0005411"}},{"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.6558369,40.6351758],[-8.6558767,40.6350002],[-8.6559809,40.6348907],[-8.6561655,40.6347212],[-8.6562982,40.6345929],[-8.6563625,40.6345042],[-8.6563984,40.634408],[-8.6564109,40.6342559],[-8.6563829,40.6341511],[-8.656207,40.63384],[-8.6560551,40.6336053]]]}, "properties": {"seq":"10","node":"342","edge":"384","cost":"0.003907"}},{"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.6560551,40.6336053],[-8.6558006,40.6332394]]]}, "properties": {"seq":"11","node":"343","edge":"62394","cost":"0.0009201"}},{"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.6558006,40.6332394],[-8.6557139,40.633259]]]}, "properties": {"seq":"12","node":"47933","edge":"62395","cost":"0.0001908"}},{"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.6557139,40.633259],[-8.6555597,40.6332767]]]}, "properties": {"seq":"13","node":"14240","edge":"18773","cost":"0.000329"}},{"type": "Feature", "geometry": {"type":"MultiLineString","coordinates":[[[-8.6555597,40.6332767],[-8.6554341,40.6333046],[-8.6552001,40.6333726],[-8.6548239,40.6334819],[-8.6544667,40.6335801],[-8.6540305,40.6337111],[-8.6539015,40.6337421]]]}, "properties": {"seq":"14","node":"51441","edge":"18774","cost":"0.0037311"}} ]};
+
+var textoJSON = textoObj;
+// console.log(textoJSON.features);
+
+
+
+
+var rotaSource = new ol.source.Vector({     //busca os pontos das maquinas
+  //url: 'calculaRota.php',
+  features: new ol.format.GeoJSON().readFeatures(textoJSON, { featureProjection: 'EPSG:3857' }),
 });
- rotas = new ol.layer.Vector({
+
+console.log(rotaSource.getFeatures() + "dddd");
+var rotas = new ol.layer.Vector({
   source: rotaSource,
   title: " Rota",
   style: new ol.style.Style({
-
       stroke: new ol.style.Stroke({
-          color: 'blue',
-          width: 7
+          color: 'green',
+          width: 10
       })
   }),
 });
-
-
 var osm = new ol.layer.Tile({
   title: "OSM",
   baseLayer: true,
@@ -107,51 +108,6 @@ var map = new ol.Map({
   }),
   overlays: [overlay],
 });
-
-
-
-var locationDestinationSource = new ol.source.Vector();
-
-var locationDestinationLayer = new ol.layer.Vector({
-  source: locationDestinationSource,
-  style: new ol.style.Style({
-    image: new ol.style.Icon({
-      anchor: [0.2, 0.2],
-
-      scale: 0.1,
-      src: "./icons/map-marker-blue.png",
-    }),
-  }),
-});
-map.addLayer(locationDestinationLayer);
-
-map.on("singleclick", function (evt) {
-  if(primeiro_click_coords != null){
-    criarRota(primeiro_click_coords[0],primeiro_click_coords[1],evt.coordinate[0],evt.coordinate[1]);
-    primeiro_click_coords = null;
-    // map.un("pointermove",evento_ONMouseMove(evt));
-  }else{
-
-
-
-  }
-  
-  });
-  function evento_ONMouseMove(evt) {
- 
-    if(primeiro_click_coords != null){
-      // console.log(evt);
-
-      var locationFeature = new ol.Feature({
-        geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
-        name: "User Destiny",
-      });
-      locationDestinationSource.clear();
-      locationDestinationSource.addFeature(locationFeature);
-
-    }
-    }
-
 
 map.addControl(new ol.control.LayerSwitcherImage());
 
@@ -665,15 +621,13 @@ var locationLayer = new ol.layer.Vector({
     }),
   }),
 });
-map.addLayer(locationLayer);
 map.on("dblclick", function (evt) {
-
+  console.log(evt.coordinate[0] + " , " +  evt.coordinate[1]);
   locationSource.clear();
-  locationDestinationSource.clear();
   console.log(locationSource.getFeatures());
   userLoc = evt.coordinate;
 
-
+  console.log(evt.coordinate);
 
   var locationFeature = new ol.Feature({
     geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
@@ -682,15 +636,15 @@ map.on("dblclick", function (evt) {
 
   locationSource.addFeature(locationFeature);
 
+  map.addLayer(locationLayer);
 
 
 
-primeiro_click_coords = evt.coordinate;
 
-map.on("pointermove", function (evt) {evento_ONMouseMove(evt);});
+console.log(rotas.getProperties());
+map.addLayer(rotas);
 
 });
-
 isFiltroRaio.addEventListener("change", function () {
   if (userLoc == null) {
     alert("Selecione a localização de partida com duplo clique no mapa");
