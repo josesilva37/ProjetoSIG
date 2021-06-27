@@ -50,9 +50,8 @@ var rotas;
 var primeiro_click_coords = null;
 function criarRota(xOrigem,yOrigem , xDestino,yDestino){
   rotaSource.clear();
-  
-  // console.log("https://api.geoapify.com/v1/routing?waypoints="+xOrigem+","+yOrigem+"|"+xDestino+","+yDestino+"&mode=drive&apiKey=bada00150d404e2e87c325718cf78762");
   rotaSource.setUrl("./php/criarRota.php?xOrigem="+xOrigem+"&yOrigem="+yOrigem+"&xDestino="+xDestino + "&yDestino=" + yDestino);
+
   rotaSource.refresh();
 }
 $(document).ready(function(){
@@ -130,10 +129,6 @@ map.on("singleclick", function (evt) {
     criarRota(primeiro_click_coords[0],primeiro_click_coords[1],evt.coordinate[0],evt.coordinate[1]);
     primeiro_click_coords = null;
     // map.un("pointermove",evento_ONMouseMove(evt));
-  }else{
-
-
-
   }
   
   });
