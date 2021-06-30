@@ -7,7 +7,7 @@ try{
         $stmt = $pdo->prepare($q);
         $stmt->execute();
 
-        echo "Sucess";
+        header("Location: ../index.php");
         
     }catch(PDOException $e){
         echo $e->getMessage();
