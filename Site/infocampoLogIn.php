@@ -134,16 +134,16 @@ if (!isset($_SESSION["username"])) {
       <img src="" alt="campo" id="foto">
       <h4 id="localizacao"></h4>
       <form method="POST">
-        <input type="date" id="data" class="form-control">
-        <input type="time" id="hora" class="form-control">
-        <select name="duracao" id="duracao" class="form-control">
-          <option value="" disabled selected class="form-select">Selecione a duração</option>
+        <input type="date" id="data" class="form-control" required>
+        <input type="time" id="hora" class="form-control" required>
+        <select name="duracao" id="duracao" class="form-control" required>
+          <option value="" disabled selected class="form-select" required>Selecione a duração</option>
           <option value="1">1h</option>
           <option value="2">2h</option>
           <option value="3">3h</option>
         </select>
-        <input type="number" id="numeroJogadores" placeholder="Número de Jogadores" class="form-control">
-        <input type="submit" class="button" id="criarEvento" value="Criar Evento">
+        <input type="number" id="numeroJogadores" placeholder="Número de Jogadores" class="form-control" required>
+        <input type="submit" class="button" id="criarEvento" value="Criar Evento" required>
       </form>
     </div>
   </div>
