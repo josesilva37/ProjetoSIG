@@ -18,8 +18,6 @@ const duracao = document.getElementById("duracao");
 var tipo_desporto = "";
 var today = new Date().toISOString().split('T')[0];
 var d = new Date();
-var hours = d.getHours()+":"+d.getMinutes();
-hora.setAttribute('min', hours);
 data2.setAttribute('min', today);
 var campo = "";
 

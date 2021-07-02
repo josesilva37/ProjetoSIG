@@ -895,6 +895,9 @@ freguesias.addEventListener("change", function(){
 */
 
 freguesias.addEventListener("change", function () {
+  if(isFiltroRaio.checked == true){
+    isFiltroRaio.checked = false;
+  }
   var dataFreguesia = {
     freg: freguesias.value,
     tipoCampo: selectCampos.value,
@@ -905,7 +908,6 @@ freguesias.addEventListener("change", function () {
     data: { json: JSON.stringify(dataFreguesia) },
     dataType: "JSON",
     success: function (data) {
-      console.log(data);
       if (data.features.length == 0) {
         window.alert("Não existem campos com esses parâmetros nessa freguesia");
       } else {
@@ -927,10 +929,14 @@ freguesias.addEventListener("change", function () {
           featureProjection: "EPSG:4326",
           style: styleFeature,
         });
-        console.log(features);
         entidadesSource.clear();
         entidadesSource.addFeatures(features);
         entidades.setVisible(true);
+        if(freguesias.value != "todasFreguesias"){
+          map.getView().fit(features[0].getGeometry(), {size:map.getSize(), maxZoom:14});
+        }else{
+          map.getView().fit(features[0].getGeometry(), {size:map.getSize(), maxZoom:11});
+        }
       }
     },
   });
