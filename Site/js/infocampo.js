@@ -583,7 +583,7 @@ function infoEvento(evt, feature, nomeCampo) {
             evento.data_hora +
             "</p><input type='submit' value='Entrar' id=" +
             evento.data_hora.replace(" ", "_") +
-            " class='btnEventos' onclick='entrarEvento(this)'>" +
+            " class='btnEventos btnEntrarEvento' onclick=entrarEvento(this)>" +
             "<p class='infoP'><span class='infoSpan'>Participantes: </span>" +
             evento.participantes +
             "</p><p class='infoP'><span class='infoSpan'>MáxParticipantes: </span>" +
@@ -611,6 +611,12 @@ function infoEvento(evt, feature, nomeCampo) {
             voltarAtras(evt);
           });
         }
+        var botoesEntrar = document.getElementsByClassName("btnEntrarEvento");
+        for (let i = 0; i < botoesEntrar.length; i++) {
+          botoesEntrar[i].addEventListener("click", function () {
+            entrarEvento(this);
+          });
+        }
         document
           .querySelector(".prev")
           .addEventListener("click", () => mySiema.prev());
@@ -633,6 +639,7 @@ function entrarEvento(element) {
     data: { json: JSON.stringify(entrarEvento) },
     dataType: "text",
     success: function (data) {
+      console.log(data);
       if (data == "sucesso") {
         alert("Entrou no evento com sucesso");
         location.reload();
