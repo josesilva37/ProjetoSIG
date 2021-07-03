@@ -79,3 +79,8 @@
     padding-left: 10px;
     padding-bottom: 5px;
 }
+
+.popup-content h3 {
+    margin-top: 50px;
+    text-align: center;
+}
