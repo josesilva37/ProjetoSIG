@@ -9,8 +9,44 @@ var popupADD = document.getElementById("popupAdd");
 
 var btnLogIn = document.getElementById("btnLogIn");
 
-btnOpenLogIn.addEventListener("click", login);
-btnLogIn2.addEventListener("click", login);
+
+//log in
+var username = document.getElementById("inputUsername");
+var password = document.getElementById("inputPassword");
+var login = document.getElementById("loginBtn");
+
+login.onclick = function(){
+    user = username.value;
+    pass = password.value;
+    if(user != "" && pass!= ""){
+        var dataLogin = {
+            username : user,
+            password :  pass
+        }
+        $.ajax({
+            type:"POST",
+            url:"./php/login.php",
+            data: {json: JSON.stringify(dataLogin)},
+            dataType: "JSON",
+            complete: function(response){
+                
+                if(response.responseJSON == "Username ou Password incorretos"){
+                    alert(response.responseJSON);
+                }else{
+                    window.location.href = "infocampoLogIn.php";
+
+                }
+            }
+        })
+    }else{
+        alert("Preencha os campos");
+    }
+    
+}
+
+btnOpenLogIn.addEventListener("click", loginP);
+btnLogIn2.addEventListener("click", loginP);
+
 
 
 btnCriarConta.onclick = function(){
@@ -36,7 +72,7 @@ window.onclick = function(event) {
     }
 }
 
-function login(){
+function loginP(){
     popup.style.display = "block";
     console.log("tst");
 }

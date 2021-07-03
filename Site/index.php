@@ -145,14 +145,13 @@ session_start();
     <div class="popup-content">
       <span class="close" id="close">&times;</span>
       <div class="popup_content">
-        <form action="php/login.php" method="post">
-
+        <form>
           <div class="container">
-            <input id="inputUsername" type="text" placeholder="Enter Username" name="username" required>
+            <input id="inputUsername" type="text" placeholder="Enter Username" required>
             <br>
-            <input id="inputPassword" type="password" placeholder="Enter Password" name="psw" required>
+            <input id="inputPassword" type="password" placeholder="Enter Password" required>
             <br>
-            <button type="submit" id="loginBtn" name="submit" value="Submit">Login</button>
+            <button type="button" id="loginBtn">Login</button>
             <div id="btnCriarConta">Criar Conta</div>
           </div>
         </form>
