@@ -1,14 +1,13 @@
 var email = document.getElementById("criarContaEmail");
-var username = document.getElementById("criarContaUserName");
+var user = document.getElementById("criarContaUserName");
 var pass = document.getElementById("criarContaPass");
 var btnCriarConta = document.getElementById("submitCriarConta");
 
 btnCriarConta.onclick = function(){
     
     emailV = email.value;
-    usernameV = username.value,
+    usernameV = user.value;
     passV = pass.value;
-console.log(usernameV)
     var data = {
         email : emailV,
         username: usernameV,
