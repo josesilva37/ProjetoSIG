@@ -9,13 +9,14 @@ $data = json_decode($_POST['json']);
 $datahora = $data->dataHora;
 $nomecampo = $data->nome_campo;
 $dh = str_replace("_", " ", $datahora);
+$nomeCampoMudado = " ".$nomecampo;
 
 try{
     global $pdo;
     $q = "INSERT INTO evento_utilizador(username,data_hora, nome_campo) values (?,?,?)";
     $stmt = $pdo->prepare($q);
     if ($stmt->execute([$username, $dh, $nomecampo])) { 
-        $q2 = "UPDATE evento SET participantes = participantes + 1 WHERE  data_hora = '".$dh."'";
+        $q2 = "UPDATE evento SET participantes = participantes + 1 WHERE  data_hora = '".$dh."' and nome_campo like '".$nomeCampoMudado."'";
         $stmt2 = $pdo->prepare($q2);
         if($stmt2->execute()){
             echo "sucesso";

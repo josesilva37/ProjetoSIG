@@ -583,7 +583,7 @@ function infoEvento(evt, feature, nomeCampo) {
             evento.data_hora +
             "</p><input type='submit' value='Entrar' id=" +
             evento.data_hora.replace(" ", "_") +
-            " class='btnEventos btnEntrarEvento' name='"+nomeCampo.replaceAll(",", "|").replaceAll(" ","-") + "'>" +
+            " class='btnEventos btnEntrarEvento' name='"+nomeCampo.replaceAll(",", "|").replaceAll(" ",";") + "'>" +
             "<p class='infoP'><span class='infoSpan'>Participantes: </span>" +
             evento.participantes +
             "</p><p class='infoP'><span class='infoSpan'>MáxParticipantes: </span>" +
@@ -630,7 +630,7 @@ function infoEvento(evt, feature, nomeCampo) {
 
 function entrarEvento(element) {
   let horaEv = element.getAttribute("id");
-  let nomeCampo = element.name.replaceAll("|", ",").replaceAll("-"," ");
+  let nomeCampo = element.name.replaceAll("|", ",").replaceAll(";"," ");
   var entrarEvento = {
     dataHora: horaEv,
     nome_campo: nomeCampo
