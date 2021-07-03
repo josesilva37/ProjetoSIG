@@ -162,7 +162,7 @@ session_start();
     <div class="popup-content">
       <span class="close" id="close2">&times;</span>
       <div class="popup_content">
-        <form action="php/criarConta.php" method="POST">
+        <form>
           <div class="form-group">
             <input type="text" name="email" placeholder="Enter Email" id="criarContaEmail">
           </div>
@@ -170,10 +170,10 @@ session_start();
             <input type="text" name="username" placeholder="Enter Username" id="criarContaUsername">
           </div>
           <div class="form-group">
-            <input type="password" name="password" placeholder="Enter Password" id="CriarContaPass">
+            <input type="password" name="password" placeholder="Enter Password" id="criarContaPass">
           </div>
           <div class="form-group">
-            <input id="submitCriarConta" type="submit" class="btn btn-primary" value="Submit">
+            <button id="submitCriarConta" type="button" class="btn btn-primary">Criar Conta</button>
           </div>
 
         </form>
@@ -181,7 +181,7 @@ session_start();
     </div>
   </div>
   <script src="js/typeahead.bundle.js"></script>
-
+  <script src="js/criarConta.js"></script>
   <script src="js/infocampo.js"></script>
   <script src="js/criarEvento.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
