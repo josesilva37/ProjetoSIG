@@ -118,6 +118,9 @@ if (!isset($_SESSION["username"])) {
     <button id="logoutClick" type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </button>
+		    <button onclick="document.getElementById('popupPerfil').style.display ='block';" type="button" class="btn btn-default btn-sm">
+         Ver Perfil
+        </button>
     </div>
   </div>
       <?php
@@ -167,6 +170,8 @@ if (!isset($_SESSION["username"])) {
     <div class="popup-content" id="popListarPadelContent">
     </div>
   </div>
+  <?php include "php/verPerfil.php"; ?>
+  <?php include "php/editarPerfil.php"; ?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="js/typeahead.bundle.js"></script>
   <script src="js/logged.js"></script>
@@ -193,6 +198,77 @@ if (!isset($_SESSION["username"])) {
 
     }
   </script>
+<style>
+.list-bullets {
+    list-style: none;
+}
+
+.list-bullets li {
+    display: flex;
+    align-items: center;
+}
+
+.list-bullets li::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #5784d7;
+    border: 2px solid #8fb3f5;
+    display: block;
+    margin-right: 1rem;
+}
+.fa{
+  font-size: 25px;
+
+}
+/* Unordered list with custom numbers style */
+ol.custom-numbers {
+    list-style: none;
+}
+
+ol.custom-numbers li {
+    counter-increment: my-awesome-counter;
+}
+
+ol.custom-numbers li::before {
+    content: counter(my-awesome-counter) ". ";
+    color: #2b90d9;
+    font-weight: bold;
+}
+
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+body {
+    min-height: 100vh;
+    background-color: #6190e8;
+    background-image: linear-gradient(to right, #5784d7 0%, #a7bfe8 100%);
+}
+
+li {
+    font-style: italic;
+}
+
+.ratings i {
+    color: #388E3C
+}
+
+.btn {
+    border-radius: 15px !important
+}
+
+.line-color {
+    color: green;
+    height: 3px
+}
+h4
+</style>
 </body>
 
 </html>
