@@ -14,7 +14,7 @@ $eventos_query = SQL_Query::_select($sql,[$username]);
 ?>
 
 
-<div class="popup"  style="display:block" id="popupPerfil">
+<div class="popup"  style="display:none" id="popupPerfil">
     <div class="popup-content" id="popupPerfilContent" >
     <div class="card shadow  p-4 mt-3 ">
         <div class="second d-flex flex-row mt-2">
