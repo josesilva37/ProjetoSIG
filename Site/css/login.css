@@ -132,6 +132,7 @@ div#btnCriarConta:hover {
     background-color: white;
     color: black;
 }
+
 #inputUsername, #inputPassword,#CriarContaPass,#CriarContaPass2,#criarContaUsername,#criarContaEmail{
     width: 100%;
     padding: 12px;
@@ -162,7 +163,7 @@ div#btnCriarConta:hover {
     margin-top: 15px;
     justify-content: center;
   }
-  input#submitCriarConta:hover{
+  button#submitCriarConta:hover{
     background-color: white;
     color: black;
   }
