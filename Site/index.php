@@ -167,7 +167,7 @@ session_start();
             <input type="text" name="email" placeholder="Enter Email" id="criarContaEmail">
           </div>
           <div class="form-group">
-            <input type="text" name="username" placeholder="Enter Username" id="criarContaUsername">
+          <input type="text" placeholder="Enter Username" id="criarContaUserName">
           </div>
           <div class="form-group">
             <input type="password" name="password" placeholder="Enter Password" id="criarContaPass">
