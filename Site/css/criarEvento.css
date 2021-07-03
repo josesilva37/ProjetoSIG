@@ -167,3 +167,8 @@ h4{
 .eventosListar{
     cursor: pointer;
 }
+
+.eventosListar:hover{
+    font-weight: bold;
+    background-color: rgb(226, 226, 226);
+  }
