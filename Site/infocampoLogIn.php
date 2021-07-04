@@ -112,7 +112,7 @@ if (!isset($_SESSION["username"])) {
           <li id="padelEventos" class="eventosListar"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
         </ul>
       </div>
-      <i class="fa fa-user-circle fa-2x iconProfile" id="logOut"></i>
+      <a href ="#"> <i class="fa fa-user-circle fa-2x iconProfile" id="logOut"></i></a>
       <div class="popuplg" id="popupLogOut">
     <div class="popup-contentlg">
     <button id="logoutClick" type="button" class="btn btn-default btn-sm">

@@ -127,8 +127,14 @@ map.addLayer(locationDestinationLayer);
 map.on("singleclick", function (evt) {
   if(primeiro_click_coords != null){
     criarRota(primeiro_click_coords[0],primeiro_click_coords[1],evt.coordinate[0],evt.coordinate[1]);
+    var locationFeature = new ol.Feature({
+      geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
+      name: "User Destination",
+    });
+    locationDestinationSource.clear();
+    locationDestinationSource.addFeature(locationFeature);
     primeiro_click_coords = null;
-    // map.un("pointermove",evento_ONMouseMove(evt));
+
   }
   
   });
@@ -139,7 +145,7 @@ map.on("singleclick", function (evt) {
 
       var locationFeature = new ol.Feature({
         geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
-        name: "User Destiny",
+        name: "User Destination",
       });
       locationDestinationSource.clear();
       locationDestinationSource.addFeature(locationFeature);
@@ -675,7 +681,7 @@ map.on("dblclick", function (evt) {
 
   locationSource.clear();
   locationDestinationSource.clear();
-  console.log(locationSource.getFeatures());
+
   userLoc = evt.coordinate;
 
 
@@ -687,15 +693,10 @@ map.on("dblclick", function (evt) {
 
   locationSource.addFeature(locationFeature);
 
-
-
-
 primeiro_click_coords = evt.coordinate;
 
-map.on("pointermove", function (evt) {evento_ONMouseMove(evt);});
-
 });
-
+map.on("pointermove", function (evt) {evento_ONMouseMove(evt);});
 isFiltroRaio.addEventListener("change", function () {
   if (userLoc == null) {
     alert("Selecione a localização de partida com duplo clique no mapa");
