@@ -909,6 +909,9 @@ freguesias.addEventListener("change", function () {
   if(isFiltroRaio.checked == true){
     isFiltroRaio.checked = false;
   }
+  if(filtroTempo.checked == true){
+    filtroTempo.checked = false;
+  }
   var dataFreguesia = {
     freg: freguesias.value,
     tipoCampo: selectCampos.value,
