@@ -62,6 +62,7 @@ rotaSource = new ol.source.Vector({     //busca os pontos das maquinas
  rotas = new ol.layer.Vector({
   source: rotaSource,
   title: " Rota",
+  displayInLayerSwitcher: false,
   style: new ol.style.Style({
 
       stroke: new ol.style.Stroke({
@@ -113,6 +114,7 @@ var locationDestinationSource = new ol.source.Vector();
 
 var locationDestinationLayer = new ol.layer.Vector({
   source: locationDestinationSource,
+  displayInLayerSwitcher: false,
   style: new ol.style.Style({
     image: new ol.style.Icon({
       anchor: [0.2, 0.2],
@@ -667,6 +669,7 @@ var locationSource = new ol.source.Vector();
 
 var locationLayer = new ol.layer.Vector({
   source: locationSource,
+  displayInLayerSwitcher: false,
   style: new ol.style.Style({
     image: new ol.style.Icon({
       anchor: [0.5, 0.5],
