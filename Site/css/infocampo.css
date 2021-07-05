@@ -77,16 +77,18 @@ body {
 }
 
 .iconBasket {
-  color: orangered;
-  margin-right: 10px;
+  font-size: 24px;
+  margin-right: 8px;
 }
 
 .iconFutebol {
-  margin-right: 10px;
+  font-size: 24px;
+  margin-right: 8px;
 }
 .iconVolley {
-  color: black;
-  margin-right: 10px;
+  color: tomato;
+  margin-right: 8px;
+  font-size: 24px;
 }
 .iconTenis {
   font-size: 24px;

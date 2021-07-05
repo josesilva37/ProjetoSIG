@@ -24,7 +24,7 @@ session_start();
   <script type="text/javascript" src="./js/ol-ext.js"></script>
   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
   <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" crossorigin='anonymous'></script>
   <title>Projeto SIG</title>
 
 </head>
@@ -104,9 +104,9 @@ session_start();
       <div name="menuContent">
         <h3 class="titulo">Eventos:</h3>
         <ul>
-          <li onclick="redireciona()" class="eventosListar"><i class="far fa-futbol iconFutebol"></i>Futebol</li>
-          <li onclick="redireciona()" class="eventosListar"><i class='fas fa-basketball-ball iconBasket'></i>Basquetebol</li>
-          <li onclick="redireciona()" class="eventosListar"><i class="fas fa-volleyball-ball iconVolley"></i>Voleibol</li>
+          <li onclick="redireciona()" class="eventosListar"><span class="iconify iconFutebol" data-icon="openmoji:soccer-ball" data-inline="true"></span>Futebol</li>
+          <li onclick="redireciona()" class="eventosListar"><span class="iconify iconBasket" data-icon="noto:basketball" data-inline="true"></span>Basquetebol</li>
+          <li onclick="redireciona()" class="eventosListar"><span class="iconify iconVolley" data-icon="mdi-volleyball" data-inline="false"></span>Voleibol</li>
           <li onclick="redireciona()" class="eventosListar"><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
           <li onclick="redireciona()" class="eventosListar"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel
           </li>

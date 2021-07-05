@@ -105,9 +105,9 @@ if (!isset($_SESSION["username"])) {
         <h3 class="titulo">Eventos:</h3>
 
         <ul>
-          <li id="futEventos" class="eventosListar"><i class="far fa-futbol iconFutebol"></i>Futebol</li>
-          <li id="basqueteEventos" class="eventosListar"><i class='fas fa-basketball-ball iconBasket'></i>Basquetebol</li>
-          <li id="voleiEventos" class="eventosListar"><i class="fas fa-volleyball-ball iconVolley"></i>Voleibol</li>
+          <li id="futEventos" class="eventosListar"><span class="iconify iconFutebol" data-icon="openmoji:soccer-ball" data-inline="true"></span>Futebol</li>
+          <li id="basqueteEventos" class="eventosListar"><span class="iconify iconBasket" data-icon="noto:basketball" data-inline="true"></span>Basquetebol</li>
+          <li id="voleiEventos" class="eventosListar"><span class="iconify iconVolley" data-icon="mdi-volleyball" data-inline="false"></span>Voleibol</li>
           <li id="tenisEventos" class="eventosListar"><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
           <li id="padelEventos" class="eventosListar"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
         </ul>
