@@ -146,7 +146,7 @@ if (!isset($_SESSION["username"])) {
           <option value="2">2h</option>
           <option value="3">3h</option>
         </select>
-        <input type="number" id="numeroJogadores" placeholder="Número de Jogadores" class="form-control" required>
+        <input type="number" id="numeroJogadores" placeholder="Número de Jogadores" class="form-control" required min="0">
         <input type="submit" class="button" id="criarEvento" value="Criar Evento" required>
       </form>
     </div>

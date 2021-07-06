@@ -124,22 +124,6 @@ session_start();
   </div>
   <div id="map" class="map"></div>
   <div id="popup-content"></div>
-  <!-- <div id="popup-addEvento">
-    <div class="popup" id="popupAdd">
-      <div class="popup-content">
-        <span class="close" id="closeAdd" onclick="closePOP()">&times;</span>
-        <img src="" alt="campo" id="foto">
-        <h4 id="localizacao"></h4>
-        <form method="POST">
-          <input type="date" id="data">
-          <input type="time" id="hora">
-          <input type="number" id="duracao" placeholder="Duração">
-          <input type="number" id="numeroJogadores" placeholder="Número de Jogadores">
-          <input type="submit" class="button" id="criarEvento" value="Criar Evento">
-        </form>
-      </div>
-    </div>
-  </div> -->
   </div>
   <div class="login_popup" id="login_popup">
     <div class="popup-content">
@@ -183,7 +167,6 @@ session_start();
   <script src="js/typeahead.bundle.js"></script>
   <script src="js/criarConta.js"></script>
   <script src="js/infocampo.js"></script>
-  <script src="js/criarEvento.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="js/login.js"></script>
   <script src="js/siema.min.js"></script>
