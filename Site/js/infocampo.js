@@ -568,7 +568,7 @@ function infoEvento(evt, feature, nomeCampo) {
       caixaSiema = document.getElementById("caixaSiema");
       if (data.eventos.length <= 0) {
         caixaSiema.innerHTML =
-          "<div id='divVoltar'><button id='btnVoltarAtras' class='voltarAtras'><i class='fas fa-arrow-circle-left'></i></button>Não existem eventos!</div></div>";
+          "<div id='divVoltar'><button id='btnVoltarAtras' class='voltarAtras'><span class='iconify' data-icon='bi:arrow-left-circle-fill' data-inline='true'></span></button>Não existem eventos!</div></div>";
         let botoesVolAtrasSemEvt =
           document.getElementsByClassName("voltarAtras");
         for (let i = 0; i < botoesVolAtrasSemEvt.length; i++) {
@@ -583,7 +583,7 @@ function infoEvento(evt, feature, nomeCampo) {
           var dhora = evento.data_hora;
           console.log(dhora);
           caixaSiema.innerHTML +=
-            "<div><button id='btnVoltarAtras' class='voltarAtras'><i class='fas fa-arrow-circle-left'></i></button>" +
+            "<div><button id='btnVoltarAtras' class='voltarAtras'><span class='iconify' data-icon='bi:arrow-left-circle-fill' data-inline='true'></button>" +
             "<img src='' alt='campo' class='imagensCampos'><p class='infoP'><span class='infoSpan'>Localização:</span> " +
             nomeCampo +
             "</p>" +
@@ -609,8 +609,8 @@ function infoEvento(evt, feature, nomeCampo) {
         });
         caixaSiema.innerHTML += "</div>";
         content.innerHTML +=
-          "<button class='prev btnSetas'><i class='fas fa-arrow-left setas'></i></button>" +
-          "<button class='next btnSetas' id='setaDireita'><i class='fas fa-arrow-right setas'></i></button>";
+          "<button class='prev btnSetas'><span class='iconify setas' data-icon='akar-icons:arrow-left' data-inline='true'></span></i></button>" +
+          "<button class='next btnSetas' id='setaDireita'><span class='iconify setas' data-icon='akar-icons:arrow-right' data-inline='true'></button>";
         const mySiema = new Siema();
         $(".imagensCampos").attr("src", imagemCampo(feature));
         var botoesVolAtras = document.getElementsByClassName("voltarAtras");
