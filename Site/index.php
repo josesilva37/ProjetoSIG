@@ -108,8 +108,8 @@ session_start();
           <li onclick="redireciona()" class="eventosListar"><span class="iconify iconBasket" data-icon="noto:basketball" data-inline="true"></span>Basquetebol</li>
           <li onclick="redireciona()" class="eventosListar"><span class="iconify iconVolley" data-icon="mdi-volleyball" data-inline="false"></span>Voleibol</li>
           <li onclick="redireciona()" class="eventosListar"><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
-          <li onclick="redireciona()" class="eventosListar"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel
-          </li>
+          <li onclick="redireciona()" class="eventosListar"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
+          <li onclick="redireciona()" class="eventosListar"><img src="./icons/multisport.png" style="width: 30px;" alt="multi"> Multidesportos</li>
         </ul>
       </div>
       <i class="fa fa-user-circle fa-2x iconProfile onHover" id="logIn"></i>

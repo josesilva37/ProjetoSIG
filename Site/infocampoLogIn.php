@@ -110,6 +110,7 @@ if (!isset($_SESSION["username"])) {
           <li id="voleiEventos" class="eventosListar"><span class="iconify iconVolley" data-icon="mdi-volleyball" data-inline="false"></span>Voleibol</li>
           <li id="tenisEventos" class="eventosListar"><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
           <li id="padelEventos" class="eventosListar"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
+          <li id="multiEventos" class="eventosListar"><img src="./icons/multisport.png" style="width: 30px;" alt="multi"> Multidesportos</li>
         </ul>
       </div>
       <a href ="#"> <i class="fa fa-user-circle fa-2x iconProfile" id="logOut"></i></a>
@@ -170,6 +171,10 @@ if (!isset($_SESSION["username"])) {
     <div class="popup-content" id="popListarPadelContent">
     </div>
   </div>
+  <div class="popup" id="popupListarMulti">
+    <div class="popup-content" id="popListarMultiContent">
+    </div>
+  </div>
   <?php include "php/verPerfil.php"; ?>
   <?php include "php/editarPerfil.php"; ?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -198,77 +203,10 @@ if (!isset($_SESSION["username"])) {
 
     }
   </script>
-<style>
-.list-bullets {
-    list-style: none;
-}
-
-.list-bullets li {
-    display: flex;
-    align-items: center;
-}
-
-.list-bullets li::before {
-    content: '';
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #5784d7;
-    border: 2px solid #8fb3f5;
-    display: block;
-    margin-right: 1rem;
-}
-.fa{
-  font-size: 25px;
-
-}
-/* Unordered list with custom numbers style */
-ol.custom-numbers {
-    list-style: none;
-}
-
-ol.custom-numbers li {
-    counter-increment: my-awesome-counter;
-}
-
-ol.custom-numbers li::before {
-    content: counter(my-awesome-counter) ". ";
-    color: #2b90d9;
-    font-weight: bold;
-}
-
-
-/*
-*
-* ==========================================
-* FOR DEMO PURPOSES
-* ==========================================
-*
-*/
-body {
-    min-height: 100vh;
-    background-color: #6190e8;
-    background-image: linear-gradient(to right, #5784d7 0%, #a7bfe8 100%);
-}
-
-li {
-    font-style: italic;
-}
-
-.ratings i {
-    color: #388E3C
-}
-
-.btn {
-    border-radius: 15px !important
-}
-
-.line-color {
-    color: green;
-    height: 3px
-}
-h4
-</style>
+  <style>
+    .ratings i{
+      color: #388E3C;
+    }
+  </style>
 </body>
-
 </html>
