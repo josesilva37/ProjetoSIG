@@ -697,6 +697,9 @@ map.on("pointermove", function (evt) {evento_ONMouseMove(evt);});
 });
 
 isFiltroRaio.addEventListener("change", function () {
+  if(filtroTempo.check == true){
+    isFiltroRaio.checked = false; 
+  }
   if (userLoc == null) {
     alert("Selecione a localização de partida com duplo clique no mapa");
     isFiltroRaio.checked = false;
@@ -778,6 +781,13 @@ isFiltroRaio.addEventListener("change", function () {
   }
 });
 filtroTempo.addEventListener("change", function () {
+  if(isFiltroRaio.checked == true){
+    isFiltroRaio.checked = false;
+  }
+  if(isFiltroRaio.checked == true){
+    isFiltroRaio.checked = false;
+  }
+ 
   if (userLoc == null) {
     alert("Selecione a localização de partida com duplo clique no mapa");
     filtroTempo.checked = false;
@@ -905,6 +915,9 @@ freguesias.addEventListener("change", function(){
 */
 
 freguesias.addEventListener("change", function () {
+  if(isFiltroRaio.checked == true){
+    isFiltroRaio.checked = false;
+  }
   if(isFiltroRaio.checked == true){
     isFiltroRaio.checked = false;
   }
