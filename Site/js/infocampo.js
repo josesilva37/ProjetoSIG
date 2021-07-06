@@ -701,7 +701,7 @@ primeiro_click_coords = evt.coordinate;
 });
 map.on("pointermove", function (evt) {evento_ONMouseMove(evt);});
 isFiltroRaio.addEventListener("change", function () {
-  if(filtroTempo.check == true){
+  if(filtroTempo.checked == true){
     filtroTempo.checked = false; 
   }
   if (userLoc == null) {
