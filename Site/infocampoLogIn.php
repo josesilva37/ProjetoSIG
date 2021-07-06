@@ -105,18 +105,22 @@ if (!isset($_SESSION["username"])) {
         <h3 class="titulo">Eventos:</h3>
 
         <ul>
-          <li id="futEventos" class="eventosListar"><i class="far fa-futbol iconFutebol"></i>Futebol</li>
-          <li id="basqueteEventos" class="eventosListar"><i class='fas fa-basketball-ball iconBasket'></i>Basquetebol</li>
-          <li id="voleiEventos" class="eventosListar"><i class="fas fa-volleyball-ball iconVolley"></i>Voleibol</li>
+          <li id="futEventos" class="eventosListar"><span class="iconify iconFutebol" data-icon="openmoji:soccer-ball" data-inline="true"></span>Futebol</li>
+          <li id="basqueteEventos" class="eventosListar"><span class="iconify iconBasket" data-icon="noto:basketball" data-inline="true"></span>Basquetebol</li>
+          <li id="voleiEventos" class="eventosListar"><span class="iconify iconVolley" data-icon="mdi-volleyball" data-inline="false"></span>Voleibol</li>
           <li id="tenisEventos" class="eventosListar"><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
           <li id="padelEventos" class="eventosListar"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
+          <li id="multiEventos" class="eventosListar"><img src="./icons/multisport.png" style="width: 30px;" alt="multi"> Multidesportos</li>
         </ul>
       </div>
-      <i class="fa fa-user-circle fa-2x iconProfile" id="logOut"></i>
+      <a href ="#"> <i class="fa fa-user-circle fa-2x iconProfile" id="logOut"></i></a>
       <div class="popuplg" id="popupLogOut">
     <div class="popup-contentlg">
     <button id="logoutClick" type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-log-out"></span> Log out
+        </button>
+		    <button onclick="document.getElementById('popupPerfil').style.display ='block';" type="button" class="btn btn-default btn-sm">
+         Ver Perfil
         </button>
     </div>
   </div>
@@ -142,7 +146,7 @@ if (!isset($_SESSION["username"])) {
           <option value="2">2h</option>
           <option value="3">3h</option>
         </select>
-        <input type="number" id="numeroJogadores" placeholder="Número de Jogadores" class="form-control" required>
+        <input type="number" id="numeroJogadores" placeholder="Número de Jogadores" class="form-control" required min="0">
         <input type="submit" class="button" id="criarEvento" value="Criar Evento" required>
       </form>
     </div>
@@ -167,6 +171,12 @@ if (!isset($_SESSION["username"])) {
     <div class="popup-content" id="popListarPadelContent">
     </div>
   </div>
+  <div class="popup" id="popupListarMulti">
+    <div class="popup-content" id="popListarMultiContent">
+    </div>
+  </div>
+  <?php include "php/verPerfil.php"; ?>
+  <?php include "php/editarPerfil.php"; ?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="js/typeahead.bundle.js"></script>
   <script src="js/logged.js"></script>
@@ -193,6 +203,10 @@ if (!isset($_SESSION["username"])) {
 
     }
   </script>
+  <style>
+    .ratings i{
+      color: #388E3C;
+    }
+  </style>
 </body>
-
 </html>

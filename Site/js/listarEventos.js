@@ -3,6 +3,7 @@ var basqueteEventos = document.getElementById("basqueteEventos");
 var voleiEventos = document.getElementById("voleiEventos");
 var tenisEventos = document.getElementById("tenisEventos");
 var padelEventos = document.getElementById("padelEventos");
+var multiEventos = document.getElementById("multiEventos");
 
 //futebol
 var popupListarFutebol = document.getElementById("popupListarFutebol");
@@ -19,7 +20,9 @@ var popListarTenisContent = document.getElementById("popListarTenisContent");
 //padel
 var popupListarPadel = document.getElementById("popupListarPadel");
 var popListarPadelContent = document.getElementById("popListarPadelContent");
-
+//multi
+var popupListarMulti = document.getElementById("popupListarMulti");
+var popListarMultiContent = document.getElementById("popListarMultiContent");
 
 var popupADD = document.getElementById("popupAdd");
 
@@ -29,6 +32,7 @@ basqueteEventos.addEventListener("click",addEventoListarBasquete);
 voleiEventos.addEventListener("click", addEventoListarVolei);
 tenisEventos.addEventListener("click",addEventoListarTenis);
 padelEventos.addEventListener("click", addEventoListarPadel);
+multiEventos.addEventListener("click", addEventoListarMulti);
 
 
 
@@ -38,6 +42,7 @@ function addEventoListarFutebol(){
     popupListarVolei.style.display = "none";
     popupListarTenis.style.display = "none";
     popupListarPadel.style.display = "none";
+    popupListarMulti.style.display = "none";
     $.ajax({
         url: "./php/listarEventos.php",
         type: 'POST',
@@ -70,6 +75,7 @@ function addEventoListarBasquete(){
     popupListarVolei.style.display = "none";
     popupListarTenis.style.display = "none";
     popupListarPadel.style.display = "none";
+    popupListarMulti.style.display = "none";
     $.ajax({
         url: "./php/listarEventos.php",
         type: 'POST',
@@ -80,7 +86,7 @@ function addEventoListarBasquete(){
             var countB = 0;
             for(let i = 0;i<evento.eventos.length;i++){
                 if(evento.eventos[i].tipo_desporto === "basketball"){
-                    count += 1;
+                    countB += 1;
                     popListarBasquetebolContent.innerHTML += "<div class='eventoRow'>"+
                     "<h5><b>Local: </b>"+ evento.eventos[i].nome_campo+"</h5>"+
                     "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
@@ -102,6 +108,7 @@ function addEventoListarVolei(){
     popupListarVolei.style.display = "block";
     popupListarTenis.style.display = "none";
     popupListarPadel.style.display = "none";
+    popupListarMulti.style.display = "none";
     $.ajax({
         url: "./php/listarEventos.php",
         type: 'POST',
@@ -134,6 +141,7 @@ function addEventoListarTenis(){
     popupListarVolei.style.display = "none";
     popupListarTenis.style.display = "block";
     popupListarPadel.style.display = "none";
+    popupListarMulti.style.display = "none";
     $.ajax({
         url: "./php/listarEventos.php",
         type: 'POST',
@@ -166,6 +174,7 @@ function addEventoListarPadel(){
     popupListarVolei.style.display = "none";
     popupListarTenis.style.display = "none";
     popupListarPadel.style.display = "block";
+    popupListarMulti.style.display = "none";
     $.ajax({
         url: "./php/listarEventos.php",
         type: 'POST',
@@ -193,12 +202,47 @@ function addEventoListarPadel(){
     })
 }
 
+function addEventoListarMulti(){
+    popupListarFutebol.style.display = "none";
+    popupListarBasquetebol.style.display = "none";
+    popupListarVolei.style.display = "none";
+    popupListarTenis.style.display = "none";
+    popupListarPadel.style.display = "none";
+    popupListarMulti.style.display = "block";
+    $.ajax({
+        url: "./php/listarEventos.php",
+        type: 'POST',
+        dataType: 'json',
+        success: function(evento){
+            popListarMultiContent.innerHTML = "<span class='close' id='closeAdd' onclick='closePOPLista()'>&times;</span>"+
+            "<h2>Eventos de Multidesportos</h2>";
+            var countM = 0;
+            for(let i = 0;i<evento.eventos.length;i++){
+                if(evento.eventos[i].tipo_desporto === "multi"){
+                    countM += 1;
+                    popListarMultiContent.innerHTML += "<div class='eventoRow'>"+
+                    "<h5><b>Local: </b>"+ evento.eventos[i].nome_campo+"</h5>"+
+                    "<h5><b>Data e Hora: </b>"+ evento.eventos[i].data_hora+"</h5>"+
+                    "<h5><b>Número máximo de participantes: </b>"+ evento.eventos[i].participantesmax+"</h5>"+
+                    "<h5><b>Participantes atuais: </b>"+evento.eventos[i].participantes+"</h5>"+
+                    "<h5><b>Duração: </b>"+ evento.eventos[i].duracao+"h</h5>"+
+                    "</div>";
+                }
+            }
+            if(countM == 0){
+                popListarMultiContent.innerHTML += "<h3>Não existe eventos</h3>";
+            }
+        }
+    })
+}
+
 function closePOPLista() {
     popupListarFutebol.style.display = "none";
     popupListarBasquetebol.style.display = "none";
     popupListarVolei.style.display = "none";
     popupListarTenis.style.display = "none";
     popupListarPadel.style.display = "none";
+    popupListarMulti.style.display = "none";
 }
 
 window.onclick = function(event) {
@@ -219,5 +263,8 @@ window.onclick = function(event) {
     }
     if (event.target == popupListarPadel) {
         popupListarPadel.style.display = "none";
+    }
+    if(event.target == popupListarMulti){
+        popupListarMulti.style.display = "none";
     }
 }

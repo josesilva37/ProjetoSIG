@@ -108,6 +108,54 @@ button#loginBtn:hover {
     background-color: white;
     color: black;
 }
+.botaoDefault {
+    font-size: medium;
+    background-color: black;
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid grey;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 300;
+    color: #FFFFFF;
+    text-align: center;
+    transition: all 0.2s;
+    height: 32px;
+    width: 175px;
+    margin-top: 15px;
+    justify-content: center;
+  }
+.botaoDefaultInverse:hover {
+    background-color: black;
+    color: white;
+}
+.botaoDefaultInverse {
+    font-size: medium;
+    background-color: white;
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid grey;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 300;
+    color: black;
+    text-align: center;
+    transition: all 0.2s;
+    height: 32px;
+    width: 175px;
+    margin-top: 15px;
+    justify-content: center;
+  }
+.botaoDefault:hover {
+    background-color: white;
+    color: black;
+}
 #btnCriarConta{
     font-size: medium;
     background-color: black;

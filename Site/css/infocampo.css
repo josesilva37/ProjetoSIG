@@ -77,16 +77,18 @@ body {
 }
 
 .iconBasket {
-  color: orangered;
-  margin-right: 10px;
+  font-size: 24px;
+  margin-right: 8px;
 }
 
 .iconFutebol {
-  margin-right: 10px;
+  font-size: 24px;
+  margin-right: 8px;
 }
 .iconVolley {
-  color: black;
-  margin-right: 10px;
+  color: tomato;
+  margin-right: 8px;
+  font-size: 24px;
 }
 .iconTenis {
   font-size: 24px;
@@ -122,7 +124,7 @@ body {
 
 .titulo {
   margin-left: 25px;
-  margin-top: 75px;
+  margin-top: 30px;
 }
 /*////////////////////////////*/
 .map {
@@ -232,12 +234,25 @@ body {
 .setas{
   color: orangered;
   margin: 20px 20px 0px 0px;
+  outline: none;
+  border: none;
+  font-size: 17px;
+}
+
+.setas:focus{
+  border: none;
 }
 .btnSetas{
   background: none;
   border: none;
+  outline: none;
 }
 
+.btnSetas:focus{
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
 #setaDireita{
   float:right;
 }

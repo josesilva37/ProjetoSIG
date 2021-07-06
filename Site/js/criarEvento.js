@@ -31,7 +31,6 @@ function addEvento(feature){
   tipo_desporto = feature.get("sport");
   console.log(tipo_desporto);
   geomtria = feature.get("geom");
-  console.log(geomtria)
 }
 
 
@@ -67,8 +66,4 @@ function gravar(){
       data: {json: JSON.stringify(data)},
       dataType: 'json'
   })
-}
-
-function redireciona(){
-  window.alert("Necessita fazer login para aceder a esta funcionalidade");
 }

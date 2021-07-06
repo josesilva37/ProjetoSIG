@@ -24,7 +24,7 @@ session_start();
   <script type="text/javascript" src="./js/ol-ext.js"></script>
   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
   <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" crossorigin='anonymous'></script>
   <title>Projeto SIG</title>
 
 </head>
@@ -104,12 +104,12 @@ session_start();
       <div name="menuContent">
         <h3 class="titulo">Eventos:</h3>
         <ul>
-          <li onclick="redireciona()" class="eventosListar"><i class="far fa-futbol iconFutebol"></i>Futebol</li>
-          <li onclick="redireciona()" class="eventosListar"><i class='fas fa-basketball-ball iconBasket'></i>Basquetebol</li>
-          <li onclick="redireciona()" class="eventosListar"><i class="fas fa-volleyball-ball iconVolley"></i>Voleibol</li>
+          <li onclick="redireciona()" class="eventosListar"><span class="iconify iconFutebol" data-icon="openmoji:soccer-ball" data-inline="true"></span>Futebol</li>
+          <li onclick="redireciona()" class="eventosListar"><span class="iconify iconBasket" data-icon="noto:basketball" data-inline="true"></span>Basquetebol</li>
+          <li onclick="redireciona()" class="eventosListar"><span class="iconify iconVolley" data-icon="mdi-volleyball" data-inline="false"></span>Voleibol</li>
           <li onclick="redireciona()" class="eventosListar"><span class="iconify iconTenis" data-icon="mdi-tennis-ball" data-inline="true"></span>Ténis</li>
-          <li onclick="redireciona()" class="eventosListar"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel
-          </li>
+          <li onclick="redireciona()" class="eventosListar"><span class="iconify iconPadel" data-icon="si-glyph:tennis-racket-ball" data-inline="true"></span>Pádel</li>
+          <li onclick="redireciona()" class="eventosListar"><img src="./icons/multisport.png" style="width: 30px;" alt="multi"> Multidesportos</li>
         </ul>
       </div>
       <i class="fa fa-user-circle fa-2x iconProfile onHover" id="logIn"></i>
@@ -124,22 +124,6 @@ session_start();
   </div>
   <div id="map" class="map"></div>
   <div id="popup-content"></div>
-  <!-- <div id="popup-addEvento">
-    <div class="popup" id="popupAdd">
-      <div class="popup-content">
-        <span class="close" id="closeAdd" onclick="closePOP()">&times;</span>
-        <img src="" alt="campo" id="foto">
-        <h4 id="localizacao"></h4>
-        <form method="POST">
-          <input type="date" id="data">
-          <input type="time" id="hora">
-          <input type="number" id="duracao" placeholder="Duração">
-          <input type="number" id="numeroJogadores" placeholder="Número de Jogadores">
-          <input type="submit" class="button" id="criarEvento" value="Criar Evento">
-        </form>
-      </div>
-    </div>
-  </div> -->
   </div>
   <div class="login_popup" id="login_popup">
     <div class="popup-content">
@@ -183,7 +167,6 @@ session_start();
   <script src="js/typeahead.bundle.js"></script>
   <script src="js/criarConta.js"></script>
   <script src="js/infocampo.js"></script>
-  <script src="js/criarEvento.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="js/login.js"></script>
   <script src="js/siema.min.js"></script>
