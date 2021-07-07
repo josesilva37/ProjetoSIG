@@ -46,32 +46,58 @@ $('#location-button').click(function () {
 })
 */
 var rotaSource;
+
 var rotas;
-var primeiro_click_coords = null;
-function criarRota(xOrigem,yOrigem , xDestino,yDestino){
+
+var coord_pontoInicial = null;
+var coord_pontoFinal = null;
+var rotasInverseSource;
+var rotasInverse;
+function criarRota(xOrigem,yOrigem , xDestino,yDestino, rotainversa){
+
+  if(rotainversa){
+    rotasInverseSource.clear();
+    rotasInverseSource.setUrl("./php/criarRota.php?xOrigem="+xOrigem+"&yOrigem="+yOrigem+"&xDestino="+xDestino + "&yDestino=" + yDestino+"&reverse="+rotainversa);
+    rotasInverseSource.refresh();
+    return;
+  }
   rotaSource.clear();
-  rotaSource.setUrl("./php/criarRota.php?xOrigem="+xOrigem+"&yOrigem="+yOrigem+"&xDestino="+xDestino + "&yDestino=" + yDestino);
+  rotaSource.setUrl("./php/criarRota.php?xOrigem="+xOrigem+"&yOrigem="+yOrigem+"&xDestino="+xDestino + "&yDestino=" + yDestino+"&reverse="+rotainversa);
 
   rotaSource.refresh();
 }
 $(document).ready(function(){
-rotaSource = new ol.source.Vector({     //busca os pontos das maquinas
-  url: "",
-  format: new ol.format.GeoJSON(),
-});
- rotas = new ol.layer.Vector({
-  source: rotaSource,
-  title: " Rota",
-  displayInLayerSwitcher: false,
-  style: new ol.style.Style({
-
+  rotasInverseSource = new ol.source.Vector({     //busca os pontos das maquinas
+    url: "",
+    format: new ol.format.GeoJSON(),
+  });
+    rotasInverse = new ol.layer.Vector({
+    source: rotasInverseSource,
+    title: " RotaInversa",
+    style: new ol.style.Style({
+  
+        stroke: new ol.style.Stroke({
+            color: 'red',
+            width: 7
+        })
+    }),
+  });
+  rotaSource = new ol.source.Vector({     //busca os pontos das maquinas
+    url: "",
+    format: new ol.format.GeoJSON(),
+  });
+   rotas = new ol.layer.Vector({
+    source: rotaSource,
+    title: " Rota",
+    style: new ol.style.Style({
+  
       stroke: new ol.style.Stroke({
-          color: 'blue',
-          width: 7
-      })
-  }),
-});
-
+        color: 'blue',
+        width: 7
+    })
+    }),
+  });
+  
 
 var osm = new ol.layer.Tile({
   title: "OSM",
@@ -126,34 +152,78 @@ var locationDestinationLayer = new ol.layer.Vector({
 });
 map.addLayer(locationDestinationLayer);
 
-map.on("singleclick", function (evt) {
-  if(primeiro_click_coords != null){
-    criarRota(primeiro_click_coords[0],primeiro_click_coords[1],evt.coordinate[0],evt.coordinate[1]);
-    var locationFeature = new ol.Feature({
-      geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
-      name: "User Destination",
-    });
-    locationDestinationSource.clear();
-    locationDestinationSource.addFeature(locationFeature);
-    primeiro_click_coords = null;
 
-  }
-  
-  });
-  function evento_ONMouseMove(evt) {
- 
-    if(primeiro_click_coords != null){
-      // console.log(evt);
 
-      var locationFeature = new ol.Feature({
-        geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
-        name: "User Destination",
-      });
-      locationDestinationSource.clear();
-      locationDestinationSource.addFeature(locationFeature);
-
+var contextmenu = new ContextMenu({
+  width: 170,
+  defaultItems: true, // defaultItems are (for now) Zoom In/Zoom Out
+  items: [
+    {
+      text: 'Ponto de partida',
+      classname: 'some-style-class', // add some CSS rules
+      icon: 'icons/icone.png',
+      callback: function(evt){ 
+        locationSource.clear();
+        locationDestinationSource.clear();
+        var locationFeature = new ol.Feature({
+          geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
+          name: "User Location",
+        });
+        
+        locationSource.addFeature(locationFeature);
+      coord_pontoFinal = null;
+      coord_pontoInicial = evt.coordinate;} // `center` is your callback function
+    },
+    {
+      text: 'Ponto de Destino',
+      classname: 'some-style-class', // you can add this icon with a CSS class
+                                     // instead of `icon` property (see next line)
+      icon: 'icons/map-marker-blue.png',  // this can be relative or absolute
+      callback: function(evt){
+        if(coord_pontoInicial != null){
+          criarRota(coord_pontoInicial[0],coord_pontoInicial[1],evt.coordinate[0],evt.coordinate[1],false);
+          var locationFeature = new ol.Feature({
+            geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
+            name: "User Destination",
+          });
+          locationDestinationSource.clear();
+          locationDestinationSource.addFeature(locationFeature);
+          coord_pontoFinal = evt.coordinate;
+      
+        }else{
+          alert("Primeiro escolha um ponto de partida");
+        }
+      }
+    },
+    '-' // this is a separator
+    ,
+    {
+      text: 'Caminho de Volta',
+      classname: 'some-style-class', // add some CSS rules
+      icon: 'icons/map-route.ico',
+      callback: function(evt){
+        if(coord_pontoInicial != null && coord_pontoFinal != null){
+          criarRota(coord_pontoInicial[0],coord_pontoInicial[1],coord_pontoFinal[0],coord_pontoFinal[1],true);
+        }else alert("Primeiro defina um ponto inicial e um ponto final");
+       }
+    },
+    {
+      text: 'Limpar Marcadores',
+      classname: 'some-style-class', // add some CSS rules
+      icon: 'icons/eraser.png',
+      callback: function(evt){
+        coord_pontoFinal = null;
+          coord_pontoInicial = null;
+          locationDestinationSource.clear();
+          locationSource.clear();
+          rotaSource.clear();
+          rotasInverseSource.clear();
+       } 
     }
-    }
+  ]
+});
+map.addControl(contextmenu);
+
 
 
 map.addControl(new ol.control.LayerSwitcherImage());
@@ -682,24 +752,10 @@ var locationLayer = new ol.layer.Vector({
 map.addLayer(locationLayer);
 map.on("dblclick", function (evt) {
 
-  locationSource.clear();
-  locationDestinationSource.clear();
-
   userLoc = evt.coordinate;
 
-
-
-  var locationFeature = new ol.Feature({
-    geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
-    name: "User Location",
-  });
-
-  locationSource.addFeature(locationFeature);
-
-primeiro_click_coords = evt.coordinate;
-
 });
-map.on("pointermove", function (evt) {evento_ONMouseMove(evt);});
+
 isFiltroRaio.addEventListener("change", function () {
   if(filtroTempo.checked == true){
     filtroTempo.checked = false; 

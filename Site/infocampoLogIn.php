@@ -30,6 +30,8 @@ if (!isset($_SESSION["username"])) {
   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
   <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="https://unpkg.com/ol3-contextmenu/build/ol3-contextmenu.min.css" rel="stylesheet">
+<script src="https://unpkg.com/ol3-contextmenu/build/ol3-contextmenu.js"></script>
   <title>Projeto SIG</title>
 
 </head>
